@@ -1,2 +1,7 @@
 res://battle_screen.tscn
-res://battle_screen.gd
+res://data/items/body_1.tres
+res://data/items/sword_1.tres
+res://data/items/wand_1.tres
+res://scripts/actor.gd
+res://scripts/equipment_component.gd
+res://scripts/equippable_item.gd

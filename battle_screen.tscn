@@ -1,9 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://i13cfqmk47or"]
+[gd_scene load_steps=13 format=3 uid="uid://i13cfqmk47or"]
 
 [ext_resource type="Script" path="res://battle_screen.gd" id="1_h8i7e"]
 [ext_resource type="Texture2D" uid="uid://ddq6mha0vfqlt" path="res://sprites/bg/cavern/bg_6.png" id="2_73l8l"]
 [ext_resource type="Texture2D" uid="uid://dbhfow0mgtct0" path="res://sprites/char/Female_02.png" id="2_ke2a5"]
 [ext_resource type="Texture2D" uid="uid://bxb70m5jr4jid" path="res://sprites/battlers/Clockwork Queen.png" id="3_3vyuo"]
+[ext_resource type="Script" path="res://scripts/actor.gd" id="4_2es4g"]
+[ext_resource type="Script" path="res://scripts/equipment_component.gd" id="5_ffpen"]
+[ext_resource type="Resource" uid="uid://bjhtbtuot6xw1" path="res://data/test_data/base_stats.tres" id="5_oxkhg"]
+[ext_resource type="Resource" uid="uid://d0c7bhnf7dou8" path="res://data/items/body_1.tres" id="6_kcue0"]
+[ext_resource type="Resource" uid="uid://c5ju47e7jyc68" path="res://data/items/sword_1.tres" id="8_c8bjn"]
+
+[sub_resource type="Resource" id="Resource_d4507"]
+script = ExtResource("5_ffpen")
+body = ExtResource("6_kcue0")
+weapon = ExtResource("8_c8bjn")
 
 [sub_resource type="Gradient" id="Gradient_l2p18"]
 colors = PackedColorArray(0.774882, 0.439775, 5.77569e-07, 1, 0.2, 1, 0, 1)
@@ -13,8 +23,9 @@ gradient = SubResource("Gradient_l2p18")
 width = 120
 height = 10
 
-[node name="BattleScreen" type="Node"]
+[node name="BattleScreen" type="Node" node_paths=PackedStringArray("party")]
 script = ExtResource("1_h8i7e")
+party = [null]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -24,6 +35,11 @@ texture = ExtResource("2_73l8l")
 
 [node name="Monster" type="Sprite2D" parent="."]
 texture = ExtResource("3_3vyuo")
+
+[node name="Character" type="Node" parent="."]
+script = ExtResource("4_2es4g")
+stats = ExtResource("5_oxkhg")
+equipment = SubResource("Resource_d4507")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -54,6 +70,7 @@ texture = ExtResource("2_ke2a5")
 expand_mode = 1
 
 [node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer/Portrait"]
+layout_mode = 0
 offset_top = -24.0
 offset_right = 120.0
 offset_bottom = -14.0

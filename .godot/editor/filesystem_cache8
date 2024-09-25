@@ -1,11 +1,25 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1727188724
+::res://::1727270771
 AncientModernTales-a7Po.ttf::FontFile::2783983685613556604::1727188378::1727188388::1::::<><>::
-battle_screen.tscn::PackedScene::616888505988471157::1727188724::0::1::::<><>::uid://dd5gp6tmj8qfw::::res://sprites/battlers/Assasin Garland.png<>res://battle_screen.gd<>uid://g17e13t2ysof::::res://sprites/bg/cavern/bg_1.png<>uid://dbhfow0mgtct0::::res://sprites/char/Female_02.png
+battle_screen.gd::GDScript::-1::1727256304::0::1::::BattleScreen<>Node<>::
+battle_screen.tscn::PackedScene::616888505988471157::1727270761::0::1::::<><>::res://battle_screen.gd<>uid://ddq6mha0vfqlt::::res://sprites/bg/cavern/bg_6.png<>uid://dbhfow0mgtct0::::res://sprites/char/Female_02.png<>uid://bxb70m5jr4jid::::res://sprites/battlers/Clockwork Queen.png<>res://scripts/actor.gd<>res://scripts/equipment_component.gd<>uid://bjhtbtuot6xw1::::res://data/test_data/base_stats.tres
 icon.svg::CompressedTexture2D::7571288992707961374::1727179258::1727179265::1::::<><>::
-battle_screen.gd::GDScript::-1::1727188724::0::1::::BattleScreen<>Node<>::
+::res://data/::1727270665
+::res://data/actors/::1727256320
+::res://data/items/::1727270761
+body_1.tres::Resource/EquippableItem::8920057015116647161::1727270761::0::1::::<><>::res://scripts/equippable_item.gd
+sword_1.tres::Resource/EquippableItem::6898353892585612439::1727270728::0::1::::<><>::res://scripts/equippable_item.gd<>res://scripts/stats.gd
+wand_1.tres::Resource/EquippableItem::7799082533434169384::1727270706::0::1::::<><>::res://scripts/equippable_item.gd<>res://scripts/stats.gd
+::res://data/test_data/::1727270683
+base_stats.tres::Resource/Stats::3033727358872751818::1727270683::0::1::::<><>::res://scripts/stats.gd
+::res://scripts/::1727270620
+actor.gd::GDScript::-1::1727270620::0::1::::Actor<>Node<>::
+equipment_component.gd::GDScript::-1::1727270602::0::1::::Equipment<>Resource<>::
+equippable_item.gd::GDScript::-1::1727270537::0::1::::EquippableItem<>Resource<>::
+globals.gd::GDScript::-1::1727268693::0::1::::<>Node<>::
+stats.gd::GDScript::-1::1727256097::0::1::::Stats<>Resource<>::
 ::res://sprites/::1727183218
-::res://sprites/battlers/::1727188876
+::res://sprites/battlers/::1727188880
 Assasin Garland.png::CompressedTexture2D::6448470799151322168::1727182450::1727188880::1::::<><>::
 Clockwork Queen.png::CompressedTexture2D::4004816730795176143::1727182450::1727188880::1::::<><>::
 Dark Elves Healer Priestess.png::CompressedTexture2D::8615659678259607024::1727182451::1727188880::1::::<><>::

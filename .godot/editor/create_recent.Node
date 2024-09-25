@@ -1,3 +1,5 @@
+EquipmentComponent
+Node
 Camera2D
 CanvasLayer
 Label
@@ -6,4 +8,3 @@ TextureRect
 Button
 VBoxContainer
 Sprite2D
-Node
