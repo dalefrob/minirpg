@@ -3,4 +3,10 @@ res://data/test_data/test_enemy.tres
 res://data/items/body_1.tres
 res://data/items/sword_1.tres
 res://data/test_data/test_actor.tres
-res://scripts/encounter.gd
+res://battle_screen.gd
+res://scripts/globals.gd
+res://scripts/actor.gd
+res://scripts/battle_helper.gd
+res://enemy_avatar.gd
+res://scripts/enemy_battler.gd
+res://scripts/attribute.gd

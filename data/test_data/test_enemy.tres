@@ -8,7 +8,7 @@
 script = ExtResource("2_hbqtm")
 strength = 10
 intelligence = 15
-stamina = 20
+stamina = 5
 agility = 8
 
 [resource]

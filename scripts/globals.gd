@@ -1,3 +1,3 @@
 # globals.gd
-# Common game logic handler
+# Global game logic
 extends Node
