@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=5 format=3 uid="uid://darhviidgex04"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_lcud6"]
+[ext_resource type="Script" path="res://scripts/stats.gd" id="2_hbqtm"]
+[ext_resource type="Texture2D" uid="uid://bxb70m5jr4jid" path="res://sprites/battlers/Clockwork Queen.png" id="2_qakox"]
+
+[sub_resource type="Resource" id="Resource_2q5q5"]
+script = ExtResource("2_hbqtm")
+strength = 10
+intelligence = 15
+stamina = 20
+agility = 8
+
+[resource]
+script = ExtResource("1_lcud6")
+texture = ExtResource("2_qakox")
+is_boss = false
+bonus_phys_atk = 0
+bonus_mag_atk = 0
+bonus_phys_def = 0
+bonus_mag_def = 0
+loot_table = ""
+name = "Clockwork Queen"
+stats = SubResource("Resource_2q5q5")

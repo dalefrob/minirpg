@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Encounter" load_steps=2 format=3 uid="uid://c1thlgta7qt3a"]
+
+[ext_resource type="Script" path="res://scripts/encounter.gd" id="1_ns5wb"]
+
+[resource]
+script = ExtResource("1_ns5wb")
