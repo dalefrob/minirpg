@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=5 format=3 uid="uid://cw5w2v6kra4xm"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_kox8j"]
+[ext_resource type="Script" path="res://scripts/stats.gd" id="2_a0d3r"]
+[ext_resource type="Texture2D" uid="uid://du0qwkq25tv3m" path="res://sprites/battlers/Dark Elves Healer Priestess.png" id="3_tme22"]
+
+[sub_resource type="Resource" id="Resource_1ykx6"]
+script = ExtResource("2_a0d3r")
+strength = 1
+intelligence = 5
+stamina = 3
+agility = 2
+
+[resource]
+script = ExtResource("1_kox8j")
+texture = ExtResource("3_tme22")
+is_boss = false
+bonus_phys_atk = 0
+bonus_mag_atk = 0
+bonus_phys_def = 0
+bonus_mag_def = 0
+loot_table = ""
+name = "Dark Healer"
+stats = SubResource("Resource_1ykx6")

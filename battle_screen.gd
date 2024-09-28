@@ -6,6 +6,9 @@ const BATTLE = "battle"
 const POSTBATTLE_WIN = "postbattlewin"
 const POSTBATTLE_LOSE = "postbattlelose"
 
+var battler_pks = preload("res://enemy_battler.tscn")
+var damage_label_pks = preload("res://damage_label.tscn")
+
 # State machine needed?
 
 var previous_state : String = ""
@@ -16,37 +19,39 @@ func change_state(new_state : String):
 	previous_state = current_state
 	current_state = new_state
 
-
 # ---------
-
+@onready var enemy_battlers = $EnemyBattlers
 @onready var camera : Camera2D = $Camera2D
 @onready var bg : Sprite2D = $Background
+@onready var timer : Timer = $Timer
 
 @export var party : Array[Actor] = []
 
-@export var enemy_battlers : Array[Sprite2D]
-
 var turns : Array[Turn] = []
 
-func load_encounter(encounter_data):
-	pass
+func load_encounter(encounter : Encounter):
+	print("loading encounter: %s" % encounter)
+	for e in encounter.enemies:
+		var new_battler = battler_pks.instantiate()
+		new_battler.enemy = e
+		new_battler.disintegrated.connect(on_battler_disintegrated)
+		enemy_battlers.add_child(new_battler)
 
-
-func _ready() -> void:
-	start_battle()
-
-
-func start_battle():
-	for battler in enemy_battlers:
-		battler.enemy.init_attributes()
+	# align battlers
+	var window_width = DisplayServer.window_get_size(0).x
+	var step = window_width / (enemy_battlers.get_child_count() + 1)
+	for i in range(enemy_battlers.get_child_count()):
+		enemy_battlers.get_child(i).position.x = (-window_width / 2) + ((i + 1) * step)
 	
 	# TEST initial turns
 	turns.push_back(Turn.create(party[0]))
-	turns.push_back(Turn.create(enemy_battlers[0].enemy))
+	turns.push_back(Turn.create(enemy_battlers.get_child(0).enemy))
+
 
 func _process(delta: float) -> void:
 	call(current_state, delta)
 	time_in_state += delta
+	
 
 # state process functions
 
@@ -57,13 +62,29 @@ func battle(delta):
 	pass
 
 
+
+
+func is_all_enemies_defeated():
+	var all_dead = enemy_battlers.get_children().all(func(e): return e.is_dead)
+	return all_dead
+
+
 func _on_attack_pressed() -> void:
 	# TODO - Staged process
 	# pick target
 	# do animation
 	# run logic
 	var current_turn_actor = turns[0].actor
-	BattleHelper.do_attack(current_turn_actor, enemy_battlers[0].enemy)
+	var battler = enemy_battlers.get_child(0)
+	var dmg = BattleHelper.calculate_damage(current_turn_actor, battler.enemy)
+	battler.take_hit(dmg)
+	var dmg_label = damage_label_pks.instantiate() as DamageLabel
+	battler.add_child(dmg_label)
+	dmg_label.float_up(str(dmg))
+
+func on_battler_disintegrated():
+	if is_all_enemies_defeated():
+		print("You won!")
 
 
 # Turn system
@@ -79,5 +100,3 @@ class Turn:
 	static func create(actor : Actor):
 		var turn = Turn.new(actor)
 		return turn
-
-# Signals

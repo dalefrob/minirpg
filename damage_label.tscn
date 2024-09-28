@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://yuxm8usqewxr"]
+
+[ext_resource type="Script" path="res://damage_label.gd" id="1_prvq5"]
+[ext_resource type="FontFile" uid="uid://bfwt2mckoc2gu" path="res://AncientModernTales-a7Po.ttf" id="2_u4bfk"]
+
+[node name="DamageLabel" type="Node2D"]
+script = ExtResource("1_prvq5")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -32.0
+offset_top = -12.0
+offset_right = 32.0
+offset_bottom = 12.0
+theme_override_fonts/font = ExtResource("2_u4bfk")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

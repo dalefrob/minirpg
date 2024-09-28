@@ -5,18 +5,6 @@ class_name Actor
 @export var name : String
 @export var stats : Stats
 
-var hp : int
-var mp : int
-
-var is_dead : bool
-
-signal took_damage(dmg)
-signal hp_depleted
-
-func init_attributes():
-	hp = get_max_hp()
-	mp = get_max_mp()
-
 func get_max_hp():
 	return get_stat_total(Stats.StatType.STA) * 10
 
@@ -34,14 +22,3 @@ func get_damage():
 
 func get_defence():
 	return get_stat_total(Stats.StatType.AGI) / 2
-
-func take_hit(damage : int):
-	hp -= damage
-	if hp <= 0:
-		hp = 0
-		hp_depleted.emit()
-		print("%s was defeated" % name)
-		is_dead = true
-	else:
-		took_damage.emit(damage)
-		print("%s took %s damage" % [name, damage])

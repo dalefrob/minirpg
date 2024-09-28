@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://qmcggvoxjnxj"]
+
+[ext_resource type="Script" path="res://world_screen.gd" id="1_3gy0m"]
+
+[node name="WorldScreen" type="Node"]
+script = ExtResource("1_3gy0m")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 34.0
+offset_top = 22.0
+offset_right = 159.0
+offset_bottom = 53.0
+text = "Test Encounter"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

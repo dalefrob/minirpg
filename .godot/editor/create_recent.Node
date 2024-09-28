@@ -1,9 +1,12 @@
+Node2D
+Label
+Button
 Node
+Timer
+Panel
 Camera2D
 CanvasLayer
-Label
 TextureProgressBar
 TextureRect
-Button
 VBoxContainer
 Sprite2D
