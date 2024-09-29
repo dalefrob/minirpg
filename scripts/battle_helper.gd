@@ -10,3 +10,9 @@ func calculate_damage(attacker : Actor, defender : Actor) -> int:
 		dmg = 0
 		
 	return dmg
+
+func dmg_single(user, target, args):
+	pass
+
+func heal_single(user, target, args):
+	pass

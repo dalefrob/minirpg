@@ -20,6 +20,7 @@ var damage_label_pks = preload("res://damage_label.tscn")
 @onready var battle_text : Label = %BattleText
 @onready var battle_menu : BattleMenu = %BattleMenu
 
+var _last_skill_selected : Skill
 
 func get_all_battlers() -> Array[Battler]:
 	var result : Array[Battler] = []
@@ -65,9 +66,11 @@ func on_menu_skill_selected(skill_user : Battler):
 
 func on_skill_selected(skill : Skill):
 	print("Selected %s" % skill.name)
+	_last_skill_selected = skill
 	battle_menu.load_target_menu(enemy_battlers.get_children(), on_target_selected)
 
 func on_menu_attack_selected():
+	_last_skill_selected = preload("res://data/skills/attack.tres")
 	battle_menu.load_target_menu(enemy_battlers.get_children(), on_target_selected)
 
 func on_target_selected(target_index : int):
@@ -75,8 +78,28 @@ func on_target_selected(target_index : int):
 	
 	#TODO this needs to be dynamic based on using a skill or regular attack
 	#NOTE Regular attacks are skills too?
-	do_attack(player_battlers.get_child(0) ,enemy_battlers.get_child(target_index))
+	execute_skill(_last_skill_selected, turn_system.current_turn.battler, enemy_battlers.get_child(target_index))
+	#do_attack(player_battlers.get_child(0) ,enemy_battlers.get_child(target_index))
 	battle_menu.clear_menu()
+
+func execute_skill(skill : Skill, user : Battler, target : Battler):
+	if skill.name == "Attack":
+		do_attack(user, target)
+	else:
+		# animate
+		var battle_anim : BattleAnimation = load("res://skill_fx_scenes/%s.tscn" % skill.name.to_lower()).instantiate()
+		target.add_child(battle_anim)
+		await battle_anim.finished
+		# damage
+		var dmg = BattleHelper.calculate_damage(user.actor, target.actor)
+		target._take_hit(dmg)
+		# show damage text
+		var dmg_label = damage_label_pks.instantiate() as DamageLabel
+		target.add_child(dmg_label)
+		dmg_label.float_up(str(dmg))
+	
+	# end turn
+	turn_system.end_current_turn()
 
 # TODO this should be something like 'execute action' and attack is a type of action
 # This will allow for skill use, item use and perhaps even fleeing.
@@ -90,9 +113,6 @@ func do_attack(attacker : Battler, target : Battler) -> void:
 	var dmg_label = damage_label_pks.instantiate() as DamageLabel
 	target.add_child(dmg_label)
 	dmg_label.float_up(str(dmg))
-	
-	# end turn
-	turn_system.end_current_turn()
 
 
 

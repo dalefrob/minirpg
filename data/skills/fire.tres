@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_rq0w2")
 name = "Fire"
-ingame_description = ""
+ingame_description = "A weak fire spell"
 category = 0
 mana_cost = 3
 function_alias = "deal_damage"
 args = [10]
-args_description = ""
+args_description = "[damage]"

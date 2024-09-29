@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_6etb0")
 name = "Cure"
-ingame_description = ""
+ingame_description = "A weak healing spell"
 category = 1
 mana_cost = 6
 function_alias = "heal_target"
 args = [10]
-args_description = ""
+args_description = "[heal amount]"

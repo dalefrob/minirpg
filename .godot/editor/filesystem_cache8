@@ -1,33 +1,36 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1727607984
+::res://::1727612213
 AncientModernTales-a7Po.ttf::FontFile::2783983685613556604::1727188378::1727341641::1::::<><>::
-battle_screen.gd::GDScript::-1::1727607747::0::1::::BattleScreen<>Node<>::
-battle_screen.tscn::PackedScene::616888505988471157::1727608493::0::1::::<><>::res://battle_screen.gd<>uid://ddq6mha0vfqlt::::res://sprites/bg/cavern/bg_6.png<>uid://dbhfow0mgtct0::::res://sprites/char/Female_02.png<>uid://bn3himoq5k1pl::::res://player_battler.tscn<>res://scripts/turn_system.gd<>uid://c6krejn11uinb::::res://data/test_data/test_actor.tres<>res://scripts/grid_button_menu.gd
-damage_label.tscn::PackedScene::1727239487760505687::1727607819::0::1::::<><>::res://scripts/damage_label.gd<>uid://bfwt2mckoc2gu::::res://AncientModernTales-a7Po.ttf
-enemy_battler.tscn::PackedScene::1113536123998817962::1727607819::0::1::::<><>::res://scripts/enemy_battler.gd<>uid://snuie2etryae::::res://audio/sfx/punch_3.wav
+battle_screen.gd::GDScript::-1::1727610979::0::1::::BattleScreen<>Node<>::
+battle_screen.tscn::PackedScene::616888505988471157::1727612213::0::1::::<><>::res://battle_screen.gd<>uid://ddq6mha0vfqlt::::res://sprites/bg/cavern/bg_6.png<>uid://dbhfow0mgtct0::::res://sprites/char/Female_02.png<>uid://bn3himoq5k1pl::::res://player_battler.tscn<>res://scripts/turn_system.gd<>uid://c6krejn11uinb::::res://data/test_data/test_actor.tres<>res://scripts/grid_button_menu.gd
+damage_label.tscn::PackedScene::1727239487760505687::1727610992::0::1::::<><>::res://scripts/damage_label.gd<>uid://bfwt2mckoc2gu::::res://AncientModernTales-a7Po.ttf
+enemy_battler.tscn::PackedScene::1113536123998817962::1727610992::0::1::::<><>::res://scripts/enemy_battler.gd<>uid://snuie2etryae::::res://audio/sfx/punch_3.wav
 icon.svg::CompressedTexture2D::7571288992707961374::1727179258::1727341643::1::::<><>::
 player_battler.tscn::PackedScene::3357118186076744225::1727596409::0::1::::<><>::res://scripts/player_battler.gd
 world_screen.gd::GDScript::-1::1727521810::0::1::::WorldScreen<>Node<>::
-world_screen.tscn::PackedScene::1147926528254392579::1727607818::0::1::::<><>::res://world_screen.gd
+world_screen.tscn::PackedScene::1147926528254392579::1727610992::0::1::::<><>::res://world_screen.gd
 ::res://audio/::1727580011
 ::res://audio/sfx/::1727580017
 punch_3.wav::AudioStreamWAV::1291464974504876252::1727580016::1727580017::1::::<><>::
-::res://data/::1727351227
+::res://data/::1727608503
 ::res://data/actors/::1727256320
-::res://data/items/::1727596436
-body_1.tres::Resource/EquippableItem::8920057015116647161::1727596436::0::1::::<><>::res://scripts/equippable_item.gd<>res://scripts/stats.gd
-sword_1.tres::Resource/EquippableItem::6898353892585612439::1727596436::0::1::::<><>::res://scripts/equippable_item.gd<>res://scripts/stats.gd
+::res://data/items/::1727612213
+body_1.tres::Resource/EquippableItem::8920057015116647161::1727612213::0::1::::<><>::res://scripts/equippable_item.gd<>res://scripts/stats.gd
+sword_1.tres::Resource/EquippableItem::6898353892585612439::1727612213::0::1::::<><>::res://scripts/equippable_item.gd<>res://scripts/stats.gd
 wand_1.tres::Resource/EquippableItem::7799082533434169384::1727272403::0::1::::<><>::res://scripts/equippable_item.gd<>res://scripts/stats.gd
-::res://data/test_data/::1727596436
-test_actor.tres::Resource/Character::6970379123767923483::1727596436::0::1::::<><>::uid://d0c7bhnf7dou8::::res://data/items/body_1.tres<>res://scripts/equipment.gd<>uid://c5ju47e7jyc68::::res://data/items/sword_1.tres<>res://scripts/character.gd<>uid://bjhtbtuot6xw1::::res://data/test_data/test_stats.tres
+::res://data/skills/::1727612213
+cure.tres::Resource/Skill::1424926940769233832::1727612213::0::1::::<><>::res://scripts/skill.gd
+fire.tres::Resource/Skill::5014440011241267683::1727612213::0::1::::<><>::res://scripts/skill.gd
+::res://data/test_data/::1727612213
+test_actor.tres::Resource/Character::6970379123767923483::1727612213::0::1::::<><>::uid://d0c7bhnf7dou8::::res://data/items/body_1.tres<>res://scripts/equipment.gd<>uid://c5ju47e7jyc68::::res://data/items/sword_1.tres<>res://scripts/character.gd<>res://scripts/skill.gd<>uid://bjhtbtuot6xw1::::res://data/test_data/test_stats.tres<>uid://cdpbdhc8cmpd8::::res://data/skills/fire.tres<>uid://ukilrlt42l6w::::res://data/skills/cure.tres
 test_encounter.tres::Resource/Encounter::6637419486519298244::1727530294::0::1::::<><>::res://scripts/encounter.gd<>res://scripts/actor.gd<>uid://darhviidgex04::::res://data/test_data/test_enemy.tres<>uid://cw5w2v6kra4xm::::res://data/test_data/test_enemy_2.tres
 test_enemy.tres::Resource/Enemy::7194819426209432875::1727579547::0::1::::<><>::res://scripts/enemy.gd<>res://scripts/stats.gd<>uid://bxb70m5jr4jid::::res://sprites/battlers/Clockwork Queen.png
 test_enemy_2.tres::Resource/Enemy::6380312401677398430::1727530284::0::1::::<><>::res://scripts/enemy.gd<>res://scripts/stats.gd<>uid://du0qwkq25tv3m::::res://sprites/battlers/Dark Elves Healer Priestess.png
 test_stats.tres::Resource/Stats::3033727358872751818::1727341565::0::1::::<><>::res://scripts/stats.gd
-::res://scripts/::1727607904
-actor.gd::GDScript::-1::1727529129::0::1::::Actor<>Resource<>::
+::res://scripts/::1727612213
+actor.gd::GDScript::-1::1727609039::0::1::::Actor<>Resource<>::
 battler.gd::GDScript::-1::1727596486::0::1::::Battler<>Node2D<>::
-battle_helper.gd::GDScript::-1::1727529348::0::1::::<>Node<>::
+battle_helper.gd::GDScript::-1::1727612213::0::1::::<>Node<>::
 character.gd::GDScript::-1::1727341565::0::1::::Character<>Actor<>::
 damage_label.gd::GDScript::-1::1727532290::0::1::::DamageLabel<>Node2D<>::
 encounter.gd::GDScript::-1::1727530886::0::1::::Encounter<>Resource<>::
@@ -36,19 +39,21 @@ enemy_battler.gd::GDScript::-1::1727580431::0::1::::EnemyBattler<>Battler<>::
 equipment.gd::GDScript::-1::1727273034::0::1::::Equipment<>Resource<>::
 equippable_item.gd::GDScript::-1::1727272390::0::1::::EquippableItem<>Resource<>::
 globals.gd::GDScript::-1::1727528652::0::1::::<>Node<>::
-grid_button_menu.gd::GDScript::-1::1727607662::0::1::::BattleMenu<>GridContainer<>::
+grid_button_menu.gd::GDScript::-1::1727609718::0::1::::BattleMenu<>GridContainer<>::
 player_battler.gd::GDScript::-1::1727596486::0::1::::PlayerBattler<>Battler<>::
-skill.gd::GDScript::-1::1727608493::0::1::::Skill<>Resource<>::
+skill.gd::GDScript::-1::1727608903::0::1::::Skill<>Resource<>::
 stats.gd::GDScript::-1::1727256097::0::1::::Stats<>Resource<>::
 turn.gd::GDScript::-1::1727601129::0::1::::Turn<>Node<>::
-turn_system.gd::GDScript::-1::1727607816::0::1::::TurnSystem<>Node<>::
+turn_system.gd::GDScript::-1::1727610455::0::1::::TurnSystem<>Node<>::
 ::res://scripts/battle_actions/::1727608185
-::res://sprites/::1727530639
+::res://sprites/::1727612941
 ::res://sprites/battlers/::1727341645
 Assasin Garland.png::CompressedTexture2D::6448470799151322168::1727182450::1727341645::1::::<><>::
 Clockwork Queen.png::CompressedTexture2D::4004816730795176143::1727182450::1727341645::1::::<><>::
 Dark Elves Healer Priestess.png::CompressedTexture2D::8615659678259607024::1727182451::1727341645::1::::<><>::
 Dryads Warrior.png::CompressedTexture2D::1765594066440678333::1727182446::1727341645::1::::<><>::
+::res://sprites/battle_anims/::1727612946
+Blast0019.png::CompressedTexture2D::2380537803861410870::1727612945::1727612946::1::::<><>::
 ::res://sprites/bg/::1727188386
 ::res://sprites/bg/cavern/::1727341645
 bg_1.png::CompressedTexture2D::476758380139841017::1727183250::1727341645::1::::<><>::

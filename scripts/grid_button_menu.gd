@@ -13,6 +13,8 @@ func create_buttons(buttons : Array):
 	for b in buttons:
 		var btn = Button.new()
 		btn.text = b.text
+		if b.has("tooltip"):
+			btn.tooltip_text = b.tooltip
 		btn.pressed.connect(b.callable, CONNECT_ONE_SHOT)
 		add_child(btn)
 
@@ -30,7 +32,7 @@ func load_skills_menu(skill_user : Battler, callback : Callable):
 	var buttons = []
 	for i in range(skill_user.actor.skills.size()):
 		var skill = skill_user.actor.skills[i]
-		var dict = { "text": skill.name, "callable": callback.bind(skill) }
+		var dict = { "text": skill.name, "tooltip": skill.ingame_description, "callable": callback.bind(skill) }
 		buttons.append(dict)
 	create_buttons(buttons)
 
