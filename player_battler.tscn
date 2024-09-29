@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bn3himoq5k1pl"]
+
+[node name="PlayerBattler" type="Node2D"]
