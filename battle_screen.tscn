@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://i13cfqmk47or"]
 
 [ext_resource type="Script" path="res://battle_screen.gd" id="1_h8i7e"]
-[ext_resource type="Script" path="res://scripts/actor.gd" id="2_2lw4e"]
 [ext_resource type="Texture2D" uid="uid://ddq6mha0vfqlt" path="res://sprites/bg/cavern/bg_6.png" id="2_73l8l"]
 [ext_resource type="Texture2D" uid="uid://dbhfow0mgtct0" path="res://sprites/char/Female_02.png" id="2_ke2a5"]
+[ext_resource type="PackedScene" uid="uid://bn3himoq5k1pl" path="res://player_battler.tscn" id="4_f1yb8"]
 [ext_resource type="Script" path="res://scripts/turn_system.gd" id="4_fauym"]
 [ext_resource type="Resource" uid="uid://c6krejn11uinb" path="res://data/test_data/test_actor.tres" id="4_rt4ak"]
 [ext_resource type="Script" path="res://scripts/grid_button_menu.gd" id="5_6s0v8"]
@@ -18,7 +18,6 @@ height = 10
 
 [node name="BattleScreen" type="Node"]
 script = ExtResource("1_h8i7e")
-party = Array[ExtResource("2_2lw4e")]([ExtResource("4_rt4ak")])
 
 [node name="TurnSystem" type="Node" parent="."]
 script = ExtResource("4_fauym")
@@ -31,6 +30,9 @@ texture = ExtResource("2_73l8l")
 
 [node name="PlayerBattlers" type="Node2D" parent="."]
 
+[node name="PlayerBattler" parent="PlayerBattlers" instance=ExtResource("4_f1yb8")]
+actor = ExtResource("4_rt4ak")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -41,7 +43,8 @@ anchor_right = 1.0
 offset_bottom = 60.0
 grow_horizontal = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/Panel"]
+[node name="BattleText" type="Label" parent="CanvasLayer/Panel"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 12.0
 offset_top = 8.0
@@ -61,6 +64,7 @@ offset_left = 24.0
 offset_top = 526.0
 offset_right = 295.0
 offset_bottom = 627.0
+size_flags_horizontal = 3
 script = ExtResource("5_6s0v8")
 
 [node name="PartyMemberUI" type="TextureRect" parent="CanvasLayer"]

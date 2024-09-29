@@ -1,0 +1,2 @@
+extends Battler
+class_name PlayerBattler

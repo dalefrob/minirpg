@@ -1,3 +1,4 @@
+Skill
 Enemy
 Actor
 Encounter

@@ -4,6 +4,7 @@ class_name Actor
 
 @export var name : String
 @export var stats : Stats
+@export var skills : Array[Skill]
 
 func get_max_hp():
 	return get_stat_total(Stats.StatType.STA) * 10

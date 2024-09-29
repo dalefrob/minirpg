@@ -1,17 +1,13 @@
-extends RefCounted
+extends Node
 class_name Turn
 # Turn system
 
-var actor : Actor
+var state : TurnSystem.TurnState = TurnSystem.TurnState.STANDBY
 
-func _init(_actor) -> void:
-	self.actor = _actor
+var battler : Battler
+var player_turn : bool
 
-func execute():
-	return true
+signal turn_ended
 
-
-# ------- STATIC
-static func create(actor : Actor):
-	var turn = Turn.new(actor)
-	return turn
+func _process(delta: float) -> void:
+	pass

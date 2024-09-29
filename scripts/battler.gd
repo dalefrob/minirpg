@@ -13,6 +13,9 @@ class_name Battler
 
 var is_dead : bool
 
+func _ready() -> void:
+	name = actor.name
+
 func _initialize():
 	hp = actor.get_max_hp()
 	mp = actor.get_max_mp()

@@ -9,27 +9,27 @@ const POSTBATTLE_LOSE = "postbattlelose"
 var battler_pks = preload("res://enemy_battler.tscn")
 var damage_label_pks = preload("res://damage_label.tscn")
 
-# State machine needed?
-
-var previous_state : String = ""
-var current_state : String = PREBATTLE
-var time_in_state : float = 0.0
-
-func change_state(new_state : String):
-	previous_state = current_state
-	current_state = new_state
-
 # ---------
+@onready var turn_system = $TurnSystem
 @onready var enemy_battlers = $EnemyBattlers
+@onready var player_battlers = $PlayerBattlers
+
 @onready var camera : Camera2D = $Camera2D
 @onready var bg : Sprite2D = $Background
-@onready var battle_menu = %BattleMenu
 
-@export var party : Array[Actor] = []
+@onready var battle_text : Label = %BattleText
+@onready var battle_menu : BattleMenu = %BattleMenu
 
-var turns : Array[Turn] = []
+
+func get_all_battlers() -> Array[Battler]:
+	var result : Array[Battler] = []
+	result.append_array(player_battlers.get_children())
+	result.append_array(enemy_battlers.get_children())
+	return result
+
 
 func load_encounter(encounter : Encounter):
+	await ready
 	print("loading encounter: %s" % encounter)
 	for enemy in encounter.enemies:
 		var new_battler = battler_pks.instantiate()
@@ -43,50 +43,56 @@ func load_encounter(encounter : Encounter):
 	for i in range(enemy_battlers.get_child_count()):
 		enemy_battlers.get_child(i).position.x = (-window_width / 2) + ((i + 1) * step)
 	
-	# TEST Load battle menu
-	var default_callables = [
-		on_menu_attack_selected,
-		func(): print("Pressed Magic"),
-		func(): print("Pressed Defend")
-	]
-	battle_menu.load_battle_menu(default_callables)
-	
-	# TEST initial turns
-	turns.push_back(Turn.create(party[0]))
-	turns.push_back(Turn.create(enemy_battlers.get_child(0).enemy))
+	# Setup turn system
+	turn_system.turn_started.connect(on_turn_started)
+	for battler in get_all_battlers():
+		turn_system.enqueue(battler)
 
 
-func _process(delta: float) -> void:
-	call(current_state, delta)
-	time_in_state += delta
-	
+func on_turn_started(turn : Turn):
+	battle_text.text = "%s's turn started" % turn.battler.actor.name
+	if turn.player_turn:
+		# show battle menu
+		var default_callables = [
+			on_menu_attack_selected,
+			on_menu_skill_selected.bind(turn.battler),
+			func(): print("Pressed Defend")
+		]
+		battle_menu.load_battle_menu(default_callables)
 
-# state process functions
+func on_menu_skill_selected(skill_user : Battler):
+	battle_menu.load_skills_menu(skill_user, on_skill_selected)
 
-func prebattle(delta):
-	pass
-
-func battle(delta):
-	pass
-
-
-# targeting
+func on_skill_selected(skill : Skill):
+	print("Selected %s" % skill.name)
+	battle_menu.load_target_menu(enemy_battlers.get_children(), on_target_selected)
 
 func on_menu_attack_selected():
 	battle_menu.load_target_menu(enemy_battlers.get_children(), on_target_selected)
 
 func on_target_selected(target_index : int):
 	print("Selected %s " % enemy_battlers.get_child(target_index).name)
-	do_attack(enemy_battlers.get_child(target_index))
+	
+	#TODO this needs to be dynamic based on using a skill or regular attack
+	#NOTE Regular attacks are skills too?
+	do_attack(player_battlers.get_child(0) ,enemy_battlers.get_child(target_index))
+	battle_menu.clear_menu()
 
-func do_attack(battler) -> void:
-	var current_turn_actor = turns[0].actor
-	var dmg = BattleHelper.calculate_damage(current_turn_actor, battler.enemy)
-	battler._take_hit(dmg)
+# TODO this should be something like 'execute action' and attack is a type of action
+# This will allow for skill use, item use and perhaps even fleeing.
+func do_attack(attacker : Battler, target : Battler) -> void:
+	var current_turn_actor = player_battlers.get_child(0).actor
+	
+	var dmg = BattleHelper.calculate_damage(attacker.actor, target.actor)
+	target._take_hit(dmg)
+	
+	# show damage text
 	var dmg_label = damage_label_pks.instantiate() as DamageLabel
-	battler.add_child(dmg_label)
+	target.add_child(dmg_label)
 	dmg_label.float_up(str(dmg))
-
+	
+	# end turn
+	turn_system.end_current_turn()
 
 
 

@@ -1,11 +1,14 @@
 extends GridContainer
 class_name  BattleMenu
 
-# Create the actual buttons and connect their pressed signal
-func create_buttons(buttons : Array):
+func clear_menu():
 	# clear out existing buttons
 	for c in get_children():
 		c.queue_free()
+
+# Create the actual buttons and connect their pressed signal
+func create_buttons(buttons : Array):
+	clear_menu()
 	
 	for b in buttons:
 		var btn = Button.new()
@@ -18,9 +21,17 @@ func create_buttons(buttons : Array):
 func load_battle_menu(callables):
 	var buttons = [
 		{ "text": "Attack", "callable" : callables[0] },
-		{ "text": "Magic", "callable" : callables[1] },
+		{ "text": "Skill", "callable" : callables[1] },
 		{ "text": "Defend", "callable" : callables[2] },
 	]
+	create_buttons(buttons)
+
+func load_skills_menu(skill_user : Battler, callback : Callable):
+	var buttons = []
+	for i in range(skill_user.actor.skills.size()):
+		var skill = skill_user.actor.skills[i]
+		var dict = { "text": skill.name, "callable": callback.bind(skill) }
+		buttons.append(dict)
 	create_buttons(buttons)
 
 # Loads a menu with targets corresponding to enemy battlers
