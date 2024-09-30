@@ -9,24 +9,45 @@ const POSTBATTLE_LOSE = "postbattlelose"
 var battler_pks = preload("res://enemy_battler.tscn")
 var damage_label_pks = preload("res://damage_label.tscn")
 
-# ---------
-@onready var turn_system = $TurnSystem
+# Systems
+@onready var state_machine : StateMachine = $StateMachine
+@onready var turn_system : TurnSystem = $TurnSystem
+
+# ---
 @onready var enemy_battlers = $EnemyBattlers
 @onready var player_battlers = $PlayerBattlers
+
+# easy accessors
+func get_enemy_battlers():
+	var result : Array[Battler] = []
+	for c in enemy_battlers.get_children():
+		var b = c as Battler
+		if b:
+			result.append(b)
+	return result
+
+func get_player_battlers():
+	var result : Array[Battler] = []
+	for c in player_battlers.get_children():
+		var b = c as Battler
+		if b:
+			result.append(b)
+	return result
+
+func get_all_battlers():
+	var result : Array[Battler] = get_player_battlers()
+	result.append_array(get_enemy_battlers())
+	return result
+
 
 @onready var camera : Camera2D = $Camera2D
 @onready var bg : Sprite2D = $Background
 
+# UI
 @onready var battle_text : Label = %BattleText
 @onready var battle_menu : BattleMenu = %BattleMenu
 
 var _last_skill_selected : Skill
-
-func get_all_battlers() -> Array[Battler]:
-	var result : Array[Battler] = []
-	result.append_array(player_battlers.get_children())
-	result.append_array(enemy_battlers.get_children())
-	return result
 
 
 func load_encounter(encounter : Encounter):
@@ -60,18 +81,35 @@ func on_turn_started(turn : Turn):
 			func(): print("Pressed Defend")
 		]
 		battle_menu.load_battle_menu(default_callables)
+	else:
+		var enemy : Enemy = turn.battler.enemy
+		print(enemy.skills)
+
 
 func on_menu_skill_selected(skill_user : Battler):
 	battle_menu.load_skills_menu(skill_user, on_skill_selected)
 
+
+
 func on_skill_selected(skill : Skill):
-	print("Selected %s" % skill.name)
+	print("Selected %s" % skill.name)	
+	var msg = {
+		"skill": skill,
+		"enemy_battlers": enemy_battlers,
+		"player_battlers": player_battlers
+	}
+	state_machine.transition_to("TargetSelect", msg)
+
 	_last_skill_selected = skill
-	battle_menu.load_target_menu(enemy_battlers.get_children(), on_target_selected)
+	#battle_menu.load_target_menu(enemy_battlers.get_children(), on_target_selected)
+
+
 
 func on_menu_attack_selected():
 	_last_skill_selected = preload("res://data/skills/attack.tres")
-	battle_menu.load_target_menu(enemy_battlers.get_children(), on_target_selected)
+	battle_menu.load_target_menu(enemy_battlers.get_children() as Array[Battler], on_target_selected)
+
+
 
 func on_target_selected(target_index : int):
 	print("Selected %s " % enemy_battlers.get_child(target_index).name)
@@ -82,24 +120,46 @@ func on_target_selected(target_index : int):
 	#do_attack(player_battlers.get_child(0) ,enemy_battlers.get_child(target_index))
 	battle_menu.clear_menu()
 
+
+# TODO - EXECUTE BATTLEACTION, not just SKILL
 func execute_skill(skill : Skill, user : Battler, target : Battler):
 	if skill.name == "Attack":
 		do_attack(user, target)
 	else:
-		# animate
-		var battle_anim : BattleAnimation = load("res://skill_fx_scenes/%s.tscn" % skill.name.to_lower()).instantiate()
-		target.add_child(battle_anim)
-		await battle_anim.finished
-		# damage
+		
+		# TODO - calculate magic damage
+		# TODO - Make this dynamic so that any skill effect can be executed
 		var dmg = BattleHelper.calculate_damage(user.actor, target.actor)
-		target._take_hit(dmg)
-		# show damage text
-		var dmg_label = damage_label_pks.instantiate() as DamageLabel
-		target.add_child(dmg_label)
-		dmg_label.float_up(str(dmg))
+		var targets = []
+		var anim_pos : Vector2
+		
+		match skill.targeting:
+			Skill.Targeting.ALL_ENEMY:
+				targets = get_enemy_battlers()
+			Skill.Targeting.SINGLE_ENEMY:
+				targets.append(target)
+				anim_pos = target.position
+		
+		# animate
+		var fx_path = "res://skill_fx_scenes/%s.tscn" % skill.name.to_lower()
+		if ResourceLoader.exists(fx_path):
+			var battle_anim : BattleAnimation = load(fx_path).instantiate()
+			battle_anim.position = anim_pos
+			add_child(battle_anim)
+			await battle_anim.finished
+		
+		# hit all targets
+		for t in targets:
+			t._take_hit(dmg)
+			# show damage text
+			var dmg_label = damage_label_pks.instantiate() as DamageLabel
+			t.add_child(dmg_label)
+			dmg_label.float_up(str(dmg))
 	
 	# end turn
 	turn_system.end_current_turn()
+
+
 
 # TODO this should be something like 'execute action' and attack is a type of action
 # This will allow for skill use, item use and perhaps even fleeing.

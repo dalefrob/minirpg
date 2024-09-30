@@ -1,0 +1,2 @@
+extends BattleScreenState
+class_name StateRunning

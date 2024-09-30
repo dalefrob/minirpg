@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=10 format=3 uid="uid://c6krejn11uinb"]
+[gd_resource type="Resource" script_class="Character" load_steps=11 format=3 uid="uid://c6krejn11uinb"]
 
 [ext_resource type="Resource" uid="uid://d0c7bhnf7dou8" path="res://data/items/body_1.tres" id="1_2fjlb"]
 [ext_resource type="Script" path="res://scripts/equipment.gd" id="2_d8yg2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://bjhtbtuot6xw1" path="res://data/test_data/test_stats.tres" id="5_yrica"]
 [ext_resource type="Resource" uid="uid://cdpbdhc8cmpd8" path="res://data/skills/fire.tres" id="6_8edo0"]
 [ext_resource type="Resource" uid="uid://ukilrlt42l6w" path="res://data/skills/cure.tres" id="7_rc3qs"]
+[ext_resource type="Resource" uid="uid://cnppld8wvliel" path="res://data/skills/firaga.tres" id="8_opchs"]
 
 [sub_resource type="Resource" id="Resource_7n544"]
 script = ExtResource("2_d8yg2")
@@ -19,4 +20,4 @@ script = ExtResource("4_rn2t2")
 equipment = SubResource("Resource_7n544")
 name = "Lydia"
 stats = ExtResource("5_yrica")
-skills = Array[ExtResource("5_ermwl")]([ExtResource("6_8edo0"), ExtResource("7_rc3qs")])
+skills = Array[ExtResource("5_ermwl")]([ExtResource("6_8edo0"), ExtResource("7_rc3qs"), ExtResource("8_opchs")])

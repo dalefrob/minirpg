@@ -8,6 +8,7 @@ name = "Cure"
 ingame_description = "A weak healing spell"
 category = 1
 mana_cost = 6
+targeting = 2
 function_alias = "heal_target"
 args = [10]
 args_description = "[heal amount]"

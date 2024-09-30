@@ -1,9 +1,9 @@
+Node
 AnimatedSprite2D
 AudioStreamPlayer2D
 Node2D
 Sprite2D
 TextureRect
-Node
 VBoxContainer
 GridContainer
 Label
@@ -12,4 +12,3 @@ Timer
 Panel
 Camera2D
 CanvasLayer
-TextureProgressBar
