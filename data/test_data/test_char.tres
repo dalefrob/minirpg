@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Character" load_steps=12 format=3 uid="uid://c6krejn11uinb"]
+
+[ext_resource type="Resource" uid="uid://d0c7bhnf7dou8" path="res://data/items/body_1.tres" id="1_m6016"]
+[ext_resource type="Script" path="res://scripts/equipment.gd" id="2_yn5do"]
+[ext_resource type="Resource" uid="uid://c5ju47e7jyc68" path="res://data/items/sword_1.tres" id="3_k38qp"]
+[ext_resource type="Script" path="res://scripts/character.gd" id="4_hbwow"]
+[ext_resource type="Script" path="res://scripts/skill.gd" id="5_s5y3c"]
+[ext_resource type="Resource" uid="uid://cdpbdhc8cmpd8" path="res://data/skills/fire.tres" id="6_qyjng"]
+[ext_resource type="Resource" uid="uid://ukilrlt42l6w" path="res://data/skills/cure.tres" id="7_1x4t8"]
+[ext_resource type="Resource" uid="uid://cnppld8wvliel" path="res://data/skills/firaga.tres" id="8_u6foy"]
+[ext_resource type="Resource" uid="uid://bjhtbtuot6xw1" path="res://data/test_data/test_stats.tres" id="9_2v0fb"]
+[ext_resource type="Texture2D" uid="uid://dbhfow0mgtct0" path="res://sprites/char/Female_02.png" id="10_fslnv"]
+
+[sub_resource type="Resource" id="Resource_7n544"]
+script = ExtResource("2_yn5do")
+body = ExtResource("1_m6016")
+weapon = ExtResource("3_k38qp")
+
+[resource]
+script = ExtResource("4_hbwow")
+texture = ExtResource("10_fslnv")
+equipment = SubResource("Resource_7n544")
+name = "Lydia"
+stats = ExtResource("9_2v0fb")
+skills = Array[ExtResource("5_s5y3c")]([ExtResource("6_qyjng"), ExtResource("7_1x4t8"), ExtResource("8_u6foy")])

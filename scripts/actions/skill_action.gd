@@ -13,7 +13,9 @@ func _set_targets(_targets):
 
 func _can_execute():
 	if user.mp < skill.mana_cost:
+		error_msg = "Not enough MP!"
 		return false
+	return super._can_execute()
 
 func _execute():
 	# animate
@@ -21,6 +23,10 @@ func _execute():
 	var scene = load(fx_path)
 	for t in targets:
 		BattleHelper.show_battle_animation(scene, t)
+		
+	await delay(1)
+	
+	for t in targets:
 		# calculate damage
 		var dmg = BattleHelper.calculate_damage(user.actor, t.actor)
 		t._take_hit(dmg)

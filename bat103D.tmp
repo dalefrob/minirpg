@@ -1,21 +1,26 @@
-[gd_scene load_steps=12 format=3 uid="uid://i13cfqmk47or"]
+[gd_scene load_steps=13 format=3 uid="uid://i13cfqmk47or"]
 
 [ext_resource type="Script" path="res://battle_screen.gd" id="1_h8i7e"]
 [ext_resource type="Texture2D" uid="uid://ddq6mha0vfqlt" path="res://sprites/bg/cavern/bg_6.png" id="2_73l8l"]
 [ext_resource type="Script" path="res://scripts/fsm/state_machine.gd" id="2_irmtd"]
+[ext_resource type="Texture2D" uid="uid://dbhfow0mgtct0" path="res://sprites/char/Female_02.png" id="2_ke2a5"]
 [ext_resource type="Script" path="res://scripts/fsm/battle_screen_fsm/bs_state_target_select.gd" id="3_66o3k"]
 [ext_resource type="Script" path="res://scripts/fsm/battle_screen_fsm/bs_state_running.gd" id="3_ruddb"]
 [ext_resource type="PackedScene" uid="uid://bn3himoq5k1pl" path="res://player_battler.tscn" id="4_f1yb8"]
 [ext_resource type="Script" path="res://scripts/turn_system.gd" id="4_fauym"]
-[ext_resource type="Resource" uid="uid://c6krejn11uinb" path="res://data/test_data/test_char.tres" id="4_rt4ak"]
+[ext_resource type="Resource" uid="uid://c6krejn11uinb" path="res://data/test_data/test_actor.tres" id="4_rt4ak"]
 [ext_resource type="Script" path="res://scripts/grid_button_menu.gd" id="5_6s0v8"]
-[ext_resource type="PackedScene" uid="uid://dqwvo14eckff3" path="res://player_ui.tscn" id="10_d6v5k"]
-[ext_resource type="Resource" uid="uid://ee0wsfktaypj" path="res://data/test_data/test_char_2.tres" id="11_qnxtx"]
+
+[sub_resource type="Gradient" id="Gradient_l2p18"]
+colors = PackedColorArray(0.774882, 0.439775, 5.77569e-07, 1, 0.2, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1xawm"]
+gradient = SubResource("Gradient_l2p18")
+width = 120
+height = 10
 
 [node name="BattleScreen" type="Node"]
 script = ExtResource("1_h8i7e")
-
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_irmtd")
@@ -40,9 +45,6 @@ texture = ExtResource("2_73l8l")
 
 [node name="PlayerBattler" parent="PlayerBattlers" instance=ExtResource("4_f1yb8")]
 actor = ExtResource("4_rt4ak")
-
-[node name="PlayerBattler2" parent="PlayerBattlers" instance=ExtResource("4_f1yb8")]
-actor = ExtResource("11_qnxtx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -78,24 +80,24 @@ offset_bottom = 627.0
 size_flags_horizontal = 3
 script = ExtResource("5_6s0v8")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="PartyMemberUI" type="TextureRect" parent="CanvasLayer"]
+offset_left = 426.0
+offset_top = 515.0
+offset_right = 546.0
+offset_bottom = 648.0
+texture = ExtResource("2_ke2a5")
+expand_mode = 1
 
-[node name="PlayerUI" parent="CanvasLayer/HBoxContainer" instance=ExtResource("10_d6v5k")]
-layout_mode = 2
-character = ExtResource("4_rt4ak")
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer/PartyMemberUI"]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 120.0
+offset_bottom = -6.0
+value = 100.0
+texture_progress = SubResource("GradientTexture2D_1xawm")
 
-[node name="PlayerUI2" parent="CanvasLayer/HBoxContainer" instance=ExtResource("10_d6v5k")]
-layout_mode = 2
-character = ExtResource("11_qnxtx")
+[node name="Name" type="Label" parent="CanvasLayer/PartyMemberUI"]
+layout_mode = 0
+offset_right = 41.0
+offset_bottom = 23.0
+text = "Lydia"

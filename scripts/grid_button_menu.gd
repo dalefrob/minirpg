@@ -36,12 +36,12 @@ func load_skills_menu(skill_user : Battler, callback : Callable):
 		buttons.append(dict)
 	create_buttons(buttons)
 
-# Loads a menu with targets corresponding to enemy battlers
+# Loads a menu with targets corresponding to battlers
 func load_target_menu(battlers : Array[Battler], callback : Callable):
 	var buttons = []
 	for i in range(battlers.size()):
 		var battler = battlers[i]
-		var dict = { "text": battler.enemy.name, "callable": callback.bind(i) }
+		var dict = { "text": battler.actor.name, "callable": callback.bind(i) }
 		# i should correspond to the batller child index in theory
 		buttons.append(dict)
 	create_buttons(buttons)

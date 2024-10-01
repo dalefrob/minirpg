@@ -1,10 +1,14 @@
 extends Node
 class_name BattleScreen
 
-const PREBATTLE = "prebattle"
-const BATTLE = "battle"
-const POSTBATTLE_WIN = "postbattlewin"
-const POSTBATTLE_LOSE = "postbattlelose"
+enum BattleState {
+	PRE_BATTLE,
+	BATTLING,
+	BATTLE_WON,
+	BATTLE_LOST
+}
+
+var battle_state : BattleState = BattleState.PRE_BATTLE
 
 var battler_pks = preload("res://enemy_battler.tscn")
 var damage_label_pks = preload("res://damage_label.tscn")
@@ -13,25 +17,24 @@ var damage_label_pks = preload("res://damage_label.tscn")
 @onready var state_machine : StateMachine = $StateMachine
 @onready var turn_system : TurnSystem = $TurnSystem
 
-# ---
-@onready var enemy_battlers = $EnemyBattlers
-@onready var player_battlers = $PlayerBattlers
 
 # easy accessors
 func get_enemy_battlers():
 	var result : Array[Battler] = []
-	for c in enemy_battlers.get_children():
+	for c in $EnemyBattlers.get_children():
 		var b = c as Battler
 		if b:
-			result.append(b)
+			if not b.is_dead:
+				result.append(b)
 	return result
 
 func get_player_battlers():
 	var result : Array[Battler] = []
-	for c in player_battlers.get_children():
+	for c in $PlayerBattlers.get_children():
 		var b = c as Battler
 		if b:
-			result.append(b)
+			if not b.is_dead:
+				result.append(b)
 	return result
 
 func get_all_battlers():
@@ -53,22 +56,43 @@ var _last_skill_selected : Skill
 func load_encounter(encounter : Encounter):
 	await ready
 	print("loading encounter: %s" % encounter)
+	
+	var enemy_battler_grp = $EnemyBattlers
+	
+	# load enemies
 	for enemy in encounter.enemies:
 		var new_battler = battler_pks.instantiate()
 		new_battler.actor = enemy
-		new_battler.disintegrated.connect(on_battler_disintegrated)
-		enemy_battlers.add_child(new_battler)
+		enemy_battler_grp.add_child(new_battler)
+	
+	# load players
+	for p in get_player_battlers():
+		p._initialize()
 
 	# align battlers
 	var window_width = DisplayServer.window_get_size(0).x
-	var step = window_width / (enemy_battlers.get_child_count() + 1)
-	for i in range(enemy_battlers.get_child_count()):
-		enemy_battlers.get_child(i).position.x = (-window_width / 2) + ((i + 1) * step)
+	var step = window_width / (enemy_battler_grp.get_child_count() + 1)
+	for i in range(enemy_battler_grp.get_child_count()):
+		enemy_battler_grp.get_child(i).position.x = (-window_width / 2) + ((i + 1) * step)
 	
 	# Setup turn system
 	turn_system.turn_started.connect(on_turn_started)
+	turn_system.turn_ended.connect(on_turn_ended)
+	turn_system.all_turns_processed.connect(on_all_turns_processed)
+	start_new_round()
+
+
+func start_new_round():
+	print("Starting new round.")
+	for battler in get_enemy_battlers():
+		if battler.is_dead:
+			battler.queue_free()
+
+	# start new round with existing battlers
 	for battler in get_all_battlers():
 		turn_system.enqueue(battler)
+	
+	battle_state = BattleState.BATTLING
 
 
 func on_turn_started(turn : Turn):
@@ -82,8 +106,25 @@ func on_turn_started(turn : Turn):
 		]
 		battle_menu.load_battle_menu(default_callables)
 	else:
-		var enemy : Enemy = turn.battler.enemy
-		print(enemy.skills)
+		var enemy_battler : EnemyBattler = turn.battler
+		# enemy make choice
+		var target = get_player_battlers()[0]
+		var action =  AttackAction.create(enemy_battler)
+		action._set_target(target)
+		turn_system.current_turn.action = action
+		execute_action(action)
+
+func on_turn_ended(turn : Turn):
+	print("%s's turn ended" % turn.battler.actor.name)
+	if is_all_enemies_defeated():
+		turn_system.all_turns_processed.disconnect(on_all_turns_processed)
+		turn_system.clear_queue()
+		battle_state = BattleState.BATTLE_WON
+		battle_text.text = "You won!"
+
+func on_all_turns_processed():
+	print("All turns processed")
+	start_new_round()
 
 # on clicking the skill menu
 func on_menu_skill_selected(skill_user : Battler):
@@ -116,54 +157,26 @@ func on_menu_attack_selected():
 
 
 func on_target_selected(target_index : int):
-	var target = enemy_battlers.get_child(target_index)
+	var target = get_enemy_battlers()[target_index]
 	print("Selected %s " % target.name)
 	var action = turn_system.current_turn.action
 	action._set_target(target)
 	
-	action._execute() # cross your fingers and execute!
-	
-	battle_menu.clear_menu()
+	execute_action(action)
 
 
-# TODO - EXECUTE BATTLEACTION, not just SKILL
-func execute_skill(skill : Skill, user : Battler, target : Battler):
-	if skill.name == "Attack":
-		pass
+func execute_action(_action : Action):
+	if _action._can_execute():
+		battle_menu.clear_menu()
+		
+		# run the action - 99% has animations
+		await _action._execute()
+
+		turn_system.end_current_turn()
 	else:
-		
-		# TODO - calculate magic damage
-		# TODO - Make this dynamic so that any skill effect can be executed
-		var dmg = BattleHelper.calculate_damage(user.actor, target.actor)
-		var targets = []
-		var anim_pos : Vector2
-		
-		match skill.targeting:
-			Skill.Targeting.ALL_ENEMY:
-				targets = get_enemy_battlers()
-			Skill.Targeting.SINGLE_ENEMY:
-				targets.append(target)
-				anim_pos = target.position
-		
-		# animate
-		var fx_path = "res://skill_fx_scenes/%s.tscn" % skill.name.to_lower()
-		if ResourceLoader.exists(fx_path):
-			var battle_anim : BattleAnimation = load(fx_path).instantiate()
-			battle_anim.position = anim_pos
-			add_child(battle_anim)
-			await battle_anim.finished
-		
-		# hit all targets
-		for t in targets:
-			t._take_hit(dmg)
-	
-	# end turn
-	turn_system.end_current_turn()
+		battle_text.text = _action.error_msg
+
 
 func is_all_enemies_defeated():
-	var all_dead = enemy_battlers.get_children().all(func(e): return e.is_dead)
-	return all_dead
-
-func on_battler_disintegrated():
-	if is_all_enemies_defeated():
-		print("You won!")
+	# var all_dead = enemy_battlers.get_children().all(func(e): return e.is_dead)
+	return get_enemy_battlers().size() == 0

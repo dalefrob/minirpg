@@ -2,6 +2,7 @@ extends Resource
 class_name Encounter
 
 @export_enum("PLAINS", "CAVE") var background : int
+@export var is_boss : bool
 @export var enemies : Array[Actor]
 
 func _to_string() -> String:

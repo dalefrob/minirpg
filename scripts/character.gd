@@ -1,6 +1,7 @@
 extends Actor
 class_name Character
 
+@export var texture : Texture2D
 @export var equipment : Equipment
 
 # Get stat by alias to save duplication of code

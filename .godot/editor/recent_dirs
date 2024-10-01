@@ -1,8 +1,8 @@
-res://scripts/state_machine
+res://sprites/battle_anims
+res://ui
+res://
 res://data/skills
 res://skill_fx_scenes
-res://sprites/battle_anims
-res://
 res://scripts
 res://data/test_data
 res://data
