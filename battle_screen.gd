@@ -85,46 +85,51 @@ func on_turn_started(turn : Turn):
 		var enemy : Enemy = turn.battler.enemy
 		print(enemy.skills)
 
-
+# on clicking the skill menu
 func on_menu_skill_selected(skill_user : Battler):
 	battle_menu.load_skills_menu(skill_user, on_skill_selected)
 
-
-
+# on selecting a skill from the menu
 func on_skill_selected(skill : Skill):
-	print("Selected %s" % skill.name)	
-	var msg = {
-		"skill": skill,
-		"enemy_battlers": enemy_battlers,
-		"player_battlers": player_battlers
-	}
-	state_machine.transition_to("TargetSelect", msg)
-
-	_last_skill_selected = skill
-	#battle_menu.load_target_menu(enemy_battlers.get_children(), on_target_selected)
+	print("Selected %s" % skill.name)
+	turn_system.current_turn.action = SkillAction.create(turn_system.current_turn.battler, skill)
+	
+	var targets = get_skill_targets(skill)
+	battle_menu.load_target_menu(targets, on_target_selected)
 
 
+func get_skill_targets(_skill : Skill):
+	match _skill.targeting:
+		Skill.Targeting.SINGLE_ENEMY:
+			return get_enemy_battlers()
+		Skill.Targeting.SINGLE_ALLY:
+			return get_player_battlers()
+		_:
+			return get_all_battlers()
 
+
+# on pressing the attack button from the menu
 func on_menu_attack_selected():
-	_last_skill_selected = preload("res://data/skills/attack.tres")
-	battle_menu.load_target_menu(enemy_battlers.get_children() as Array[Battler], on_target_selected)
-
+	turn_system.current_turn.action = AttackAction.create(turn_system.current_turn.battler)
+	var targets = get_enemy_battlers()
+	battle_menu.load_target_menu(targets, on_target_selected)
 
 
 func on_target_selected(target_index : int):
-	print("Selected %s " % enemy_battlers.get_child(target_index).name)
+	var target = enemy_battlers.get_child(target_index)
+	print("Selected %s " % target.name)
+	var action = turn_system.current_turn.action
+	action._set_target(target)
 	
-	#TODO this needs to be dynamic based on using a skill or regular attack
-	#NOTE Regular attacks are skills too?
-	execute_skill(_last_skill_selected, turn_system.current_turn.battler, enemy_battlers.get_child(target_index))
-	#do_attack(player_battlers.get_child(0) ,enemy_battlers.get_child(target_index))
+	action._execute() # cross your fingers and execute!
+	
 	battle_menu.clear_menu()
 
 
 # TODO - EXECUTE BATTLEACTION, not just SKILL
 func execute_skill(skill : Skill, user : Battler, target : Battler):
 	if skill.name == "Attack":
-		do_attack(user, target)
+		pass
 	else:
 		
 		# TODO - calculate magic damage
@@ -151,30 +156,9 @@ func execute_skill(skill : Skill, user : Battler, target : Battler):
 		# hit all targets
 		for t in targets:
 			t._take_hit(dmg)
-			# show damage text
-			var dmg_label = damage_label_pks.instantiate() as DamageLabel
-			t.add_child(dmg_label)
-			dmg_label.float_up(str(dmg))
 	
 	# end turn
 	turn_system.end_current_turn()
-
-
-
-# TODO this should be something like 'execute action' and attack is a type of action
-# This will allow for skill use, item use and perhaps even fleeing.
-func do_attack(attacker : Battler, target : Battler) -> void:
-	var current_turn_actor = player_battlers.get_child(0).actor
-	
-	var dmg = BattleHelper.calculate_damage(attacker.actor, target.actor)
-	target._take_hit(dmg)
-	
-	# show damage text
-	var dmg_label = damage_label_pks.instantiate() as DamageLabel
-	target.add_child(dmg_label)
-	dmg_label.float_up(str(dmg))
-
-
 
 func is_all_enemies_defeated():
 	var all_dead = enemy_battlers.get_children().all(func(e): return e.is_dead)

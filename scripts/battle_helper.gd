@@ -11,8 +11,12 @@ func calculate_damage(attacker : Actor, defender : Actor) -> int:
 		
 	return dmg
 
-func dmg_single(user, target, args):
-	pass
-
-func heal_single(user, target, args):
-	pass
+# show a battle animation anywhere in the game
+func show_battle_animation(scene : PackedScene, 
+		parent : Node2D, position : Vector2 = Vector2.ZERO, callback : Callable = func():):
+	
+	var battle_anim : BattleAnimation = scene.instantiate()
+	battle_anim.position = position
+	parent.add_child(battle_anim)
+	await battle_anim.finished
+	callback.call()

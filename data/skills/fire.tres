@@ -8,6 +8,7 @@ name = "Fire"
 ingame_description = "A weak fire spell"
 category = 0
 mana_cost = 3
+targeting = 0
 function_alias = "deal_damage"
 args = [10]
 args_description = "[damage]"
