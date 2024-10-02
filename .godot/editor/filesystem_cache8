@@ -1,9 +1,9 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1727844239
+::res://::1727849852
 AncientModernTales-a7Po.ttf::FontFile::2783983685613556604::1727310670::1727832925::1::::<><>::
-battle_screen.gd::GDScript::-1::1727842981::0::1::::BattleScreen<>Node<>::
-battle_screen.tscn::PackedScene::616888505988471157::1727843246::0::1::::<><>::res://battle_screen.gd<>uid://ddq6mha0vfqlt::::res://sprites/bg/cavern/bg_6.png<>res://scripts/fsm/state_machine.gd<>res://scripts/fsm/battle_screen_fsm/bs_state_target_select.gd<>res://scripts/fsm/battle_screen_fsm/bs_state_running.gd<>uid://bn3himoq5k1pl::::res://character_battler.tscn<>res://scripts/turn_system.gd<>uid://c6krejn11uinb::::res://data/test_data/test_char.tres<>res://scripts/grid_button_menu.gd<>uid://dqwvo14eckff3::::res://character_ui.tscn<>uid://ee0wsfktaypj::::res://data/test_data/test_char_2.tres
-character_battler.tscn::PackedScene::3357118186076744225::1727843157::0::1::::<><>::res://scripts/character_battler.gd
+battle_screen.gd::GDScript::-1::1727844595::0::1::::BattleScreen<>Node<>::
+battle_screen.tscn::PackedScene::616888505988471157::1727844766::0::1::::<><>::res://battle_screen.gd<>uid://ddq6mha0vfqlt::::res://sprites/bg/cavern/bg_6.png<>res://scripts/fsm/state_machine.gd<>res://scripts/fsm/battle_screen_fsm/bs_state_target_select.gd<>res://scripts/fsm/battle_screen_fsm/bs_state_running.gd<>uid://bn3himoq5k1pl::::res://character_battler.tscn<>res://scripts/turn_system.gd<>uid://c6krejn11uinb::::res://data/test_data/test_char.tres<>res://scripts/grid_button_menu.gd<>uid://dqwvo14eckff3::::res://character_ui.tscn<>uid://ee0wsfktaypj::::res://data/test_data/test_char_2.tres
+character_battler.tscn::PackedScene::3357118186076744225::1727844766::0::1::::<><>::res://scripts/character_battler.gd
 character_ui.tscn::PackedScene::8329001328431145866::1727842678::0::1::::<><>::uid://qg8kl4avrqtv::::res://ui/main_ui.tres<>uid://dbhfow0mgtct0::::res://sprites/char/Female_02.png<>uid://bfwt2mckoc2gu::::res://AncientModernTales-a7Po.ttf<>res://scripts/character_ui.gd
 damage_label.tscn::PackedScene::1727239487760505687::1727842499::0::1::::<><>::res://scripts/damage_label.gd<>uid://bfwt2mckoc2gu::::res://AncientModernTales-a7Po.ttf
 enemy_battler.tscn::PackedScene::1113536123998817962::1727842499::0::1::::<><>::res://scripts/enemy_battler.gd<>uid://snuie2etryae::::res://audio/sfx/punch_3.wav
@@ -24,14 +24,14 @@ attack.tres::Resource/Skill::2982296682113163532::1727844239::0::1::::<><>::res:
 cure.tres::Resource/Skill::1424926940769233832::1727844239::0::1::::<><>::res://scripts/models/skill.gd
 firaga.tres::Resource/Skill::5717192609192650843::1727844239::0::1::::<><>::res://scripts/models/skill.gd
 fire.tres::Resource/Skill::5014440011241267683::1727844239::0::1::::<><>::res://scripts/models/skill.gd
-::res://data/test_data/::1727844239
-test_char.tres::Resource/Character::6970379123767923483::1727844239::0::1::::<><>::uid://d0c7bhnf7dou8::::res://data/items/body_1.tres<>res://scripts/equipment.gd<>uid://c5ju47e7jyc68::::res://data/items/sword_1.tres<>res://scripts/models/character.gd<>res://scripts/models/skill.gd<>uid://cdpbdhc8cmpd8::::res://data/skills/fire.tres<>uid://ukilrlt42l6w::::res://data/skills/cure.tres<>uid://cnppld8wvliel::::res://data/skills/firaga.tres<>uid://bjhtbtuot6xw1::::res://data/test_data/test_stats.tres<>uid://dbhfow0mgtct0::::res://sprites/char/Female_02.png
-test_char_2.tres::Resource/Character::290571051477535511::1727844239::0::1::::<><>::uid://d0c7bhnf7dou8::::res://data/items/body_1.tres<>res://scripts/equipment.gd<>uid://djd60q3ygkwa7::::res://data/items/wand_1.tres<>res://scripts/models/character.gd<>res://scripts/models/skill.gd<>res://scripts/models/stats.gd<>uid://ukilrlt42l6w::::res://data/skills/cure.tres<>uid://d0rxctm0tay4c::::res://sprites/char/Male_01.png
+::res://data/test_data/::1727844250
+test_char.tres::Resource/Character::6970379123767923483::1727844250::0::1::::<><>::uid://d0c7bhnf7dou8::::res://data/items/body_1.tres<>res://scripts/models/equipment.gd<>uid://c5ju47e7jyc68::::res://data/items/sword_1.tres<>res://scripts/models/character.gd<>res://scripts/models/skill.gd<>uid://cdpbdhc8cmpd8::::res://data/skills/fire.tres<>uid://ukilrlt42l6w::::res://data/skills/cure.tres<>uid://cnppld8wvliel::::res://data/skills/firaga.tres<>uid://bjhtbtuot6xw1::::res://data/test_data/test_stats.tres<>uid://dbhfow0mgtct0::::res://sprites/char/Female_02.png
+test_char_2.tres::Resource/Character::290571051477535511::1727844250::0::1::::<><>::uid://d0c7bhnf7dou8::::res://data/items/body_1.tres<>res://scripts/models/equipment.gd<>uid://djd60q3ygkwa7::::res://data/items/wand_1.tres<>res://scripts/models/character.gd<>res://scripts/models/skill.gd<>res://scripts/models/stats.gd<>uid://ukilrlt42l6w::::res://data/skills/cure.tres<>uid://d0rxctm0tay4c::::res://sprites/char/Male_01.png
 test_encounter.tres::Resource/Encounter::6637419486519298244::1727844239::0::1::::<><>::res://scripts/models/encounter.gd<>res://scripts/models/actor.gd<>uid://darhviidgex04::::res://data/test_data/test_enemy.tres<>uid://cw5w2v6kra4xm::::res://data/test_data/test_enemy_2.tres
 test_enemy.tres::Resource/Enemy::7194819426209432875::1727844239::0::1::::<><>::res://scripts/models/enemy.gd<>res://scripts/models/skill.gd<>res://scripts/models/stats.gd<>uid://bxb70m5jr4jid::::res://sprites/battlers/Clockwork Queen.png<>uid://cdpbdhc8cmpd8::::res://data/skills/fire.tres
 test_enemy_2.tres::Resource/Enemy::6380312401677398430::1727844239::0::1::::<><>::res://scripts/models/enemy.gd<>res://scripts/models/stats.gd<>res://scripts/models/skill.gd<>uid://du0qwkq25tv3m::::res://sprites/battlers/Dark Elves Healer Priestess.png
 test_stats.tres::Resource/Stats::3033727358872751818::1727844239::0::1::::<><>::res://scripts/models/stats.gd
-::res://scripts/::1727844239
+::res://scripts/::1727844250
 battler.gd::GDScript::-1::1727834589::0::1::::Battler<>Node2D<>::
 battle_animation.gd::GDScript::-1::1727651381::0::1::::BattleAnimation<>Node2D<>::
 battle_helper.gd::GDScript::-1::1727761673::0::1::::<>Node<>::
@@ -39,7 +39,6 @@ character_battler.gd::GDScript::-1::1727842968::0::1::::CharacterBattler<>Battle
 character_ui.gd::GDScript::-1::1727843246::0::1::::CharacterUI<>Panel<>::
 damage_label.gd::GDScript::-1::1727835813::0::1::::DamageLabel<>Node2D<>::
 enemy_battler.gd::GDScript::-1::1727651381::0::1::::EnemyBattler<>Battler<>::
-equipment.gd::GDScript::-1::1727407500::0::1::::Equipment<>Resource<>::
 globals.gd::GDScript::-1::1727651381::0::1::::<>Node<>::
 grid_button_menu.gd::GDScript::-1::1727833916::0::1::::BattleMenu<>GridContainer<>::
 turn.gd::GDScript::-1::1727842826::0::1::::Turn<>Node<>::
@@ -52,16 +51,18 @@ skill_action.gd::GDScript::-1::1727824087::0::1::::SkillAction<>Action<>::
 ::res://scripts/fsm/::1727737858
 state.gd::GDScript::-1::1727737858::0::1::::State<>Node<>::
 state_machine.gd::GDScript::-1::1727737858::0::1::::StateMachine<>Node<>::
-::res://scripts/fsm/battle_screen_fsm/::1727737858
+::res://scripts/fsm/battle_screen_fsm/::1727844521
 bs_state.gd::GDScript::-1::1727737858::0::1::::BattleScreenState<>State<>::
 bs_state_running.gd::GDScript::-1::1727737858::0::1::::StateRunning<>BattleScreenState<>::
-bs_state_target_select.gd::GDScript::-1::1727737858::0::1::::StateTargetSelect<>BattleScreenState<>::
-::res://scripts/models/::1727844239
+bs_state_target_select.gd::GDScript::-1::1727844521::0::1::::StateTargetSelect<>BattleScreenState<>::
+::res://scripts/models/::1727844367
 actor.gd::GDScript::-1::1727651381::0::1::::Actor<>Resource<>::
 character.gd::GDScript::-1::1727824087::0::1::::Character<>Actor<>::
 encounter.gd::GDScript::-1::1727824087::0::1::::Encounter<>Resource<>::
 enemy.gd::GDScript::-1::1727824087::0::1::::Enemy<>Actor<>::
-equippable_item.gd::GDScript::-1::1727310670::0::1::::EquippableItem<>Resource<>::
+equipment.gd::GDScript::-1::1727407500::0::1::::Equipment<>Resource<>::
+equippable_item.gd::GDScript::-1::1727844330::0::1::::EquippableItem<>Item<>::
+item.gd::GDScript::-1::1727844367::0::1::::Item<>Resource<>::
 skill.gd::GDScript::-1::1727737858::0::1::::Skill<>Resource<>::
 stats.gd::GDScript::-1::1727310670::0::1::::Stats<>Resource<>::
 ::res://skill_fx_scenes/::1727842499

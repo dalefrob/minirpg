@@ -12,8 +12,8 @@ agility = 0
 
 [resource]
 script = ExtResource("1_6he55")
-name = "Bronze Sword"
-description = "A finely crafted sword, forged in Blackgrove"
 slot = 5
 stats = SubResource("Resource_223wx")
+name = "Bronze Sword"
+description = "A finely crafted sword, forged in Blackgrove"
 value = 60

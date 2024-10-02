@@ -3,8 +3,8 @@
 extends Node
 
 func calculate_damage(attacker : Actor, defender : Actor) -> int:
-	var dmg = attacker.get_damage()
-	dmg -= defender.get_defence()
+	var dmg = attacker.get_atk()
+	dmg -= defender.get_def()
 	# negative dmg will 'heal'
 	if dmg < 0:
 		dmg = 0

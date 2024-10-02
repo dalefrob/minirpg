@@ -1,3 +1,4 @@
+# Numerical values to represent a characters strengths and weaknesses
 extends Resource
 class_name Stats
 

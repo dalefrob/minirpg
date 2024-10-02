@@ -12,8 +12,8 @@ agility = 0
 
 [resource]
 script = ExtResource("1_5uksp")
-name = "Bronze Cuirass"
-description = "Strong body armor"
 slot = 1
 stats = SubResource("Resource_6e5kg")
+name = "Bronze Cuirass"
+description = "Strong body armor"
 value = 30

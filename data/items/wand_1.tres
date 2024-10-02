@@ -12,8 +12,8 @@ agility = 0
 
 [resource]
 script = ExtResource("1_ojou8")
-name = "Quartz Wand"
-description = "A crude wand made from common earthly materials"
 slot = 5
 stats = SubResource("Resource_j7nup")
+name = "Quartz Wand"
+description = "A crude wand made from common earthly materials"
 value = 1

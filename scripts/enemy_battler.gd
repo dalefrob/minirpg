@@ -14,20 +14,17 @@ func _initialize():
 	await ready
 	sprite.texture = enemy.texture
 
-func _take_hit(damage : int):
-	super._take_hit(damage)
+func _on_actor_took_damage(damage : int):
+	super._on_actor_took_damage(damage)
 	
 	# TODO - play audio as part of 'battle animations'
 	$AudioStreamPlayer2D.play()
-	
-	if hp <= 0:
-		hp = 0
-		print("%s was defeated" % name)
-		is_dead = true
-		disintegrate()
-	else:
-		flash()
-		print("%s took %s damage" % [name, damage])
+	flash()
+	print("%s took %s damage" % [name, damage])
+
+func _on_actor_health_depleted():
+	print("%s was defeated" % name)
+	disintegrate()
 
 
 # flash the sprite a color to signify a status change
