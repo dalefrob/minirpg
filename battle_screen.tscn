@@ -14,6 +14,7 @@
 
 [node name="BattleScreen" type="Node"]
 script = ExtResource("1_h8i7e")
+player_ui_pks = ExtResource("10_d6v5k")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 
@@ -78,7 +79,8 @@ offset_bottom = 627.0
 size_flags_horizontal = 3
 script = ExtResource("5_6s0v8")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+[node name="PlayerHBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -91,11 +93,3 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="PlayerUI" parent="CanvasLayer/HBoxContainer" instance=ExtResource("10_d6v5k")]
-layout_mode = 2
-character = ExtResource("4_rt4ak")
-
-[node name="PlayerUI2" parent="CanvasLayer/HBoxContainer" instance=ExtResource("10_d6v5k")]
-layout_mode = 2
-character = ExtResource("11_qnxtx")

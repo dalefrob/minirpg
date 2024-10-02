@@ -47,8 +47,11 @@ func get_all_battlers():
 @onready var bg : Sprite2D = $Background
 
 # UI
+@export var player_ui_pks : PackedScene
+
 @onready var battle_text : Label = %BattleText
 @onready var battle_menu : BattleMenu = %BattleMenu
+@onready var player_hbox : HBoxContainer = %PlayerHBoxContainer
 
 var _last_skill_selected : Skill
 
@@ -66,8 +69,16 @@ func load_encounter(encounter : Encounter):
 		enemy_battler_grp.add_child(new_battler)
 	
 	# load players
-	for p in get_player_battlers():
-		p._initialize()
+	for battler in get_player_battlers():
+		var player_battler = battler as PlayerBattler
+		player_battler._initialize()
+		var player_ui = player_ui_pks.instantiate() as PlayerUI
+		
+		# more elegant way to do this??
+		player_ui.character = player_battler.actor
+		player_battler.player_ui = player_ui
+		
+		player_hbox.add_child(player_ui)
 
 	# align battlers
 	var window_width = DisplayServer.window_get_size(0).x
@@ -136,7 +147,7 @@ func on_skill_selected(skill : Skill):
 	turn_system.current_turn.action = SkillAction.create(turn_system.current_turn.battler, skill)
 	
 	var targets = get_skill_targets(skill)
-	battle_menu.load_target_menu(targets, on_target_selected)
+	battle_menu.load_single_target_menu(targets, on_target_selected)
 
 
 func get_skill_targets(_skill : Skill):
@@ -153,7 +164,7 @@ func get_skill_targets(_skill : Skill):
 func on_menu_attack_selected():
 	turn_system.current_turn.action = AttackAction.create(turn_system.current_turn.battler)
 	var targets = get_enemy_battlers()
-	battle_menu.load_target_menu(targets, on_target_selected)
+	battle_menu.load_single_target_menu(targets, on_target_selected)
 
 
 func on_target_selected(target_index : int):

@@ -22,8 +22,9 @@ func _initialize():
 
 func _take_hit(damage):
 	hp -= damage
+	_show_damage_text(str(damage))
 	
-	# show damage text
+func _show_damage_text(text : String):
 	var dmg_label = preload("res://damage_label.tscn").instantiate() as DamageLabel
 	add_child(dmg_label)
-	dmg_label.float_up(str(damage))
+	dmg_label.float_up(text)
