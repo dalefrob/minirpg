@@ -18,7 +18,7 @@ var is_dead : bool:
 	get: return hp <= 0
 
 # set hp and mp to maximum values
-func reset():
+func _reset():
 	hp = get_max_hp()
 	mp = get_max_mp()
 
@@ -40,16 +40,16 @@ func get_atk():
 func get_def():
 	return get_stat_total(Stats.StatType.AGI) / 2
 
-func take_damage(dmg):
-	hp -= dmg
-	took_damage.emit(dmg)
+func take_damage(amount):
+	hp -= amount
+	took_damage.emit(amount)
 	if hp <= 0:
 		hp = 0
 		health_depleted.emit()
 
-func heal_damage(dmg):
-	hp += dmg
-	healed_damage.emit()
+func heal_damage(amount):
+	hp += amount
+	healed_damage.emit(amount)
 	var max_hp = get_max_hp()
 	if hp >= max_hp:
 		hp = max_hp

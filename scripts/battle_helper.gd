@@ -2,6 +2,14 @@
 # battle related functions that can be used anywhere
 extends Node
 
+# args: [amount]
+func deal_damage(source : Actor, target : Actor, args : Array):
+	target.take_damage(args[0])
+
+# args: [amount]
+func heal_damage(source : Actor, target : Actor, args : Array):
+	target.heal_damage(args[0])
+
 func calculate_damage(attacker : Actor, defender : Actor) -> int:
 	var dmg = attacker.get_atk()
 	dmg -= defender.get_def()

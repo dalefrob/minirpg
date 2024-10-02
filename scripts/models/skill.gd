@@ -20,7 +20,11 @@ enum SkillCategory {
 @export var category : SkillCategory
 @export var mana_cost : int = 1
 @export var targeting : Targeting
+
+@export_category("Calling Parameters")
 @export var function_alias : String
 @export var args : Array
-
 @export var args_description : String
+
+func use(user : Actor, target : Variant):
+	BattleHelper.call(function_alias, user, target, args)

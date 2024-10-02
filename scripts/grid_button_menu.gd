@@ -37,7 +37,7 @@ func load_skills_menu(skill_user : Battler, callback : Callable):
 	create_buttons(buttons)
 
 # Loads a menu with targets corresponding to battlers
-func load_single_target_menu(battlers : Array[Battler], callback : Callable):
+func load_single_target_menu(battlers : Array, callback : Callable):
 	var buttons = []
 	for i in range(battlers.size()):
 		var battler = battlers[i]

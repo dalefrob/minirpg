@@ -12,7 +12,7 @@ func _set_target(_target):
 	pass
 
 func _can_execute() -> bool:
-	if user.is_dead:
+	if user.actor.is_dead:
 		error_msg = "Actor is dead"
 		return false
 	return true

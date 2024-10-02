@@ -12,7 +12,7 @@ func _set_targets(_targets):
 	targets = _targets
 
 func _can_execute():
-	if user.mp < skill.mana_cost:
+	if user.actor.mp < skill.mana_cost:
 		error_msg = "Not enough MP!"
 		return false
 	return super._can_execute()
@@ -27,9 +27,7 @@ func _execute():
 	await delay(1)
 	
 	for t in targets:
-		# calculate damage
-		var dmg = BattleHelper.calculate_damage(user.actor, t.actor)
-		t._take_hit(dmg)
+		skill.use(user.actor, t.actor)
 
 
 static func create(_user : Battler, _skill : Skill):

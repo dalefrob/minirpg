@@ -21,7 +21,7 @@ func _execute():
 	
 	# calculate damage
 	var dmg = BattleHelper.calculate_damage(user.actor, target.actor)
-	target._take_hit(dmg)
+	target.actor.take_damage(dmg)
 
 static func create(_user : Battler) -> AttackAction:
 	var action = AttackAction.new()

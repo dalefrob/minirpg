@@ -8,21 +8,25 @@ class_name Battler
 		actor = value
 		_initialize()
 
-#@export var hp : int
-#@export var mp : int
-#
-#var is_dead : bool
-
 func _ready() -> void:
 	name = actor.name
 
 func _initialize():
+	actor._reset()
 	# set up signals
 	actor.took_damage.connect(_on_actor_took_damage)
+	actor.healed_damage.connect(_on_actor_healed_damage)
 	actor.health_depleted.connect(_on_actor_health_depleted)
 
 func _on_actor_took_damage(damage):
 	_show_damage_text(str(damage))
+
+func _on_actor_healed_damage(amount):
+	_show_healed_text(str(amount))
+
+func _show_healed_text(amount : String):
+	print("heal")
+	pass
 
 func _on_actor_health_depleted():
 	pass

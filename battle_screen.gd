@@ -11,6 +11,7 @@ enum BattleState {
 var battle_state : BattleState = BattleState.PRE_BATTLE
 
 var battler_pks = preload("res://enemy_battler.tscn")
+var character_battler_pks = preload("res://character_battler.tscn")
 var damage_label_pks = preload("res://damage_label.tscn")
 
 # Systems
@@ -20,25 +21,25 @@ var damage_label_pks = preload("res://damage_label.tscn")
 
 # easy accessors
 func get_enemy_battlers():
-	var result : Array[Battler] = []
+	var result = []
 	for c in $EnemyBattlers.get_children():
-		var b = c as Battler
+		var b = c as EnemyBattler
 		if b:
-			if not b.is_dead:
+			if not b.actor.is_dead:
 				result.append(b)
 	return result
 
 func get_character_battlers():
-	var result : Array[Battler] = []
+	var result = []
 	for c in $CharacterBattlers.get_children():
-		var b = c as Battler
+		var b = c as CharacterBattler
 		if b:
-			if not b.is_dead:
+			if not b.actor.is_dead:
 				result.append(b)
 	return result
 
 func get_all_battlers():
-	var result : Array[Battler] = get_character_battlers()
+	var result = get_character_battlers()
 	result.append_array(get_enemy_battlers())
 	return result
 
@@ -57,21 +58,22 @@ var _last_skill_selected : Skill
 
 
 func load_encounter(encounter : Encounter):
-	await ready
 	print("loading encounter: %s" % encounter)
 	
 	var enemy_battler_grp = $EnemyBattlers
+	var character_battler_grp = $CharacterBattlers
 	
 	# load enemies
 	for enemy in encounter.enemies:
 		var new_battler = battler_pks.instantiate()
-		new_battler.actor = enemy
+		new_battler.actor = enemy.duplicate(true) # ensure each enemy is a unique instance
 		enemy_battler_grp.add_child(new_battler)
 	
 	# load players
-	for battler in get_character_battlers():
-		var character_battler = battler as CharacterBattler
-		character_battler._initialize()
+	for character in Globals.party:
+		var character_battler = character_battler_pks.instantiate() as CharacterBattler
+		character_battler.actor = character
+		character_battler_grp.add_child(character_battler)
 		var character_ui = character_ui_pks.instantiate() as CharacterUI
 		
 		# more elegant way to do this??
@@ -96,7 +98,7 @@ func load_encounter(encounter : Encounter):
 func start_new_round():
 	print("Starting new round.")
 	for battler in get_enemy_battlers():
-		if battler.is_dead:
+		if battler.actor.is_dead:
 			battler.queue_free()
 
 	# start new round with existing battlers

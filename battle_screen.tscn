@@ -1,16 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://i13cfqmk47or"]
+[gd_scene load_steps=9 format=3 uid="uid://i13cfqmk47or"]
 
 [ext_resource type="Script" path="res://battle_screen.gd" id="1_h8i7e"]
 [ext_resource type="Texture2D" uid="uid://ddq6mha0vfqlt" path="res://sprites/bg/cavern/bg_6.png" id="2_73l8l"]
 [ext_resource type="Script" path="res://scripts/fsm/state_machine.gd" id="2_irmtd"]
 [ext_resource type="Script" path="res://scripts/fsm/battle_screen_fsm/bs_state_target_select.gd" id="3_66o3k"]
 [ext_resource type="Script" path="res://scripts/fsm/battle_screen_fsm/bs_state_running.gd" id="3_ruddb"]
-[ext_resource type="PackedScene" uid="uid://bn3himoq5k1pl" path="res://character_battler.tscn" id="4_f1yb8"]
 [ext_resource type="Script" path="res://scripts/turn_system.gd" id="4_fauym"]
-[ext_resource type="Resource" uid="uid://c6krejn11uinb" path="res://data/test_data/test_char.tres" id="4_rt4ak"]
 [ext_resource type="Script" path="res://scripts/grid_button_menu.gd" id="5_6s0v8"]
 [ext_resource type="PackedScene" uid="uid://dqwvo14eckff3" path="res://character_ui.tscn" id="10_d6v5k"]
-[ext_resource type="Resource" uid="uid://ee0wsfktaypj" path="res://data/test_data/test_char_2.tres" id="11_qnxtx"]
 
 [node name="BattleScreen" type="Node"]
 script = ExtResource("1_h8i7e")
@@ -38,12 +35,6 @@ texture = ExtResource("2_73l8l")
 [node name="EnemyBattlers" type="Node2D" parent="."]
 
 [node name="CharacterBattlers" type="Node2D" parent="."]
-
-[node name="CharacterBattler" parent="CharacterBattlers" instance=ExtResource("4_f1yb8")]
-actor = ExtResource("4_rt4ak")
-
-[node name="CharacterBattler2" parent="CharacterBattlers" instance=ExtResource("4_f1yb8")]
-actor = ExtResource("11_qnxtx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

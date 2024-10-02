@@ -8,4 +8,5 @@
 [resource]
 script = ExtResource("1_ns5wb")
 background = 0
-enemies = Array[ExtResource("1_yoipm")]([ExtResource("2_w0nkh"), ExtResource("3_b1dju"), ExtResource("2_w0nkh")])
+is_boss = false
+enemies = Array[ExtResource("1_yoipm")]([ExtResource("2_w0nkh"), ExtResource("3_b1dju")])

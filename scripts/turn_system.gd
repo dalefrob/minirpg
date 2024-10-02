@@ -47,7 +47,7 @@ func _process(delta: float) -> void:
 	
 	if current_turn.state == TurnState.STANDBY:
 		# skip dead character turns
-		if current_turn.battler.is_dead:
+		if current_turn.battler.actor.is_dead:
 			end_current_turn()
 			return
 		current_turn.state = TurnState.WAITING

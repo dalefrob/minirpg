@@ -26,7 +26,6 @@ func _on_actor_health_depleted():
 	print("%s was defeated" % name)
 	disintegrate()
 
-
 # flash the sprite a color to signify a status change
 func flash(color : Color = Color.RED, duration : float = 0.5):
 	sprite.self_modulate = Color.RED
