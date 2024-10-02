@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="Character" load_steps=11 format=3 uid="uid://ee0wsfktaypj"]
 
 [ext_resource type="Resource" uid="uid://d0c7bhnf7dou8" path="res://data/items/body_1.tres" id="1_owpcw"]
-[ext_resource type="Script" path="res://scripts/equipment.gd" id="2_jw7fr"]
+[ext_resource type="Script" path="res://scripts/models/equipment.gd" id="2_jw7fr"]
 [ext_resource type="Resource" uid="uid://djd60q3ygkwa7" path="res://data/items/wand_1.tres" id="3_5b0vt"]
-[ext_resource type="Script" path="res://scripts/character.gd" id="4_rj0i8"]
-[ext_resource type="Script" path="res://scripts/skill.gd" id="5_8a42x"]
-[ext_resource type="Script" path="res://scripts/stats.gd" id="7_hf6al"]
+[ext_resource type="Script" path="res://scripts/models/character.gd" id="4_rj0i8"]
+[ext_resource type="Script" path="res://scripts/models/skill.gd" id="5_8a42x"]
+[ext_resource type="Script" path="res://scripts/models/stats.gd" id="7_hf6al"]
 [ext_resource type="Resource" uid="uid://ukilrlt42l6w" path="res://data/skills/cure.tres" id="7_w41oa"]
 [ext_resource type="Texture2D" uid="uid://d0rxctm0tay4c" path="res://sprites/char/Male_01.png" id="8_2d8ic"]
 

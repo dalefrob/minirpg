@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://i13cfqmk47or"]
+[gd_scene load_steps=11 format=3 uid="uid://i13cfqmk47or"]
 
 [ext_resource type="Script" path="res://battle_screen.gd" id="1_h8i7e"]
 [ext_resource type="Texture2D" uid="uid://ddq6mha0vfqlt" path="res://sprites/bg/cavern/bg_6.png" id="2_73l8l"]
@@ -9,12 +9,10 @@
 [ext_resource type="Script" path="res://scripts/turn_system.gd" id="4_fauym"]
 [ext_resource type="Resource" uid="uid://c6krejn11uinb" path="res://data/test_data/test_char.tres" id="4_rt4ak"]
 [ext_resource type="Script" path="res://scripts/grid_button_menu.gd" id="5_6s0v8"]
-[ext_resource type="PackedScene" uid="uid://dqwvo14eckff3" path="res://character_ui.tscn" id="10_d6v5k"]
 [ext_resource type="Resource" uid="uid://ee0wsfktaypj" path="res://data/test_data/test_char_2.tres" id="11_qnxtx"]
 
 [node name="BattleScreen" type="Node"]
 script = ExtResource("1_h8i7e")
-character_ui_pks = ExtResource("10_d6v5k")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 
@@ -39,10 +37,10 @@ texture = ExtResource("2_73l8l")
 
 [node name="CharacterBattlers" type="Node2D" parent="."]
 
-[node name="CharacterBattler" parent="CharacterBattlers" instance=ExtResource("4_f1yb8")]
+[node name="PlayerBattler" parent="CharacterBattlers" instance=ExtResource("4_f1yb8")]
 actor = ExtResource("4_rt4ak")
 
-[node name="CharacterBattler2" parent="CharacterBattlers" instance=ExtResource("4_f1yb8")]
+[node name="PlayerBattler2" parent="CharacterBattlers" instance=ExtResource("4_f1yb8")]
 actor = ExtResource("11_qnxtx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -79,7 +77,7 @@ offset_bottom = 627.0
 size_flags_horizontal = 3
 script = ExtResource("5_6s0v8")
 
-[node name="CharacterHBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+[node name="PlayerHBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
 anchors_preset = 7
 anchor_left = 0.5

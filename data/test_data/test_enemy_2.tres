@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Enemy" load_steps=6 format=3 uid="uid://cw5w2v6kra4xm"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_kox8j"]
-[ext_resource type="Script" path="res://scripts/stats.gd" id="2_a0d3r"]
-[ext_resource type="Script" path="res://scripts/skill.gd" id="2_tlhxu"]
+[ext_resource type="Script" path="res://scripts/models/enemy.gd" id="1_kox8j"]
+[ext_resource type="Script" path="res://scripts/models/stats.gd" id="2_a0d3r"]
+[ext_resource type="Script" path="res://scripts/models/skill.gd" id="2_tlhxu"]
 [ext_resource type="Texture2D" uid="uid://du0qwkq25tv3m" path="res://sprites/battlers/Dark Elves Healer Priestess.png" id="3_tme22"]
 
 [sub_resource type="Resource" id="Resource_1ykx6"]

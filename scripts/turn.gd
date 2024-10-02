@@ -6,7 +6,7 @@ class_name Turn
 var state : TurnSystem.TurnState = TurnSystem.TurnState.STANDBY
 
 var battler : Battler
-var player_turn : bool
+var is_player_turn : bool
 var action : Action
 
 signal turn_ended

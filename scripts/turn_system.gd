@@ -30,7 +30,7 @@ func clear_queue():
 func enqueue(_battler : Battler):
 	var turn = Turn.new()
 	turn.battler = _battler
-	turn.player_turn = (_battler is PlayerBattler)
+	turn.is_player_turn = (_battler is CharacterBattler)
 	turn.name = "t%s_%s" % [turn_id, _battler.name]
 	add_child(turn)
 	turn_id += 1
@@ -53,6 +53,6 @@ func _process(delta: float) -> void:
 		current_turn.state = TurnState.WAITING
 		turn_started.emit(current_turn)
 	
-	is_waiting_for_player = current_turn.player_turn && current_turn.state == TurnState.WAITING
+	is_waiting_for_player = current_turn.is_player_turn && current_turn.state == TurnState.WAITING
 	if is_waiting_for_player:
 		return

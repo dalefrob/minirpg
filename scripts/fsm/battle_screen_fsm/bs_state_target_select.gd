@@ -7,7 +7,7 @@ var targeting : Skill.Targeting = Skill.Targeting.SINGLE_ENEMY
 var enemy_battlers:
 	get: return battle_screen.get_enemy_battlers()
 var player_battlers:
-	get: return battle_screen.get_player_battlers()
+	get: return battle_screen.get_character_battlers()
 
 var all : bool = false
 

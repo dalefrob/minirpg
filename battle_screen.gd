@@ -28,9 +28,9 @@ func get_enemy_battlers():
 				result.append(b)
 	return result
 
-func get_player_battlers():
+func get_character_battlers():
 	var result : Array[Battler] = []
-	for c in $PlayerBattlers.get_children():
+	for c in $CharacterBattlers.get_children():
 		var b = c as Battler
 		if b:
 			if not b.is_dead:
@@ -38,7 +38,7 @@ func get_player_battlers():
 	return result
 
 func get_all_battlers():
-	var result : Array[Battler] = get_player_battlers()
+	var result : Array[Battler] = get_character_battlers()
 	result.append_array(get_enemy_battlers())
 	return result
 
@@ -47,11 +47,11 @@ func get_all_battlers():
 @onready var bg : Sprite2D = $Background
 
 # UI
-@export var player_ui_pks : PackedScene
+@export var character_ui_pks : PackedScene
 
 @onready var battle_text : Label = %BattleText
 @onready var battle_menu : BattleMenu = %BattleMenu
-@onready var player_hbox : HBoxContainer = %PlayerHBoxContainer
+@onready var character_hbox : HBoxContainer = %CharacterHBoxContainer
 
 var _last_skill_selected : Skill
 
@@ -69,16 +69,16 @@ func load_encounter(encounter : Encounter):
 		enemy_battler_grp.add_child(new_battler)
 	
 	# load players
-	for battler in get_player_battlers():
-		var player_battler = battler as PlayerBattler
-		player_battler._initialize()
-		var player_ui = player_ui_pks.instantiate() as PlayerUI
+	for battler in get_character_battlers():
+		var character_battler = battler as CharacterBattler
+		character_battler._initialize()
+		var character_ui = character_ui_pks.instantiate() as CharacterUI
 		
 		# more elegant way to do this??
-		player_ui.character = player_battler.actor
-		player_battler.player_ui = player_ui
+		character_ui.character = character_battler.actor
+		character_battler.character_ui = character_ui
 		
-		player_hbox.add_child(player_ui)
+		character_hbox.add_child(character_ui)
 
 	# align battlers
 	var window_width = DisplayServer.window_get_size(0).x
@@ -108,7 +108,9 @@ func start_new_round():
 
 func on_turn_started(turn : Turn):
 	battle_text.text = "%s's turn started" % turn.battler.actor.name
-	if turn.player_turn:
+	
+	# Player Turns
+	if turn.is_player_turn:
 		# show battle menu
 		var default_callables = [
 			on_menu_attack_selected,
@@ -116,10 +118,13 @@ func on_turn_started(turn : Turn):
 			func(): print("Pressed Defend")
 		]
 		battle_menu.load_battle_menu(default_callables)
+	
+	# Enemy turns
 	else:
 		var enemy_battler : EnemyBattler = turn.battler
 		# enemy make choice
-		var target = get_player_battlers()[0]
+		var targets = get_character_battlers()
+		var target = targets.pick_random()
 		var action =  AttackAction.create(enemy_battler)
 		action._set_target(target)
 		turn_system.current_turn.action = action
@@ -155,7 +160,7 @@ func get_skill_targets(_skill : Skill):
 		Skill.Targeting.SINGLE_ENEMY:
 			return get_enemy_battlers()
 		Skill.Targeting.SINGLE_ALLY:
-			return get_player_battlers()
+			return get_character_battlers()
 		_:
 			return get_all_battlers()
 

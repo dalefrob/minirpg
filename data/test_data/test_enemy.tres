@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Enemy" load_steps=7 format=3 uid="uid://darhviidgex04"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_lcud6"]
-[ext_resource type="Script" path="res://scripts/skill.gd" id="2_h3d0j"]
-[ext_resource type="Script" path="res://scripts/stats.gd" id="2_hbqtm"]
+[ext_resource type="Script" path="res://scripts/models/enemy.gd" id="1_lcud6"]
+[ext_resource type="Script" path="res://scripts/models/skill.gd" id="2_h3d0j"]
+[ext_resource type="Script" path="res://scripts/models/stats.gd" id="2_hbqtm"]
 [ext_resource type="Texture2D" uid="uid://bxb70m5jr4jid" path="res://sprites/battlers/Clockwork Queen.png" id="2_qakox"]
 [ext_resource type="Resource" uid="uid://cdpbdhc8cmpd8" path="res://data/skills/fire.tres" id="4_1fiia"]
 
