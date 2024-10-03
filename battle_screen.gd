@@ -87,18 +87,16 @@ func load_encounter(encounter : Encounter):
 	turn_system.turn_started.connect(on_turn_started)
 	turn_system.turn_ended.connect(on_turn_ended)
 	turn_system.all_turns_processed.connect(on_all_turns_processed)
+	
 	start_new_round()
 
 
 func start_new_round():
 	print("Starting new round.")
-	for battler in get_enemy_battlers():
-		if battler.actor.is_dead:
-			battler.queue_free()
 
-	# start new round with existing battlers
 	for battler in get_all_battlers():
 		turn_system.enqueue(battler)
+		battler.visible = !battler.actor.is_dead
 	
 	battle_state = BattleState.BATTLING
 
@@ -128,13 +126,17 @@ func on_turn_started(turn : Turn):
 		turn_system.current_turn.action = action
 		execute_action(action)
 
+
 func on_turn_ended(turn : Turn):
 	print("%s's turn ended" % turn.battler.actor.name)
+	
 	if is_all_enemies_defeated():
 		turn_system.all_turns_processed.disconnect(on_all_turns_processed)
-		turn_system.clear_queue()
+		turn_system.stop()
+		
 		battle_state = BattleState.BATTLE_WON
 		battle_text.text = "You won!"
+
 
 func on_all_turns_processed():
 	print("All turns processed")
@@ -194,4 +196,4 @@ func execute_action(_action : Action):
 
 
 func is_all_enemies_defeated():
-	return get_enemy_battlers().size() == 0
+	return get_enemy_battlers().all(func(b): return b.actor.is_dead)

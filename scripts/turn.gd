@@ -8,5 +8,3 @@ var state : TurnSystem.TurnState = TurnSystem.TurnState.STANDBY
 var battler : Battler
 var is_player_turn : bool
 var action : Action
-
-signal turn_ended

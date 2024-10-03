@@ -8,13 +8,7 @@ res://data/skills/firaga.tres
 res://data/test_data/test_char.tres
 res://data/items/wand_1.tres
 res://data/test_data/test_char_2.tres
-res://scripts/battle_helper.gd
 res://character_battler.tscn
-res://scripts/battler.gd
-res://scripts/character_battler.gd
+res://scripts/turn_system.gd
+res://scripts/turn.gd
 res://battle_screen.gd
-res://scripts/enemy_battler.gd
-res://scripts/grid_button_menu.gd
-res://scripts/floating_text.gd
-res://scripts/actions/skill_action.gd
-res://scripts/character_ui.gd
