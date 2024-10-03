@@ -59,6 +59,14 @@ offset_bottom = 627.0
 size_flags_horizontal = 3
 script = ExtResource("5_6s0v8")
 
+[node name="TargetingMenu" type="GridContainer" parent="CanvasLayer/BattleMenuManager"]
+unique_name_in_owner = true
+offset_left = 24.0
+offset_top = 526.0
+offset_right = 295.0
+offset_bottom = 627.0
+size_flags_horizontal = 3
+
 [node name="CharacterHBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
 anchors_preset = 7

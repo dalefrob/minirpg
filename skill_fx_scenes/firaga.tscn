@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://dyehgw4ih24bt"]
+[gd_scene load_steps=30 format=3 uid="uid://dyehgw4ih24bt"]
 
 [ext_resource type="Script" path="res://scripts/battle_animation.gd" id="1_sqt88"]
 [ext_resource type="Texture2D" uid="uid://86fdy7yai3lq" path="res://sprites/battle_anims/Blast0019.png" id="2_ufsr6"]
+[ext_resource type="AudioStream" uid="uid://yklcv05bcfs4" path="res://audio/sfx/plasma-gun-fire.mp3" id="3_dltyn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1kyif"]
 atlas = ExtResource("2_ufsr6")
@@ -192,3 +193,6 @@ script = ExtResource("1_sqt88")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(4, 2)
 sprite_frames = SubResource("SpriteFrames_y8wgv")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_dltyn")

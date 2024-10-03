@@ -22,12 +22,11 @@ func calculate_damage(attacker : Actor, defender : Actor) -> int:
 	return dmg
 
 # show a battle animation anywhere in the game
-func show_battle_animation(scene : PackedScene, 
-		parent : Node2D, position : Vector2 = Vector2.ZERO, callback : Callable = func():):
-	
+func show_battle_animation(scene : PackedScene, global_position = Vector2.ZERO, callback : Callable = func():):
 	var battle_anim : BattleAnimation = scene.instantiate()
-	battle_anim.position = position
-	parent.add_child(battle_anim)
+	battle_anim.global_position = global_position
+	battle_anim.z_index = 1
+	add_child(battle_anim)
 	await battle_anim.finished
 	callback.call()
 

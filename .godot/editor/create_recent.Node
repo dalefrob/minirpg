@@ -1,15 +1,14 @@
+AudioStreamPlayer2D
+Control
 AudioStreamPlayer
 HBoxContainer
 RichTextLabel
 Panel
 Node
 AnimatedSprite2D
-AudioStreamPlayer2D
 Node2D
 Sprite2D
 TextureRect
 VBoxContainer
 GridContainer
 Label
-Button
-Timer

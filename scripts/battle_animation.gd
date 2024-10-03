@@ -10,6 +10,8 @@ signal finished
 func _ready() -> void:
 	anim_sprite.animation_finished.connect(on_animation_finished, CONNECT_ONE_SHOT)
 	anim_sprite.play()
+	if has_node("AudioStreamPlayer2D"):
+		$AudioStreamPlayer2D.play()
 
 func on_animation_finished():
 	finished.emit()

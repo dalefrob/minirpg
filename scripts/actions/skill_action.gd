@@ -3,7 +3,7 @@ extends Action
 class_name SkillAction
 
 var skill : Skill
-var targets : Array[Battler]
+var targets : Array
 
 func _set_target(_target):
 	targets.append(_target)
@@ -21,8 +21,14 @@ func _execute():
 	# animate
 	var fx_path = "res://skill_fx_scenes/%s.tscn" % skill.name.to_lower()
 	var scene = load(fx_path)
-	for t in targets:
-		BattleHelper.show_battle_animation(scene, t, t._get_anim_position())
+	
+	var first_target = targets[0]
+	if targets.size() > 1:
+		# play the animation center
+		var center_screen = (first_target as Node2D).get_viewport_rect().size / 2
+		BattleHelper.show_battle_animation(scene)
+	elif targets.size() == 1:
+		BattleHelper.show_battle_animation(scene, first_target.global_position)
 		
 	await delay(1)
 	

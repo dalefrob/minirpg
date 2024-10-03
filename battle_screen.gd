@@ -14,7 +14,6 @@ var battler_pks = preload("res://enemy_battler.tscn")
 var character_battler_pks = preload("res://character_battler.tscn")
 
 # Systems
-@onready var state_machine : StateMachine = $StateMachine
 @onready var turn_system : TurnSystem = $TurnSystem
 
 
@@ -152,20 +151,21 @@ func on_menu_skill_selected(battler : Battler):
 # on selecting a skill from the menu
 func on_skill_selected(skill : Skill):
 	print("Selected %s" % skill.name)
-	turn_system.current_turn.action = SkillAction.create(turn_system.current_turn.battler, skill)
+	var action = SkillAction.create(turn_system.current_turn.battler, skill)
+	turn_system.current_turn.action = action
 	
-	var targets = get_skill_targets(skill)
-	battle_menu.load_single_target_menu(targets, on_target_selected)
-
-
-func get_skill_targets(_skill : Skill):
-	match _skill.targeting:
-		Skill.Targeting.SINGLE_ENEMY:
-			return get_enemy_battlers()
-		Skill.Targeting.SINGLE_ALLY:
-			return get_character_battlers()
-		_:
-			return get_all_battlers()
+	var targets = []
+	# single targets use single target menu
+	if skill.target_ally:
+		targets = get_character_battlers()
+	else:
+		targets = get_enemy_battlers()
+	
+	if skill.target_aoe:
+		action._set_targets(targets)
+		execute_action(action)
+	else:
+		battle_menu.load_single_target_menu(targets, on_target_selected)
 
 
 func on_menu_attack_selected():

@@ -12,3 +12,9 @@ res://character_battler.tscn
 res://scripts/turn_system.gd
 res://scripts/turn.gd
 res://battle_screen.gd
+res://scripts/actions/skill_action.gd
+res://scripts/models/skill.gd
+res://scripts/battle_helper.gd
+res://skill_fx_scenes/fire.tscn
+res://skill_fx_scenes/firaga.tscn
+res://scripts/battle_animation.gd
