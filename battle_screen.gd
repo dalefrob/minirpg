@@ -12,7 +12,6 @@ var battle_state : BattleState = BattleState.PRE_BATTLE
 
 var battler_pks = preload("res://enemy_battler.tscn")
 var character_battler_pks = preload("res://character_battler.tscn")
-var damage_label_pks = preload("res://damage_label.tscn")
 
 # Systems
 @onready var state_machine : StateMachine = $StateMachine
@@ -22,25 +21,21 @@ var damage_label_pks = preload("res://damage_label.tscn")
 # easy accessors
 func get_enemy_battlers():
 	var result = []
-	for c in $EnemyBattlers.get_children():
-		var b = c as EnemyBattler
-		if b:
-			if not b.actor.is_dead:
-				result.append(b)
+	for node in $EnemyBattlers.get_children():
+		if node is EnemyBattler:
+			result.append(node)
 	return result
 
 func get_character_battlers():
 	var result = []
-	for c in $CharacterBattlers.get_children():
-		var b = c as CharacterBattler
-		if b:
-			if not b.actor.is_dead:
-				result.append(b)
+	for node in $CharacterBattlers.get_children():
+		if node is CharacterBattler:
+			result.append(node)
 	return result
 
 func get_all_battlers():
-	var result = get_character_battlers()
-	result.append_array(get_enemy_battlers())
+	var result = get_enemy_battlers()
+	result.append_array(get_character_battlers())
 	return result
 
 
@@ -107,6 +102,7 @@ func start_new_round():
 	
 	battle_state = BattleState.BATTLING
 
+# ---- TURN CALLBACKS
 
 func on_turn_started(turn : Turn):
 	battle_text.text = "%s's turn started" % turn.battler.actor.name
@@ -144,9 +140,12 @@ func on_all_turns_processed():
 	print("All turns processed")
 	start_new_round()
 
+
+# ---- MENU
+
 # on clicking the skill menu
-func on_menu_skill_selected(skill_user : Battler):
-	battle_menu.load_skills_menu(skill_user, on_skill_selected)
+func on_menu_skill_selected(battler : Battler):
+	battle_menu.load_skills_menu(battler.actor, on_skill_selected)
 
 # on selecting a skill from the menu
 func on_skill_selected(skill : Skill):
@@ -167,18 +166,17 @@ func get_skill_targets(_skill : Skill):
 			return get_all_battlers()
 
 
-# on pressing the attack button from the menu
 func on_menu_attack_selected():
 	turn_system.current_turn.action = AttackAction.create(turn_system.current_turn.battler)
 	var targets = get_enemy_battlers()
 	battle_menu.load_single_target_menu(targets, on_target_selected)
 
 
-func on_target_selected(target_index : int):
-	var target = get_enemy_battlers()[target_index]
-	print("Selected %s " % target.name)
+# Target a 'Battler' on thr screen
+func on_target_selected(battler : Battler):
+	print("Selected %s " % battler.name)
 	var action = turn_system.current_turn.action
-	action._set_target(target)
+	action._set_target(battler)
 	
 	execute_action(action)
 
@@ -196,5 +194,4 @@ func execute_action(_action : Action):
 
 
 func is_all_enemies_defeated():
-	# var all_dead = enemy_battlers.get_children().all(func(e): return e.is_dead)
 	return get_enemy_battlers().size() == 0

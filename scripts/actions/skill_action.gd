@@ -22,7 +22,7 @@ func _execute():
 	var fx_path = "res://skill_fx_scenes/%s.tscn" % skill.name.to_lower()
 	var scene = load(fx_path)
 	for t in targets:
-		BattleHelper.show_battle_animation(scene, t)
+		BattleHelper.show_battle_animation(scene, t, t._get_anim_position())
 		
 	await delay(1)
 	

@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://i13cfqmk47or"]
+
+[ext_resource type="Script" path="res://battle_screen.gd" id="1_h8i7e"]
+[ext_resource type="Texture2D" uid="uid://ddq6mha0vfqlt" path="res://sprites/bg/cavern/bg_6.png" id="2_73l8l"]
+[ext_resource type="Script" path="res://scripts/fsm/state_machine.gd" id="2_irmtd"]
+[ext_resource type="Script" path="res://scripts/fsm/battle_screen_fsm/bs_state_target_select.gd" id="3_66o3k"]
+[ext_resource type="Script" path="res://scripts/fsm/battle_screen_fsm/bs_state_running.gd" id="3_ruddb"]
+[ext_resource type="Script" path="res://scripts/turn_system.gd" id="4_fauym"]
+[ext_resource type="Script" path="res://scripts/grid_button_menu.gd" id="5_6s0v8"]
+[ext_resource type="PackedScene" uid="uid://dqwvo14eckff3" path="res://character_ui.tscn" id="10_d6v5k"]
+
+[node name="BattleScreen" type="Node"]
+script = ExtResource("1_h8i7e")
+character_ui_pks = ExtResource("10_d6v5k")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_irmtd")
+initial_state = NodePath("Running")
+
+[node name="Running" type="Node" parent="StateMachine"]
+script = ExtResource("3_ruddb")
+
+[node name="TargetSelect" type="Node" parent="StateMachine"]
+script = ExtResource("3_66o3k")
+
+[node name="TurnSystem" type="Node" parent="."]
+script = ExtResource("4_fauym")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_73l8l")
+
+[node name="EnemyBattlers" type="Node2D" parent="."]
+
+[node name="CharacterBattlers" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+
+[node name="BattleText" type="Label" parent="CanvasLayer/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 1145.0
+offset_bottom = 51.0
+text = "Battle Events"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpcomingTurnsBox" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BattleMenu" type="GridContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 24.0
+offset_top = 526.0
+offset_right = 295.0
+offset_bottom = 627.0
+size_flags_horizontal = 3
+script = ExtResource("5_6s0v8")
+
+[node name="CharacterHBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3

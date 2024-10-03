@@ -14,13 +14,19 @@ func _initialize():
 	await ready
 	sprite.texture = enemy.texture
 
-func _on_actor_took_damage(damage : int):
-	super._on_actor_took_damage(damage)
-	
+func _get_anim_position():
+	return sprite.position
+
+func _on_actor_took_damage(amount):
+	super._on_actor_took_damage(amount)
+	BattleHelper.show_floating_text(self, str(amount))
+
 	# TODO - play audio as part of 'battle animations'
 	$AudioStreamPlayer2D.play()
 	flash()
-	print("%s took %s damage" % [name, damage])
+
+func _on_actor_healed_damage(amount):
+	BattleHelper.show_floating_text(self, str(amount), Color.LIME)
 
 func _on_actor_health_depleted():
 	print("%s was defeated" % name)

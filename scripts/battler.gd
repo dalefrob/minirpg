@@ -18,20 +18,15 @@ func _initialize():
 	actor.healed_damage.connect(_on_actor_healed_damage)
 	actor.health_depleted.connect(_on_actor_health_depleted)
 
+func _get_anim_position():
+	pass
+
+# Override these functions in children
 func _on_actor_took_damage(damage):
-	_show_damage_text(str(damage))
+	pass
 
 func _on_actor_healed_damage(amount):
-	_show_healed_text(str(amount))
-
-func _show_healed_text(amount : String):
-	print("heal")
 	pass
 
 func _on_actor_health_depleted():
 	pass
-
-func _show_damage_text(text : String):
-	var dmg_label = preload("res://damage_label.tscn").instantiate() as DamageLabel
-	add_child(dmg_label)
-	dmg_label.float_up(text)

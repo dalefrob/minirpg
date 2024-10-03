@@ -28,10 +28,10 @@ func load_battle_menu(callables):
 	]
 	create_buttons(buttons)
 
-func load_skills_menu(skill_user : Battler, callback : Callable):
+func load_skills_menu(actor : Actor, callback : Callable):
 	var buttons = []
-	for i in range(skill_user.actor.skills.size()):
-		var skill = skill_user.actor.skills[i]
+	for i in range(actor.skills.size()):
+		var skill = actor.skills[i]
 		var dict = { "text": skill.name, "tooltip": skill.ingame_description, "callable": callback.bind(skill) }
 		buttons.append(dict)
 	create_buttons(buttons)
@@ -41,7 +41,8 @@ func load_single_target_menu(battlers : Array, callback : Callable):
 	var buttons = []
 	for i in range(battlers.size()):
 		var battler = battlers[i]
-		var dict = { "text": battler.actor.name, "callable": callback.bind(i) }
-		# i should correspond to the batller child index in theory
+		if battler.actor.is_dead:
+			continue
+		var dict = { "text": battler.name, "callable": callback.bind(battler) }
 		buttons.append(dict)
 	create_buttons(buttons)
