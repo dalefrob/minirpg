@@ -1,4 +1,4 @@
-res://battle_screen.tscn
+res://skill_fx_scenes/fire.tscn
 res://ui/main_ui.tres
 res://data/items/body_1.tres
 res://data/items/sword_1.tres
@@ -8,13 +8,9 @@ res://data/skills/firaga.tres
 res://data/test_data/test_char.tres
 res://data/items/wand_1.tres
 res://data/test_data/test_char_2.tres
+res://battle_screen.tscn
 res://character_battler.tscn
-res://scripts/turn_system.gd
-res://scripts/turn.gd
-res://battle_screen.gd
-res://scripts/actions/skill_action.gd
-res://scripts/models/skill.gd
-res://scripts/battle_helper.gd
-res://skill_fx_scenes/fire.tscn
 res://skill_fx_scenes/firaga.tscn
 res://scripts/battle_animation.gd
+res://scripts/actions/skill_action.gd
+res://skill_fx_scenes/cure.tscn

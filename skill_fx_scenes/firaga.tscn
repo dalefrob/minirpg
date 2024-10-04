@@ -1,8 +1,74 @@
-[gd_scene load_steps=30 format=3 uid="uid://dyehgw4ih24bt"]
+[gd_scene load_steps=32 format=3 uid="uid://dyehgw4ih24bt"]
 
 [ext_resource type="Script" path="res://scripts/battle_animation.gd" id="1_sqt88"]
 [ext_resource type="Texture2D" uid="uid://86fdy7yai3lq" path="res://sprites/battle_anims/Blast0019.png" id="2_ufsr6"]
 [ext_resource type="AudioStream" uid="uid://yklcv05bcfs4" path="res://audio/sfx/plasma-gun-fire.mp3" id="3_dltyn"]
+
+[sub_resource type="Animation" id="Animation_4ss1h"]
+resource_name = "firaga"
+length = 3.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.433333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"default", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.06667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"default", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D3")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"default", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_dltyn")
+}],
+"times": PackedFloat32Array(0.0333333)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3apvg"]
+_data = {
+"firaga": SubResource("Animation_4ss1h")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1kyif"]
 atlas = ExtResource("2_ufsr6")
@@ -108,6 +174,9 @@ region = Rect2(768, 768, 192, 192)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1kyif")
 }, {
 "duration": 1.0,
@@ -190,9 +259,27 @@ animations = [{
 [node name="Firaga" type="Node2D"]
 script = ExtResource("1_sqt88")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3apvg")
+}
+autoplay = "firaga"
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(4, 2)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_y8wgv")
+frame = 25
+frame_progress = 1.0
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(-80, -40)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_y8wgv")
+flip_h = true
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(88, -24)
+sprite_frames = SubResource("SpriteFrames_y8wgv")
+flip_v = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_dltyn")
