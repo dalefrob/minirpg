@@ -10,6 +10,8 @@ category = 0
 mana_cost = 0
 target_aoe = true
 target_ally = false
-function_alias = "deal_damage"
-args = [20]
-args_description = "[damage]"
+function_alias = "damage_target"
+args = {
+"amount": 20,
+"element": 1
+}

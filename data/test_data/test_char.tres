@@ -23,3 +23,4 @@ equipment = SubResource("Resource_7n544")
 name = "Lydia"
 stats = ExtResource("9_2v0fb")
 skills = Array[ExtResource("5_s5y3c")]([ExtResource("6_qyjng"), ExtResource("7_1x4t8"), ExtResource("8_u6foy")])
+weakness = 0

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/floating_text.gd" id="1_prvq5"]
 [ext_resource type="FontFile" uid="uid://bfwt2mckoc2gu" path="res://AncientModernTales-a7Po.ttf" id="2_u4bfk"]
 
-[node name="DamageLabel" type="Node2D"]
+[node name="FloatingText" type="Node2D"]
 script = ExtResource("1_prvq5")
 
 [node name="Label" type="Label" parent="."]

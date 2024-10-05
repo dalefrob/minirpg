@@ -5,6 +5,7 @@ class_name Actor
 @export var name : String
 @export var stats : Stats
 @export var skills : Array[Skill]
+@export var weakness : Damage.Element
 
 signal took_damage
 signal healed_damage
@@ -40,16 +41,22 @@ func get_atk():
 func get_def():
 	return get_stat_total(Stats.StatType.AGI) / 2
 
-func take_damage(amount):
-	hp -= amount
-	took_damage.emit(amount)
+func take_damage(damage : Damage):
+	# apply crit
+	if damage.critical:
+		damage.amount *= 2
+		
+	hp -= damage.amount
+	print("%s took %s damage" % [name, damage.amount])
+	took_damage.emit(damage)
 	if hp <= 0:
 		hp = 0
 		health_depleted.emit()
 
-func heal_damage(amount):
-	hp += amount
-	healed_damage.emit(amount)
+func heal_damage(damage : Damage):
+	hp += damage.amount
+	healed_damage.emit(damage)
+	print("%s healed %s damage" % [name, damage.amount])
 	var max_hp = get_max_hp()
 	if hp >= max_hp:
 		hp = max_hp

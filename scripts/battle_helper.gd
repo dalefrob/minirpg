@@ -3,23 +3,40 @@
 extends Node
 
 # args: [amount]
-func deal_damage(source : Actor, target : Actor, args : Array):
-	print("%s damages %s for %s" % [source.name, target.name, args[0]])
-	target.take_damage(args[0])
+func damage_target(source : Actor, target : Actor, args : Dictionary):
+	var amount = args["amount"]
+	var element = Damage.Element.NONE
+	if args.has("element"):
+		element = args["element"]
+	
+	var damage = Damage.create(amount, element, args.has("heal"))
+	# apply weakness to element
+	if damage.element != Damage.Element.NONE and target.weakness == damage.element:
+		damage.amount *= 2
+	
+	# critical strike
+	if randf() < 0.3:
+		damage.critical = true
+	
+	if damage.heal:
+		target.heal_damage(damage)
+	else:
+		target.take_damage(damage)
 
-# args: [amount]
-func heal_damage(source : Actor, target : Actor, args : Array):
-	print("%s heals %s for %s" % [source.name, target.name, args[0]])
-	target.heal_damage(args[0])
 
-func calculate_damage(attacker : Actor, defender : Actor) -> int:
-	var dmg = attacker.get_atk()
-	dmg -= defender.get_def()
-	# negative dmg will 'heal'
-	if dmg < 0:
-		dmg = 0
-		
-	return dmg
+func calculate_physical_damage(attacker : Actor, defender : Actor) -> Damage:
+	var atk = attacker.get_atk()
+	var def = defender.get_def()
+	
+	var amount = atk - def
+	if amount < 0:
+		amount = 0
+	
+	var damage = Damage.create(amount)
+	# critical strike
+	if randf() < 0.3:
+		damage.critical = true
+	return damage
 
 # show a battle animation anywhere in the game
 func show_battle_animation(scene : PackedScene, global_position = Vector2.ZERO, callback : Callable = func():):
@@ -30,8 +47,10 @@ func show_battle_animation(scene : PackedScene, global_position = Vector2.ZERO, 
 	await battle_anim.finished
 	callback.call()
 
-func show_floating_text(parent, text : String, color : Color = Color.WHITE, offset : Vector2 = Vector2.ZERO):
+func show_floating_text(parent, text : String, color : Color = Color.WHITE, offset : Vector2 = Vector2.ZERO, crit = false):
 	var label = preload("res://floating_text.tscn").instantiate() as FloatingText
 	label.position = offset
+	if crit:
+		label.scale *= 1.5
 	parent.add_child(label)
 	label.float_up(text, color)

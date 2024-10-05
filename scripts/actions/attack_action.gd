@@ -20,7 +20,7 @@ func _execute():
 	await delay(0.5)
 	
 	# calculate damage
-	var dmg = BattleHelper.calculate_damage(user.actor, target.actor)
+	var dmg = BattleHelper.calculate_physical_damage(user.actor, target.actor)
 	target.actor.take_damage(dmg)
 
 static func create(_user : Battler) -> AttackAction:

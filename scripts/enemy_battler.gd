@@ -17,15 +17,16 @@ func _initialize():
 func _get_anim_position():
 	return sprite.position
 
-func _on_actor_took_damage(amount):
-	super._on_actor_took_damage(amount)
-	BattleHelper.show_floating_text(self, str(amount))
+func _on_actor_took_damage(damage : Damage):
+	var amount = damage.amount
+	BattleHelper.show_floating_text(self, str(amount), Color.WHITE, Vector2.ZERO, damage.critical)
 
 	# TODO - play audio as part of 'battle animations'
 	$AudioStreamPlayer2D.play()
 	flash()
 
-func _on_actor_healed_damage(amount):
+func _on_actor_healed_damage(damage : Damage):
+	var amount = damage.amount
 	BattleHelper.show_floating_text(self, str(amount), Color.LIME)
 
 func _on_actor_health_depleted():

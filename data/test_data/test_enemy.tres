@@ -25,3 +25,4 @@ use_skills_chance = 0.25
 name = "Clockwork Queen"
 stats = SubResource("Resource_2q5q5")
 skills = Array[ExtResource("2_h3d0j")]([ExtResource("4_1fiia")])
+weakness = 1

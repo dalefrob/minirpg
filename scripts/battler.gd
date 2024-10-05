@@ -22,10 +22,10 @@ func _get_anim_position():
 	pass
 
 # Override these functions in children
-func _on_actor_took_damage(damage):
+func _on_actor_took_damage(damage : Damage):
 	pass
 
-func _on_actor_healed_damage(amount):
+func _on_actor_healed_damage(damage : Damage):
 	pass
 
 func _on_actor_health_depleted():

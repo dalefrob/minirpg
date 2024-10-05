@@ -6,10 +6,13 @@
 script = ExtResource("1_6etb0")
 name = "Cure"
 ingame_description = "A weak healing spell"
-category = 1
+category = 0
 mana_cost = 6
 target_aoe = false
 target_ally = true
-function_alias = "heal_damage"
-args = [10]
-args_description = "[heal amount]"
+function_alias = "damage_target"
+args = {
+"amount": 10,
+"element": 8,
+"heal": true
+}
