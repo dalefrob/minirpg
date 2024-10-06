@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://i13cfqmk47or"]
+[gd_scene load_steps=10 format=3 uid="uid://i13cfqmk47or"]
 
 [ext_resource type="Script" path="res://battle_screen.gd" id="1_h8i7e"]
 [ext_resource type="Texture2D" uid="uid://ddq6mha0vfqlt" path="res://sprites/bg/cavern/bg_6.png" id="2_73l8l"]
 [ext_resource type="Script" path="res://scripts/turn_system.gd" id="4_fauym"]
 [ext_resource type="Script" path="res://scripts/grid_button_menu.gd" id="5_6s0v8"]
+[ext_resource type="Script" path="res://ui/battle_menu_manager.gd" id="5_73fdg"]
+[ext_resource type="Environment" uid="uid://s3cuniu7l8dx" path="res://3d/env/default_env.tres" id="6_iy58t"]
+[ext_resource type="PackedScene" uid="uid://b8qdt4i8cjpsa" path="res://3d/battle_arena_1.glb" id="6_s10io"]
+[ext_resource type="Texture2D" uid="uid://c5rg34mrqwnqu" path="res://sprites/cursors/gauntlet_default.png" id="7_k7nem"]
 [ext_resource type="PackedScene" uid="uid://dqwvo14eckff3" path="res://character_ui.tscn" id="10_d6v5k"]
 
 [node name="BattleScreen" type="Node"]
@@ -16,6 +20,7 @@ character_ui_pks = ExtResource("10_d6v5k")
 script = ExtResource("4_fauym")
 
 [node name="Background" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_73l8l")
 
@@ -24,6 +29,23 @@ texture = ExtResource("2_73l8l")
 [node name="CharacterBattlers" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="WorldSpace" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="WorldSpace"]
+transform = Transform3D(0.743145, -0.228856, 0.628777, -7.76503e-09, 0.939693, 0.34202, -0.669131, -0.254171, 0.698328, 5.119, 2.238, 7.126)
+environment = ExtResource("6_iy58t")
+fov = 60.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldSpace"]
+transform = Transform3D(-0.683013, -0.258819, 0.683013, -0.183013, 0.965926, 0.183013, -0.707107, 0, -0.707107, 0, 8, 0)
+
+[node name="battle_arena_1" parent="WorldSpace" instance=ExtResource("6_s10io")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldSpace/battle_arena_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.71346, 0.51664, 0)
+light_color = Color(0.910702, 0.493545, 0, 1)
+omni_range = 1.686
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -44,21 +66,33 @@ text = "Battle Events"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BattleMenuManager" type="Control" parent="CanvasLayer"]
+[node name="MenuManager" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("5_73fdg")
 
-[node name="BattleMenu" type="GridContainer" parent="CanvasLayer/BattleMenuManager"]
+[node name="BattleMenu" type="GridContainer" parent="CanvasLayer/MenuManager"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 24.0
-offset_top = 526.0
-offset_right = 295.0
-offset_bottom = 627.0
+offset_right = 271.0
+offset_bottom = 101.0
 size_flags_horizontal = 3
 script = ExtResource("5_6s0v8")
+
+[node name="Cursor" type="TextureRect" parent="CanvasLayer/MenuManager"]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 7.0
+offset_right = 198.0
+offset_bottom = 47.0
+texture = ExtResource("7_k7nem")
 
 [node name="CharacterHBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 unique_name_in_owner = true

@@ -15,7 +15,7 @@ var character_battler_pks = preload("res://character_battler.tscn")
 
 # Systems
 @onready var turn_system : TurnSystem = $TurnSystem
-
+@onready var menu_manager : MenuManager = %MenuManager
 
 # easy accessors
 func get_enemy_battlers():
@@ -38,7 +38,6 @@ func get_all_battlers():
 	return result
 
 
-@onready var camera : Camera2D = $Camera2D
 @onready var bg : Sprite2D = $Background
 
 # UI
@@ -50,6 +49,9 @@ func get_all_battlers():
 
 var _last_skill_selected : Skill
 
+
+func on_menu_cancel():
+	print("menu cancel")
 
 func load_encounter(encounter : Encounter):
 	print("loading encounter: %s" % encounter)
@@ -106,13 +108,24 @@ func on_turn_started(turn : Turn):
 	
 	# Player Turns
 	if turn.is_player_turn:
-		# show battle menu
-		var default_callables = [
-			on_menu_attack_selected,
-			on_menu_skill_selected.bind(turn.battler),
-			func(): print("Pressed Defend")
+		var no_func = func():
+			print("no func")
+		var menu_items : Array[MenuItem] = [
+			MenuItem.new("Attack", on_menu_attack_selected, "Attack with your weapon"),
+			MenuItem.new("Skills", on_menu_skill_selected.bind(turn.battler), "Use your skills"),
+			MenuItem.new("Item", no_func, "Use an item"),
+			MenuItem.new("Defend", no_func, "Defend for the turn")
 		]
-		battle_menu.load_battle_menu(default_callables)
+		menu_manager.create_menu(menu_items, on_menu_cancel)
+		
+		
+		# show battle menu
+		#var default_callables = [
+			#on_menu_attack_selected,
+			#on_menu_skill_selected.bind(turn.battler),
+			#func(): print("Pressed Defend")
+		#]
+		#battle_menu.load_battle_menu(default_callables)
 	
 	# Enemy turns
 	else:
@@ -146,7 +159,8 @@ func on_all_turns_processed():
 
 # on clicking the skill menu
 func on_menu_skill_selected(battler : Battler):
-	battle_menu.load_skills_menu(battler.actor, on_skill_selected)
+	create_selection_menu(battler.actor.skills, on_skill_selected, on_menu_cancel)
+	#battle_menu.load_skills_menu(battler.actor, on_skill_selected)
 
 # on selecting a skill from the menu
 func on_skill_selected(skill : Skill):
@@ -159,19 +173,29 @@ func on_skill_selected(skill : Skill):
 	if skill.target_ally:
 		targets = get_character_battlers()
 	else:
-		targets = get_enemy_battlers()
+		targets = get_enemy_battlers().filter(func(b): return !b.actor.is_dead)
 	
 	if skill.target_aoe:
 		action._set_targets(targets)
 		execute_action(action)
 	else:
-		battle_menu.load_single_target_menu(targets, on_target_selected)
+		create_selection_menu(targets, on_target_selected, on_menu_cancel)
 
 
 func on_menu_attack_selected():
 	turn_system.current_turn.action = AttackAction.create(turn_system.current_turn.battler)
-	var targets = get_enemy_battlers()
-	battle_menu.load_single_target_menu(targets, on_target_selected)
+	var targets = get_enemy_battlers().filter(func(b): return !b.actor.is_dead)
+	
+	create_selection_menu(targets, on_target_selected, on_menu_cancel)
+
+
+# Creates a menu to select from an array of objects
+func create_selection_menu(items, selected_callback : Callable, cancel_callback : Callable):
+	var menu_items : Array[MenuItem] = []
+	for item in items:
+		var menu_item = MenuItem.new(item.name, selected_callback.bind(item))
+		menu_items.append(menu_item)
+	menu_manager.create_menu(menu_items, cancel_callback)
 
 
 # Target a 'Battler' on thr screen
