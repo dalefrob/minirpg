@@ -16,6 +16,7 @@ var character_battler_pks = preload("res://character_battler.tscn")
 # Systems
 @onready var turn_system : TurnSystem = $TurnSystem
 @onready var menu_manager : MenuManager = %MenuManager
+@onready var ui : CanvasUI = $UI
 
 # easy accessors
 func get_enemy_battlers():
@@ -110,22 +111,20 @@ func on_turn_started(turn : Turn):
 	if turn.is_player_turn:
 		var no_func = func():
 			print("no func")
+		
 		var menu_items : Array[MenuItem] = [
 			MenuItem.new("Attack", on_menu_attack_selected, "Attack with your weapon"),
 			MenuItem.new("Skills", on_menu_skill_selected.bind(turn.battler), "Use your skills"),
 			MenuItem.new("Item", no_func, "Use an item"),
 			MenuItem.new("Defend", no_func, "Defend for the turn")
 		]
-		menu_manager.create_menu(menu_items, on_menu_cancel)
 		
-		
-		# show battle menu
-		#var default_callables = [
-			#on_menu_attack_selected,
-			#on_menu_skill_selected.bind(turn.battler),
-			#func(): print("Pressed Defend")
-		#]
-		#battle_menu.load_battle_menu(default_callables)
+		var msg_panel = ui.create_msg_panel_node(Vector2(50,400), "What will [color=yellow]%s[/color] do?" % turn.battler.actor.name)
+		var menu = ui.create_menu(menu_items, on_menu_selected, on_menu_cancel)
+		msg_panel.add_menu(menu)
+
+		menu.grab_focus()
+		menu.select(0)
 	
 	# Enemy turns
 	else:
@@ -138,6 +137,9 @@ func on_turn_started(turn : Turn):
 		turn_system.current_turn.action = action
 		execute_action(action)
 
+func on_menu_selected(menu_item):
+	menu_item.callable.call()
+
 
 func on_turn_ended(turn : Turn):
 	print("%s's turn ended" % turn.battler.actor.name)
@@ -148,6 +150,7 @@ func on_turn_ended(turn : Turn):
 		
 		battle_state = BattleState.BATTLE_WON
 		battle_text.text = "You won!"
+		var center = DisplayServer.window_get_size(0) / 2
 
 
 func on_all_turns_processed():
@@ -195,7 +198,13 @@ func create_selection_menu(items, selected_callback : Callable, cancel_callback 
 	for item in items:
 		var menu_item = MenuItem.new(item.name, selected_callback.bind(item))
 		menu_items.append(menu_item)
-	menu_manager.create_menu(menu_items, cancel_callback)
+	
+	var msg_panel = ui.create_msg_panel_node(Vector2(50,400))
+	var menu = ui.create_menu(menu_items, on_menu_selected, on_menu_cancel)
+	msg_panel.add_menu(menu)
+
+	menu.grab_focus()
+	menu.select(0)
 
 
 # Target a 'Battler' on thr screen

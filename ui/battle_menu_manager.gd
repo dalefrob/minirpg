@@ -3,18 +3,11 @@
 extends Control
 class_name MenuManager
 
-@onready var cursor = $Cursor
 
 var menus = []
 var current_menu = null
 
 var menu_callables : Dictionary
-
-func _unhandled_key_input(event: InputEvent) -> void:
-	var keyevent = event as InputEventKey
-	print(keyevent)
-	if keyevent.keycode == KEY_ESCAPE:
-		print("try to cancel")
 
 func create_menu(menu_items : Array[MenuItem], cancel_callback : Callable):
 	var itemlist = ItemList.new()

@@ -1,6 +1,6 @@
-res://sprites/battle_anims
-res://ui
 res://
+res://ui
+res://sprites/battle_anims
 res://data/skills
 res://skill_fx_scenes
 res://scripts

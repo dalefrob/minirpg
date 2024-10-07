@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ss28ktwrggg6"]
+
+[ext_resource type="Script" path="res://ui/menu_item_list.gd" id="1_13lcg"]
+[ext_resource type="Texture2D" uid="uid://c5rg34mrqwnqu" path="res://sprites/cursors/gauntlet_default.png" id="2_s1mc2"]
+
+[node name="MenuItemList" type="ItemList"]
+clip_contents = false
+auto_height = true
+script = ExtResource("1_13lcg")
+
+[node name="Cursor" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 217.0
+offset_top = 8.0
+offset_right = 257.0
+offset_bottom = 48.0
+texture = ExtResource("2_s1mc2")
