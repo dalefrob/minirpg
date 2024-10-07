@@ -14,3 +14,6 @@ res://skill_fx_scenes/cure.tscn
 res://character_ui.tscn
 res://floating_text.tscn
 res://battle_screen.tscn
+res://data/test_data/test_enemy.tres
+res://data/test_data/test_enemy_2.tres
+res://ui/battle_menu_manager.gd

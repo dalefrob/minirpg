@@ -9,7 +9,7 @@
 script = ExtResource("2_a0d3r")
 strength = 1
 intelligence = 5
-stamina = 3
+stamina = 5
 agility = 2
 
 [resource]
@@ -24,3 +24,4 @@ use_skills_chance = 0.25
 name = "Dark Healer"
 stats = SubResource("Resource_1ykx6")
 skills = Array[ExtResource("2_tlhxu")]([])
+weakness = 0

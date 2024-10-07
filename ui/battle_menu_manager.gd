@@ -1,4 +1,5 @@
 # Handles creating menus for various decision making
+# TODO Menus needs to be seprate nodes to allow for navigating between them
 extends Control
 class_name MenuManager
 
@@ -8,6 +9,12 @@ var menus = []
 var current_menu = null
 
 var menu_callables : Dictionary
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	var keyevent = event as InputEventKey
+	print(keyevent)
+	if keyevent.keycode == KEY_ESCAPE:
+		print("try to cancel")
 
 func create_menu(menu_items : Array[MenuItem], cancel_callback : Callable):
 	var itemlist = ItemList.new()
@@ -33,6 +40,7 @@ func on_item_activated(idx : int):
 	hide_menus()
 	var callable : Callable = menu_callables[idx]
 	callable.call()
+
 
 func hide_menus():
 	for m in menus:

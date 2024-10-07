@@ -1,33 +1,33 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1728265164
+::res://::1728278215
 AncientModernTales-a7Po.ttf::FontFile::2783983685613556604::1727310670::1728265169::1::::<><>::
 battle_screen.gd::GDScript::-1::1728258193::0::1::::BattleScreen<>Node<>::
-battle_screen.tscn::PackedScene::616888505988471157::1728265150::0::1::::<><>::res://battle_screen.gd<>uid://ddq6mha0vfqlt::::res://sprites/bg/cavern/bg_6.png<>res://scripts/turn_system.gd<>res://scripts/grid_button_menu.gd<>res://ui/battle_menu_manager.gd<>uid://c5rg34mrqwnqu::::res://sprites/cursors/gauntlet_default.png<>uid://dqwvo14eckff3::::res://character_ui.tscn
-character_battler.tscn::PackedScene::3357118186076744225::1728265132::0::1::::<><>::res://scripts/character_battler.gd
-character_ui.tscn::PackedScene::8329001328431145866::1728265132::0::1::::<><>::uid://qg8kl4avrqtv::::res://ui/main_ui.tres<>uid://dbhfow0mgtct0::::res://sprites/char/Female_02.png<>uid://bfwt2mckoc2gu::::res://AncientModernTales-a7Po.ttf<>res://scripts/character_ui.gd
+battle_screen.tscn::PackedScene::616888505988471157::1728278197::0::1::::<><>::res://battle_screen.gd<>uid://ddq6mha0vfqlt::::res://sprites/bg/cavern/bg_6.png<>res://scripts/turn_system.gd<>res://scripts/grid_button_menu.gd<>res://ui/battle_menu_manager.gd<>uid://c5rg34mrqwnqu::::res://sprites/cursors/gauntlet_default.png<>uid://dqwvo14eckff3::::res://character_ui.tscn
+character_battler.tscn::PackedScene::3357118186076744225::1728278170::0::1::::<><>::res://scripts/character_battler.gd
+character_ui.tscn::PackedScene::8329001328431145866::1728278171::0::1::::<><>::uid://qg8kl4avrqtv::::res://ui/main_ui.tres<>uid://dbhfow0mgtct0::::res://sprites/char/Female_02.png<>uid://bfwt2mckoc2gu::::res://AncientModernTales-a7Po.ttf<>res://scripts/character_ui.gd
 enemy_battler.tscn::PackedScene::1113536123998817962::1727842499::0::1::::<><>::res://scripts/enemy_battler.gd<>uid://snuie2etryae::::res://audio/sfx/punch_3.wav
-floating_text.tscn::PackedScene::1727239487760505687::1728265132::0::1::::<><>::res://scripts/floating_text.gd<>uid://bfwt2mckoc2gu::::res://AncientModernTales-a7Po.ttf
+floating_text.tscn::PackedScene::1727239487760505687::1728278171::0::1::::<><>::res://scripts/floating_text.gd<>uid://bfwt2mckoc2gu::::res://AncientModernTales-a7Po.ttf
 icon.svg::CompressedTexture2D::7571288992707961374::1727310670::1728265171::1::::<><>::
 world_screen.gd::GDScript::-1::1727651382::0::1::::WorldScreen<>Node<>::
 world_screen.tscn::PackedScene::1147926528254392579::1727842499::0::1::::<><>::res://world_screen.gd
 ::res://audio/::1727824086
 ::res://audio/midi/::1727824086
-::res://audio/sfx/::1728259013
+::res://audio/sfx/::1728265191
 fire-magic.mp3::AudioStreamMP3::3241437245292230595::1727998127::1728265169::1::::<><>::
 plasma-gun-fire.mp3::AudioStreamMP3::1705848626336563381::1727998127::1728265170::1::::<><>::
 punch_3.wav::AudioStreamWAV::1291464974504876252::1727651381::1728265191::1::::<><>::
 ::res://data/::1727651381
-::res://data/items/::1728259060
-body_1.tres::Resource/EquippableItem::8920057015116647161::1728259060::0::1::::<><>::res://scripts/models/equippable_item.gd<>res://scripts/models/stats.gd
-sword_1.tres::Resource/EquippableItem::6898353892585612439::1728259060::0::1::::<><>::res://scripts/models/equippable_item.gd<>res://scripts/models/stats.gd
-wand_1.tres::Resource/EquippableItem::7799082533434169384::1728259060::0::1::::<><>::res://scripts/models/equippable_item.gd<>res://scripts/models/stats.gd
-::res://data/skills/::1728259060
-cure.tres::Resource/Skill::1424926940769233832::1728259060::0::1::::<><>::res://scripts/models/skill.gd
-firaga.tres::Resource/Skill::5717192609192650843::1728259060::0::1::::<><>::res://scripts/models/skill.gd
-fire.tres::Resource/Skill::5014440011241267683::1728259060::0::1::::<><>::res://scripts/models/skill.gd
-::res://data/test_data/::1728259060
-test_char.tres::Resource/Character::6970379123767923483::1728259060::0::1::::<><>::uid://d0c7bhnf7dou8::::res://data/items/body_1.tres<>res://scripts/models/equipment.gd<>uid://c5ju47e7jyc68::::res://data/items/sword_1.tres<>res://scripts/models/character.gd<>res://scripts/models/skill.gd<>uid://cdpbdhc8cmpd8::::res://data/skills/fire.tres<>uid://ukilrlt42l6w::::res://data/skills/cure.tres<>uid://cnppld8wvliel::::res://data/skills/firaga.tres<>uid://bjhtbtuot6xw1::::res://data/test_data/test_stats.tres<>uid://dbhfow0mgtct0::::res://sprites/char/Female_02.png
-test_char_2.tres::Resource/Character::290571051477535511::1728259060::0::1::::<><>::uid://d0c7bhnf7dou8::::res://data/items/body_1.tres<>res://scripts/models/equipment.gd<>uid://djd60q3ygkwa7::::res://data/items/wand_1.tres<>res://scripts/models/character.gd<>res://scripts/models/skill.gd<>res://scripts/models/stats.gd<>uid://ukilrlt42l6w::::res://data/skills/cure.tres<>uid://d0rxctm0tay4c::::res://sprites/char/Male_01.png
+::res://data/items/::1728275756
+body_1.tres::Resource/EquippableItem::8920057015116647161::1728275756::0::1::::<><>::res://scripts/models/equippable_item.gd<>res://scripts/models/stats.gd
+sword_1.tres::Resource/EquippableItem::6898353892585612439::1728275756::0::1::::<><>::res://scripts/models/equippable_item.gd<>res://scripts/models/stats.gd
+wand_1.tres::Resource/EquippableItem::7799082533434169384::1728275756::0::1::::<><>::res://scripts/models/equippable_item.gd<>res://scripts/models/stats.gd
+::res://data/skills/::1728275756
+cure.tres::Resource/Skill::1424926940769233832::1728275756::0::1::::<><>::res://scripts/models/skill.gd
+firaga.tres::Resource/Skill::5717192609192650843::1728275756::0::1::::<><>::res://scripts/models/skill.gd
+fire.tres::Resource/Skill::5014440011241267683::1728275756::0::1::::<><>::res://scripts/models/skill.gd
+::res://data/test_data/::1728275756
+test_char.tres::Resource/Character::6970379123767923483::1728275756::0::1::::<><>::uid://d0c7bhnf7dou8::::res://data/items/body_1.tres<>res://scripts/models/equipment.gd<>uid://c5ju47e7jyc68::::res://data/items/sword_1.tres<>res://scripts/models/character.gd<>res://scripts/models/skill.gd<>uid://cdpbdhc8cmpd8::::res://data/skills/fire.tres<>uid://ukilrlt42l6w::::res://data/skills/cure.tres<>uid://cnppld8wvliel::::res://data/skills/firaga.tres<>uid://bjhtbtuot6xw1::::res://data/test_data/test_stats.tres<>uid://dbhfow0mgtct0::::res://sprites/char/Female_02.png
+test_char_2.tres::Resource/Character::290571051477535511::1728275756::0::1::::<><>::uid://d0c7bhnf7dou8::::res://data/items/body_1.tres<>res://scripts/models/equipment.gd<>uid://djd60q3ygkwa7::::res://data/items/wand_1.tres<>res://scripts/models/character.gd<>res://scripts/models/skill.gd<>res://scripts/models/stats.gd<>uid://ukilrlt42l6w::::res://data/skills/cure.tres<>uid://d0rxctm0tay4c::::res://sprites/char/Male_01.png
 test_encounter.tres::Resource/Encounter::6637419486519298244::1727910539::0::1::::<><>::res://scripts/models/encounter.gd<>res://scripts/models/actor.gd<>uid://darhviidgex04::::res://data/test_data/test_enemy.tres<>uid://cw5w2v6kra4xm::::res://data/test_data/test_enemy_2.tres
 test_enemy.tres::Resource/Enemy::7194819426209432875::1728258193::0::1::::<><>::res://scripts/models/enemy.gd<>res://scripts/models/skill.gd<>res://scripts/models/stats.gd<>uid://bxb70m5jr4jid::::res://sprites/battlers/Clockwork Queen.png<>uid://cdpbdhc8cmpd8::::res://data/skills/fire.tres
 test_enemy_2.tres::Resource/Enemy::6380312401677398430::1727844239::0::1::::<><>::res://scripts/models/enemy.gd<>res://scripts/models/stats.gd<>res://scripts/models/skill.gd<>uid://du0qwkq25tv3m::::res://sprites/battlers/Dark Elves Healer Priestess.png
@@ -63,21 +63,21 @@ equippable_item.gd::GDScript::-1::1727844330::0::1::::EquippableItem<>Item<>::
 item.gd::GDScript::-1::1727844367::0::1::::Item<>Resource<>::
 skill.gd::GDScript::-1::1728258194::0::1::::Skill<>Resource<>::
 stats.gd::GDScript::-1::1727850436::0::1::::Stats<>Resource<>::
-::res://skill_fx_scenes/::1728265132
-cure.tscn::PackedScene::2528403675640741314::1728265132::0::1::::<><>::res://scripts/battle_animation.gd<>uid://4bdnhrwtbhcd::::res://sprites/battle_anims/Impact0006.png
-firaga.tscn::PackedScene::8852488743808077873::1728265132::0::1::::<><>::res://scripts/battle_animation.gd<>uid://86fdy7yai3lq::::res://sprites/battle_anims/Blast0019.png<>uid://yklcv05bcfs4::::res://audio/sfx/plasma-gun-fire.mp3
-fire.tscn::PackedScene::5158608966761095704::1728265132::0::1::::<><>::res://scripts/battle_animation.gd<>uid://86fdy7yai3lq::::res://sprites/battle_anims/Blast0019.png<>uid://bmgf86rq7k6m6::::res://audio/sfx/fire-magic.mp3
+::res://skill_fx_scenes/::1728278171
+cure.tscn::PackedScene::2528403675640741314::1728278171::0::1::::<><>::res://scripts/battle_animation.gd<>uid://4bdnhrwtbhcd::::res://sprites/battle_anims/Impact0006.png
+firaga.tscn::PackedScene::8852488743808077873::1728278170::0::1::::<><>::res://scripts/battle_animation.gd<>uid://86fdy7yai3lq::::res://sprites/battle_anims/Blast0019.png<>uid://yklcv05bcfs4::::res://audio/sfx/plasma-gun-fire.mp3
+fire.tscn::PackedScene::5158608966761095704::1728278170::0::1::::<><>::res://scripts/battle_animation.gd<>uid://86fdy7yai3lq::::res://sprites/battle_anims/Blast0019.png<>uid://bmgf86rq7k6m6::::res://audio/sfx/fire-magic.mp3
 ::res://sprites/::1727651381
-::res://sprites/battlers/::1728258999
+::res://sprites/battlers/::1728265178
 Assasin Garland.png::CompressedTexture2D::6448470799151322168::1727310670::1728265178::1::::<><>::
 Clockwork Queen.png::CompressedTexture2D::4004816730795176143::1727310670::1728265178::1::::<><>::
 Dark Elves Healer Priestess.png::CompressedTexture2D::8615659678259607024::1727310670::1728265178::1::::<><>::
 Dryads Warrior.png::CompressedTexture2D::1765594066440678333::1727310670::1728265178::1::::<><>::
-::res://sprites/battle_anims/::1728259000
+::res://sprites/battle_anims/::1728265179
 Blast0019.png::CompressedTexture2D::2380537803861410870::1727651381::1728265179::1::::<><>::
 Impact0006.png::CompressedTexture2D::2037746604506205211::1727824087::1728265179::1::::<><>::
 ::res://sprites/bg/::1727310671
-::res://sprites/bg/cavern/::1728259004
+::res://sprites/bg/cavern/::1728265183
 bg_1.png::CompressedTexture2D::476758380139841017::1727310670::1728265179::1::::<><>::
 bg_2.png::CompressedTexture2D::8539914815616339286::1727310670::1728265179::1::::<><>::
 bg_3.png::CompressedTexture2D::3019090465581624693::1727310670::1728265180::1::::<><>::
@@ -93,7 +93,7 @@ bg_12.png::CompressedTexture2D::2533978079735333899::1727310670::1728265182::1::
 bg_13.png::CompressedTexture2D::8342372005558517421::1727310670::1728265182::1::::<><>::
 bg_14.png::CompressedTexture2D::2461045924670669554::1727310670::1728265182::1::::<><>::
 bg_15.png::CompressedTexture2D::8563284528064872481::1727310670::1728265183::1::::<><>::
-::res://sprites/bg/forest/::1728259005
+::res://sprites/bg/forest/::1728265183
 bg_f_1.png::CompressedTexture2D::8867823073023653377::1727310670::1728265183::1::::<><>::
 bg_f_2.png::CompressedTexture2D::6896130475200445486::1727310671::1728265183::1::::<><>::
 bg_f_3.png::CompressedTexture2D::6746194251653263566::1727310671::1728265172::1::::<><>::
@@ -109,7 +109,7 @@ bg_f_12.png::CompressedTexture2D::8325706295615263904::1727310671::1728265175::1
 bg_f_13.png::CompressedTexture2D::4293317795012535915::1727310671::1728265175::1::::<><>::
 bg_f_14.png::CompressedTexture2D::6349095029794706160::1727310671::1728265175::1::::<><>::
 bg_f_15.png::CompressedTexture2D::5474825688804181718::1727310671::1728265175::1::::<><>::
-::res://sprites/bg/mountains/::1728259008
+::res://sprites/bg/mountains/::1728265187
 bg_m_1.png::CompressedTexture2D::3994682926928724100::1727310671::1728265176::1::::<><>::
 bg_m_2.png::CompressedTexture2D::7342635670996493268::1727310671::1728265176::1::::<><>::
 bg_m_3.png::CompressedTexture2D::5304713307982266031::1727310671::1728265176::1::::<><>::
@@ -124,7 +124,7 @@ bg_m_11.png::CompressedTexture2D::7690775257096841942::1727310671::1728265186::1
 bg_m_12.png::CompressedTexture2D::3258636150283982227::1727310671::1728265186::1::::<><>::
 bg_m_13.png::CompressedTexture2D::1923145261881172693::1727310671::1728265186::1::::<><>::
 bg_m_14.png::CompressedTexture2D::7129536666683377717::1727310671::1728265187::1::::<><>::
-::res://sprites/bg/ruins/::1728259012
+::res://sprites/bg/ruins/::1728265190
 bg_r_1.png::CompressedTexture2D::1610259447824772100::1727310671::1728265187::1::::<><>::
 bg_r_2.png::CompressedTexture2D::9155347835592952957::1727310671::1728265187::1::::<><>::
 bg_r_3.png::CompressedTexture2D::5103870602143435974::1727310671::1728265187::1::::<><>::
@@ -140,7 +140,7 @@ bg_r_12.png::CompressedTexture2D::2253152443830380260::1727310671::1728265190::1
 bg_r_13.png::CompressedTexture2D::8826887487598634128::1727310671::1728265190::1::::<><>::
 bg_r_14.png::CompressedTexture2D::5630325809633305130::1727310671::1728265190::1::::<><>::
 bg_r_15.png::CompressedTexture2D::2378743449743454534::1727310671::1728265190::1::::<><>::
-::res://sprites/bg/waterfall/::1728259013
+::res://sprites/bg/waterfall/::1728265191
 bg_w_1.png::CompressedTexture2D::550412334443607220::1727310671::1728265191::1::::<><>::
 bg_w_2.png::CompressedTexture2D::4355884417272621882::1727310671::1728265191::1::::<><>::
 bg_w_3.png::CompressedTexture2D::6698420112274144331::1727310671::1728265191::1::::<><>::
@@ -151,10 +151,10 @@ bg_w_7.png::CompressedTexture2D::4487952781780151051::1727310671::1728265184::1:
 bg_w_8.png::CompressedTexture2D::9106933627814074707::1727310671::1728265184::1::::<><>::
 bg_w_9.png::CompressedTexture2D::5692555329335429376::1727310671::1728265184::1::::<><>::
 bg_w_10.png::CompressedTexture2D::7582392817569981657::1727310671::1728265185::1::::<><>::
-::res://sprites/char/::1728259007
+::res://sprites/char/::1728265185
 Female_02.png::CompressedTexture2D::7244231319762061279::1727310671::1728265185::1::::<><>::
 Male_01.png::CompressedTexture2D::8950478643913177868::1727310671::1728265185::1::::<><>::
-::res://sprites/cursors/::1728259007
+::res://sprites/cursors/::1728265185
 busy_hourglass.png::CompressedTexture2D::4866012199773262365::1727651381::1728265185::1::::<><>::
 busy_hourglass_outline.png::CompressedTexture2D::7205573634316950964::1727651381::1728265185::1::::<><>::
 busy_hourglass_outline_detail.png::CompressedTexture2D::7913248549291035379::1727651381::1728265185::1::::<><>::
@@ -251,7 +251,7 @@ zoom.png::CompressedTexture2D::4678475561181609888::1727651382::1728265171::1:::
 zoom_in.png::CompressedTexture2D::4611329171164381687::1727651382::1728265171::1::::<><>::
 zoom_out.png::CompressedTexture2D::757139215603315315::1727651382::1728265171::1::::<><>::
 zoom_reset.png::CompressedTexture2D::2183799072643005157::1727651382::1728265171::1::::<><>::
-::res://sprites/tiles/::1728258991
+::res://sprites/tiles/::1728265171
 pipo-map001.png::CompressedTexture2D::76343085878942551::1727310671::1728265171::1::::<><>::
 pipo-map001_at-kusa.png::CompressedTexture2D::4531898884286293155::1727310671::1728265171::1::::<><>::
 pipo-map001_at-miti.png::CompressedTexture2D::8520548689205689028::1727310671::1728265171::1::::<><>::
@@ -262,8 +262,8 @@ pipo-map001_at-umi.png::CompressedTexture2D::6924598546782979492::1727310671::17
 pipo-map001_at-yama1.png::CompressedTexture2D::5275221427271822170::1727310671::1728265171::1::::<><>::
 pipo-map001_at-yama2.png::CompressedTexture2D::6303002768322734237::1727310671::1728265171::1::::<><>::
 pipo-map001_at-yama3.png::CompressedTexture2D::8682661036767353005::1727310671::1728265171::1::::<><>::
-::res://ui/::1728259060
-battle_menu_manager.gd::GDScript::-1::1728258194::0::1::::MenuManager<>Control<>::
-main_ui.tres::Theme::1137429906018149107::1728259060::0::1::::<><>::
+::res://ui/::1728278197
+battle_menu_manager.gd::GDScript::-1::1728278197::0::1::::MenuManager<>Control<>::
+main_ui.tres::Theme::1137429906018149107::1728275756::0::1::::<><>::
 menu_item.gd::GDScript::-1::1728258194::0::1::::MenuItem<>RefCounted<>::
-menu_item_list.gd::GDScript::-1::1728258194::0::1::::MenuItemList<>ItemList<>::
+menu_item_list.gd::GDScript::-1::1728278197::0::1::::MenuItemList<>ItemList<>::
