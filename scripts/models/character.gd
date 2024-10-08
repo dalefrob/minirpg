@@ -3,6 +3,7 @@ class_name Character
 
 @export var texture : Texture2D
 @export var equipment : Equipment
+@export var inventory : Array[Item]
 
 # Get stat by alias to save duplication of code
 func get_stat_total(stat_id : int):

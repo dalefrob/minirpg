@@ -1,3 +1,8 @@
+CollisionShape3D
+MeshInstance3D
+CharacterBody3D
+GridMap
+Node3D
 ItemList
 RichTextLabel
 TextureRect
@@ -8,7 +13,3 @@ Panel
 AnimationPlayer
 AudioStreamPlayer2D
 Control
-AudioStreamPlayer
-HBoxContainer
-Node
-AnimatedSprite2D
