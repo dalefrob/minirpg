@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bixaeuod6erio"]
+
+[ext_resource type="PackedScene" uid="uid://b5ta0o6gl4qnb" path="res://3d/modular_crossroads.gltf" id="1_7npv6"]
+
+[node name="modular_crossroads" instance=ExtResource("1_7npv6")]

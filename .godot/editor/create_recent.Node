@@ -1,8 +1,11 @@
+DirectionalLight3D
+OmniLight3D
+Camera3D
+Node3D
 CollisionShape3D
 MeshInstance3D
 CharacterBody3D
 GridMap
-Node3D
 ItemList
 RichTextLabel
 TextureRect
@@ -10,6 +13,3 @@ PanelContainer
 Label
 VBoxContainer
 Panel
-AnimationPlayer
-AudioStreamPlayer2D
-Control

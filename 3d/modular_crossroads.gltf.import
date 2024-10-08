@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/modular_crossroads.gltf-fc6117f007c4aabea2e17
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="Node3D"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
@@ -32,6 +32,16 @@ animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
+"materials": {
+"floor": {
+"use_external/enabled": true,
+"use_external/path": "res://3d/materials/floor.tres"
+},
+"walls": {
+"use_external/enabled": true,
+"use_external/path": "res://3d/materials/walls.tres"
+}
+},
 "meshes": {
 "modular_crossroads_Cube_002": {
 "generate/lightmap_uv": 0,
@@ -39,7 +49,7 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/path": "res://3d/meshes/crossroads.res"
 }
 }

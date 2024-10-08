@@ -8,13 +8,20 @@
 		{
 			"name":"Scene",
 			"nodes":[
-				0
+				1
 			]
 		}
 	],
 	"nodes":[
 		{
 			"mesh":0,
+			"name":"crossroad-colonly"
+		},
+		{
+			"children":[
+				0
+			],
+			"mesh":1,
 			"name":"crossroad",
 			"rotation":[
 				0,
@@ -55,7 +62,7 @@
 	],
 	"meshes":[
 		{
-			"name":"Cube.002",
+			"name":"Cube.001",
 			"primitives":[
 				{
 					"attributes":{
@@ -71,6 +78,29 @@
 						"POSITION":4,
 						"NORMAL":5,
 						"TEXCOORD_0":6
+					},
+					"indices":7,
+					"material":1
+				}
+			]
+		},
+		{
+			"name":"Cube.002",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":8,
+						"NORMAL":9,
+						"TEXCOORD_0":10
+					},
+					"indices":3,
+					"material":0
+				},
+				{
+					"attributes":{
+						"POSITION":11,
+						"NORMAL":12,
+						"TEXCOORD_0":13
 					},
 					"indices":7,
 					"material":1
@@ -92,12 +122,12 @@
 		{
 			"mimeType":"image/png",
 			"name":"dark-worn-stonework_albedo",
-			"uri":"textures/dark-worn-stonework_albedo.png"
+			"uri":"dark-worn-stonework_albedo.png"
 		},
 		{
 			"mimeType":"image/png",
 			"name":"rocky-dunes1_albedo",
-			"uri":"textures/rocky-dunes1_albedo.png"
+			"uri":"rocky-dunes1_albedo.png"
 		}
 	],
 	"accessors":[
@@ -107,7 +137,7 @@
 			"count":144,
 			"max":[
 				11,
-				1,
+				3,
 				1.000001072883606
 			],
 			"min":[
@@ -168,6 +198,62 @@
 			"componentType":5123,
 			"count":6,
 			"type":"SCALAR"
+		},
+		{
+			"bufferView":8,
+			"componentType":5126,
+			"count":144,
+			"max":[
+				11,
+				3,
+				1.000001072883606
+			],
+			"min":[
+				-1.0000001192092896,
+				-1,
+				-11
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":9,
+			"componentType":5126,
+			"count":144,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":10,
+			"componentType":5126,
+			"count":144,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":11,
+			"componentType":5126,
+			"count":4,
+			"max":[
+				11,
+				-1,
+				1.0000004768371582
+			],
+			"min":[
+				-1.0000004768371582,
+				-1,
+				-11
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":12,
+			"componentType":5126,
+			"count":4,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":13,
+			"componentType":5126,
+			"count":4,
+			"type":"VEC2"
 		}
 	],
 	"bufferViews":[
@@ -218,6 +304,42 @@
 			"byteLength":12,
 			"byteOffset":5264,
 			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":1728,
+			"byteOffset":5276,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":1728,
+			"byteOffset":7004,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":1152,
+			"byteOffset":8732,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":48,
+			"byteOffset":9884,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":48,
+			"byteOffset":9932,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":32,
+			"byteOffset":9980,
+			"target":34962
 		}
 	],
 	"samplers":[
@@ -228,7 +350,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":5276,
+			"byteLength":10012,
 			"uri":"modular_crossroads.bin"
 		}
 	]
