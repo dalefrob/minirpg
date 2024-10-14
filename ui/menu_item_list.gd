@@ -15,5 +15,6 @@ func on_item_selected(idx : int):
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	var keyevent = event as InputEventKey
-	if keyevent.keycode == KEY_ESCAPE and keyevent.is_released():
+	if keyevent.keycode == KEY_ESCAPE and !keyevent.pressed:
 		canceled.emit()
+		get_viewport().set_input_as_handled()

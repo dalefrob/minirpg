@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://i13cfqmk47or"]
+[gd_scene load_steps=7 format=3 uid="uid://i13cfqmk47or"]
 
 [ext_resource type="Script" path="res://battle_screen.gd" id="1_h8i7e"]
 [ext_resource type="Texture2D" uid="uid://ddq6mha0vfqlt" path="res://sprites/bg/cavern/bg_6.png" id="2_73l8l"]
 [ext_resource type="Script" path="res://scripts/turn_system.gd" id="4_fauym"]
 [ext_resource type="Script" path="res://canvas_layer_ui.gd" id="5_xqck5"]
+[ext_resource type="PackedScene" uid="uid://duv7jvvxkv5kj" path="res://message_panel.tscn" id="6_5efsl"]
 [ext_resource type="PackedScene" uid="uid://dqwvo14eckff3" path="res://character_ui.tscn" id="10_d6v5k"]
 
 [node name="BattleScreen" type="Node"]
@@ -45,18 +46,6 @@ text = "Battle Events"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MenuManager" type="Control" parent="UI"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
 [node name="CharacterHBoxContainer" type="HBoxContainer" parent="UI"]
 unique_name_in_owner = true
 anchors_preset = 7
@@ -71,3 +60,21 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="BattleMenuMessagePanel" parent="UI" instance=ExtResource("6_5efsl")]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 2
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = -71.0
+offset_right = 275.0
+offset_bottom = -31.0
+grow_horizontal = 1
+grow_vertical = 0
+
+[connection signal="child_entered_tree" from="UI/BattleMenuMessagePanel" to="UI/BattleMenuMessagePanel" method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="UI/BattleMenuMessagePanel" to="UI/BattleMenuMessagePanel" method="_on_child_exiting_tree"]

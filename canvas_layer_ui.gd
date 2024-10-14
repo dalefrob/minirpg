@@ -4,11 +4,12 @@ class_name CanvasUI
 @onready var msg_panel_pks = preload("res://message_panel.tscn")
 @onready var menu_list_pks = preload("res://menu_item_list.tscn")
 
-var menu_stack : Array[MenuItemList]
+var menu_stack  = []
 
-func _ready() -> void:
-	pass
-
+func clear_all_menus():
+	for menu in menu_stack:
+		menu.queue_free()
+	menu_stack.clear()
 
 # Creates a message panel and adds it to the UI
 func create_msg_panel_node(_position : Vector2, _bbtext : String = "") -> MessagePanel:
@@ -31,8 +32,11 @@ func create_menu(menu_items : Array[MenuItem], selected_callback : Callable, can
 	
 	var activated = func on_menu_item_activated(idx : int):
 		selected_callback.call(menu_items[idx])
+		menu.hide()
 	
-	menu.item_activated.connect(activated, CONNECT_ONE_SHOT)
+	menu.item_activated.connect(activated)
 	menu.canceled.connect(cancel_callback, CONNECT_ONE_SHOT)
+	
+	menu_stack.append(menu)
 	
 	return menu

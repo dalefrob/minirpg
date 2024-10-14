@@ -16,27 +16,11 @@ var character_battler_pks = preload("res://character_battler.tscn")
 # Systems
 @onready var turn_system : TurnSystem = $TurnSystem
 @onready var ui : CanvasUI = $UI
+@onready var battlemenupanel = %BattleMenuMessagePanel
 
-# easy accessors
-#func get_enemy_battlers():
-	#var result = []
-	#for node in $EnemyBattlers.get_children():
-		#if node is EnemyBattler:
-			#result.append(node)
-	#return result
-#
-#func get_character_battlers():
-	#var result = []
-	#for node in $CharacterBattlers.get_children():
-		#if node is CharacterBattler:
-			#result.append(node)
-	#return result
-#
-#func get_all_battlers():
-	#var result = get_enemy_battlers()
-	#result.append_array(get_character_battlers())
-	#return result
-
+var current_turn : Turn:
+	get: return turn_system.current_turn
+	
 func get_enemy_battlers():
 	return get_all_battlers().filter(func(b): return b is EnemyBattler)
 
@@ -112,6 +96,7 @@ func start_new_round():
 	
 	battle_state = BattleState.BATTLING
 
+#region TurnCallbacks
 # ---- TURN CALLBACKS
 
 func on_turn_started(turn : Turn):
@@ -133,27 +118,6 @@ func on_turn_started(turn : Turn):
 		execute_action(action)
 
 
-func show_main_battle_menu():
-	var turn = turn_system.current_turn
-	var menu_items : Array[MenuItem] = [
-		MenuItem.new("Attack", on_menu_attack_selected, "Attack with your weapon"),
-		MenuItem.new("Skills", on_menu_useskill_selected.bind(turn.battler), "Use your skills"),
-		MenuItem.new("Item", on_menu_useitem_selected, "Use an item"),
-		MenuItem.new("Defend", func(): return false, "Defend for the turn")
-	]
-	
-	var msg_panel = ui.create_msg_panel_node(Vector2(50,400), "What will [color=yellow]%s[/color] do?" % turn.battler.actor.name)
-	var menu = ui.create_menu(menu_items, on_menu_selected, func(): return false )
-	msg_panel.add_menu(menu)
-
-	menu.grab_focus()
-	menu.select(0)
-
-
-func on_menu_selected(menu_item):
-	menu_item.callable.call()
-
-
 func on_turn_ended(turn : Turn):
 	print("%s's turn ended" % turn.battler.actor.name)
 	
@@ -170,19 +134,57 @@ func on_all_turns_processed():
 	print("All turns processed")
 	start_new_round()
 
+#endregion
+
+#region BattleMenu
 
 # ---- MENU
+var menu_stack = []
+
+# Shows the main battle menu with the topmost options
+func show_main_battle_menu():
+	ui.clear_all_menus()
+	
+	var menu_items : Array[MenuItem] = [
+		MenuItem.new("Attack", on_menu_attack_selected, "Attack with your weapon"),
+		MenuItem.new("Skills", on_menu_useskill_selected.bind(current_turn.battler), "Use your skills"),
+		MenuItem.new("Item", on_menu_useitem_selected, "Use an item"),
+		MenuItem.new("Defend", func(): return false, "Defend for the turn")
+	]
+	
+	#var msg_panel = ui.create_msg_panel_node(Vector2(50,400), "What will [color=yellow]%s[/color] do?" % current_turn.battler.actor.name)
+	var menu = ui.create_menu(menu_items, on_menu_selected, func(): return false )
+	battlemenupanel.add_menu(menu)
+
+	menu.grab_focus()
+	menu.select(0)
+
+# When the player presses escape to go back
+func on_cancel_selected():
+	print("Cancel")
+	# Take off the last menu
+	var last_menu = ui.menu_stack.pop_back()
+	last_menu.queue_free()
+	await get_tree().process_frame
+	# Show the previous one
+	var prev_menu = ui.menu_stack.back()
+	prev_menu.show()
+	prev_menu.grab_focus()
+
+
+func on_menu_selected(menu_item):
+	menu_item.callable.call()
 
 # on clicking the skill menu
 func on_menu_useskill_selected(battler : Battler):
-	create_selection_menu(battler.actor.skills, on_skill_selected, show_main_battle_menu)
-	#battle_menu.load_skills_menu(battler.actor, on_skill_selected)
+	create_selection_menu(battler.actor.skills, on_skill_selected, on_cancel_selected)
+
 
 # on selecting a skill from the menu
 func on_skill_selected(skill : Skill):
 	print("Selected %s" % skill.name)
-	var action = SkillAction.new(turn_system.current_turn.battler, skill)
-	turn_system.current_turn.action = action
+	var action = SkillAction.new(current_turn.battler, skill)
+	current_turn.action = action
 	
 	var targets = []
 	# single targets use single target menu
@@ -195,20 +197,20 @@ func on_skill_selected(skill : Skill):
 		action._set_targets(targets)
 		execute_action(action)
 	else:
-		create_selection_menu(targets, on_target_selected, show_main_battle_menu)
+		create_selection_menu(targets, on_target_selected, on_cancel_selected)
 
 
 func on_menu_useitem_selected():
 	var items = Globals.inventory.filter(filter_valid_consumables)
-	create_selection_menu(items, on_item_selected, show_main_battle_menu)
+	create_selection_menu(items, on_item_selected, on_cancel_selected)
 
 
 func on_item_selected(_item : Item):
-	var item_action = ItemAction.new(turn_system.current_turn.battler, _item)
-	turn_system.current_turn.action = item_action
+	var item_action = ItemAction.new(current_turn.battler, _item)
+	current_turn.action = item_action
 	print("selected %s" % _item.name)
 	var targets = get_character_battlers()
-	create_selection_menu(targets, on_target_selected, on_menu_useitem_selected)
+	create_selection_menu(targets, on_target_selected, on_cancel_selected)
 
 
 func filter_valid_consumables(item):
@@ -221,7 +223,7 @@ func filter_valid_consumables(item):
 
 
 func on_menu_attack_selected():
-	turn_system.current_turn.action = AttackAction.new(turn_system.current_turn.battler)
+	current_turn.action = AttackAction.new(current_turn.battler)
 	var targets = get_enemy_battlers().filter(func(b): return !b.actor.is_dead)
 	
 	create_selection_menu(targets, on_target_selected, show_main_battle_menu)
@@ -234,18 +236,17 @@ func create_selection_menu(items, selected_callback : Callable, cancel_callback 
 		var menu_item = MenuItem.new(item.name, selected_callback.bind(item))
 		menu_items.append(menu_item)
 	
-	var msg_panel = ui.create_msg_panel_node(Vector2(50,400))
 	var menu = ui.create_menu(menu_items, on_menu_selected, cancel_callback)
-	msg_panel.add_menu(menu)
+	battlemenupanel.add_menu(menu)
 
 	menu.grab_focus()
 	menu.select(0)
 
 
-# Target a 'Battler' on thr screen
+# Target a 'Battler' on the screen
 func on_target_selected(battler : Battler):
 	print("Selected %s " % battler.name)
-	var action = turn_system.current_turn.action
+	var action = current_turn.action
 	action._set_target(battler)
 	
 	execute_action(action)
@@ -263,3 +264,4 @@ func execute_action(_action : Action):
 
 func is_all_enemies_defeated():
 	return get_enemy_battlers().all(func(b): return b.actor.is_dead)
+#endregion

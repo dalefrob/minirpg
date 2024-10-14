@@ -54,3 +54,13 @@ func show_floating_text(parent, text : String, color : Color = Color.WHITE, offs
 		label.scale *= 1.5
 	parent.add_child(label)
 	label.float_up(text, color)
+
+
+func get_enemy_battlers():
+	return get_all_battlers().filter(func(b): return b is EnemyBattler)
+
+func get_character_battlers():
+	return get_all_battlers().filter(func(b): return b is CharacterBattler)
+
+func get_all_battlers():
+	return get_tree().get_nodes_in_group("battler")

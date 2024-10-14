@@ -12,8 +12,13 @@ var bbtext : String = "":
 			rich_label.visible = true
 
 func add_child_control(node: Node):
+	var control = node as Control
+	control.visibility_changed.connect(on_child_visibility_changed)
 	vbox.add_child(node)
+	show()
 
 func add_menu(menu : MenuItemList):
-	menu.item_activated.connect(func(_idx): queue_free())
 	add_child_control(menu)
+
+func on_child_visibility_changed():
+	visible = vbox.get_children().any(func(c): return c.visible)
