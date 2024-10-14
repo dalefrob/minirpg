@@ -5,6 +5,12 @@ class_name SkillAction
 var skill : Skill
 var targets : Array
 
+
+func _init(_user : Battler, _skill : Skill) -> void:
+	super._init(_user)
+	skill = _skill
+
+# override for aoe skills
 func _set_target(_target):
 	targets.append(_target)
 
@@ -32,10 +38,3 @@ func _execute():
 	
 	for t in targets:
 		skill.use(user.actor, t.actor)
-
-
-static func create(_user : Battler, _skill : Skill):
-	var action = SkillAction.new()
-	action.user = _user
-	action.skill = _skill
-	return action

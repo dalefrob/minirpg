@@ -5,6 +5,9 @@ class_name Turn
 
 var state : TurnSystem.TurnState = TurnSystem.TurnState.STANDBY
 
-var battler : Battler
-var is_player_turn : bool
-var action : Action
+var battler : Battler # Which battler on the field is this for?
+var actor : Actor:
+	get: return battler.actor
+
+var is_player_turn : bool # Is it a player?
+var action : Action # What command is to be executed?

@@ -1,5 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bixaeuod6erio"]
+[gd_scene load_steps=3 format=3 uid="uid://bixaeuod6erio"]
 
 [ext_resource type="PackedScene" uid="uid://b5ta0o6gl4qnb" path="res://3d/modular_crossroads.gltf" id="1_7npv6"]
+[ext_resource type="PackedScene" uid="uid://7kse4ch4pd00" path="res://3d/small_character.glb" id="2_2wp5b"]
 
 [node name="modular_crossroads" instance=ExtResource("1_7npv6")]
+
+[node name="small_character" parent="." index="1" instance=ExtResource("2_2wp5b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00568533, 0, 0.566092)

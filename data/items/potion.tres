@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Consumable" load_steps=2 format=3 uid="uid://jl5buvrm1sa"]
+
+[ext_resource type="Script" path="res://scripts/models/consumable.gd" id="1_plud4"]
+
+[resource]
+script = ExtResource("1_plud4")
+stack_size = 99
+stock = 1
+function_alias = "damage_target"
+args = {
+"amount": 100,
+"heal": true
+}
+name = "Potion"
+description = "Heals for 100 HP"
+value = 1

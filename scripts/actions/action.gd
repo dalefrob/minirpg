@@ -4,12 +4,16 @@ class_name Action
 
 var error_msg : String = ""
 var user : Battler
+var target : Battler # may or may not be used
 
 signal completed
 
+func _init(_user : Battler) -> void:
+	user = _user
+
 # virtual functions to be overidden
 func _set_target(_target):
-	pass
+	target = _target
 
 func _can_execute() -> bool:
 	if user.actor.is_dead:

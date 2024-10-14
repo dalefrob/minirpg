@@ -2,15 +2,8 @@
 extends Action
 class_name AttackAction
 
-var target : Battler
-
-func _set_target(_target):
-	target = _target
-
-
 func _can_execute():
 	return super._can_execute()
-
 
 func _execute():
 	if !target:
@@ -22,8 +15,3 @@ func _execute():
 	# calculate damage
 	var dmg = BattleHelper.calculate_physical_damage(user.actor, target.actor)
 	target.actor.take_damage(dmg)
-
-static func create(_user : Battler) -> AttackAction:
-	var action = AttackAction.new()
-	action.user = _user
-	return action

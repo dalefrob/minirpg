@@ -3,7 +3,6 @@
 extends Control
 class_name MenuManager
 
-
 var menus = []
 var current_menu = null
 

@@ -1,3 +1,4 @@
+Consumable
 Skill
 Enemy
 Actor

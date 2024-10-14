@@ -10,6 +10,16 @@ extends Node
 	preload("res://data/test_data/test_char_2.tres")
 ]
 
+var inventory : Array[Item] = [
+	preload("res://data/items/antidote.tres")
+]
+
+func _ready() -> void:
+	var potion = preload("res://data/items/potion.tres")
+	potion.stock = 2
+	inventory.append(potion)
+	
+
 func start_encounter(encounter : Encounter):
 	get_tree().change_scene_to_packed(battle_screen)
 	await get_tree().tree_changed
