@@ -2,13 +2,6 @@
 extends Node
 class_name TurnSystem
 
-enum TurnState {
-	STANDBY,
-	WAITING,
-	EXECUTING,
-	DONE
-}
-
 var turn_id = 0
 var is_waiting_for_player : bool = false
 
@@ -41,20 +34,19 @@ func clear_queue():
 func enqueue(_battler : Battler):
 	var turn = Turn.new()
 	turn.battler = _battler
-	turn.is_player_turn = (_battler is CharacterBattler)
 	turn.name = "t%s_%s" % [turn_id, _battler.name]
 	add_child(turn)
 	turn_id += 1
 
 
 func end_current_turn():
-	current_turn.state = TurnState.DONE
+	current_turn.state = Turn.DONE
 	turn_ended.emit(current_turn)
 
 
 func _process(delta: float) -> void:
 	for child in get_children():
-		if child.state == TurnState.DONE:
+		if child.state == Turn.DONE:
 			previous_turns.push_front(current_turn)
 			remove_child(child)
 	
@@ -68,13 +60,14 @@ func _process_turns():
 		return
 	
 	# set newest turn to waiting
-	if current_turn.state == TurnState.STANDBY:
-		current_turn.state = TurnState.WAITING
+	if current_turn.state == Turn.STANDBY:
+		current_turn.state = Turn.WAITING_FOR_COMMAND
 		if current_turn.battler.actor.is_dead:
-			current_turn.state = TurnState.DONE
+			print("%s is dead, skipping turn" % current_turn.battler.name)
+			current_turn.state = Turn.DONE
 		else:
 			turn_started.emit(current_turn)
 	
-	is_waiting_for_player = current_turn.is_player_turn && current_turn.state == TurnState.WAITING
+	is_waiting_for_player = current_turn.player_controlled && current_turn.state == Turn.WAITING_FOR_COMMAND
 	if is_waiting_for_player:
 		return

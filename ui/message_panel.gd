@@ -15,5 +15,5 @@ func add_child_control(node: Node):
 	vbox.add_child(node)
 
 func add_menu(menu : MenuItemList):
-	menu.item_activated.connect(func(idx): queue_free())
+	menu.item_activated.connect(func(_idx): queue_free())
 	add_child_control(menu)

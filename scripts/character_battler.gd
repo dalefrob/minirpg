@@ -3,6 +3,10 @@ class_name CharacterBattler
 
 var character_ui : CharacterUI
 
+func _initialize(_actor : Actor):
+	super._initialize(_actor)
+	player_controlled = true
+
 func _get_anim_position():
 	character_ui.get_screen_position()
 	return character_ui.position + Vector2((character_ui.size.x / 2),0)

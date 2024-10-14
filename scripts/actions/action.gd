@@ -6,8 +6,6 @@ var error_msg : String = ""
 var user : Battler
 var target : Battler # may or may not be used
 
-signal completed
-
 func _init(_user : Battler) -> void:
 	user = _user
 

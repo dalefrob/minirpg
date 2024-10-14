@@ -32,3 +32,15 @@ res://scripts/actions/action.gd
 res://scripts/actions/attack_action.gd
 res://scripts/actions/skill_action.gd
 res://scripts/models/item.gd
+res://scripts/battler.gd
+res://scripts/models/actor.gd
+res://scripts/character_battler.gd
+res://scripts/turn_system.gd
+res://scripts/battle_animation.gd
+res://scripts/battle_helper.gd
+res://scripts/character_ui.gd
+res://scripts/enemy_battler.gd
+res://canvas_layer_ui.gd
+res://ui/message_panel.gd
+res://ui/menu_item_list.gd
+res://scripts/models/character.gd

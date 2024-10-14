@@ -15,7 +15,6 @@ var character_battler_pks = preload("res://character_battler.tscn")
 
 # Systems
 @onready var turn_system : TurnSystem = $TurnSystem
-@onready var menu_manager : MenuManager = %MenuManager
 @onready var ui : CanvasUI = $UI
 
 # easy accessors
@@ -45,46 +44,14 @@ func get_all_battlers():
 @export var character_ui_pks : PackedScene
 
 @onready var battle_text : Label = %BattleText
-@onready var battle_menu : BattleMenu = %BattleMenu
 @onready var character_hbox : HBoxContainer = %CharacterHBoxContainer
-
-var _last_skill_selected : Skill
-
-
-func on_menu_cancel():
-	print("menu cancel")
 
 
 func load_encounter(encounter : Encounter):
 	print("loading encounter: %s" % encounter)
 	
-	var enemy_battler_grp = $EnemyBattlers
-	var character_battler_grp = $CharacterBattlers
-	
-	# load enemies
-	for enemy in encounter.enemies:
-		var new_battler = battler_pks.instantiate()
-		new_battler.actor = enemy.duplicate(true) # ensure each enemy is a unique instance
-		enemy_battler_grp.add_child(new_battler)
-	
-	# load players
-	for character in Globals.party:
-		var character_battler = character_battler_pks.instantiate() as CharacterBattler
-		character_battler.actor = character
-		character_battler_grp.add_child(character_battler)
-		var character_ui = character_ui_pks.instantiate() as CharacterUI
-		
-		# more elegant way to do this??
-		character_ui.character = character_battler.actor
-		character_battler.character_ui = character_ui
-		
-		character_hbox.add_child(character_ui)
-
-	# align battlers
-	var window_width = DisplayServer.window_get_size(0).x
-	var step = window_width / (enemy_battler_grp.get_child_count() + 1)
-	for i in range(enemy_battler_grp.get_child_count()):
-		enemy_battler_grp.get_child(i).position.x = (-window_width / 2) + ((i + 1) * step)
+	spawn_enemies(encounter.enemies)
+	spawn_party()
 	
 	# Setup turn system
 	turn_system.turn_started.connect(on_turn_started)
@@ -92,6 +59,38 @@ func load_encounter(encounter : Encounter):
 	turn_system.all_turns_processed.connect(on_all_turns_processed)
 	
 	start_new_round()
+
+# Spawns the party on the screen
+func spawn_party():
+	var character_battler_grp = $CharacterBattlers
+	
+	# For now, the player battlers are the portraits at hte bottom
+	for character in Globals.party:
+		var character_battler = character_battler_pks.instantiate() as CharacterBattler
+		character_battler._initialize(character)
+		character_battler_grp.add_child(character_battler)
+		var character_ui = character_ui_pks.instantiate() as CharacterUI
+		
+		# more elegant way to do this??
+		character_ui.character = character_battler.actor
+		character_battler.character_ui = character_ui
+		character_hbox.add_child(character_ui)
+
+
+# Spawns new enemies and aligns them on the screen
+func spawn_enemies(enemies : Array[Actor]):
+	var enemy_battler_grp = $EnemyBattlers
+	# load enemies
+	for enemy in enemies:
+		var new_battler = battler_pks.instantiate() as EnemyBattler
+		new_battler._initialize(enemy.duplicate(true)) # ensure each enemy is a unique instance
+		enemy_battler_grp.add_child(new_battler)
+	
+	# align battlers
+	var window_width = DisplayServer.window_get_size(0).x
+	var step = window_width / (enemy_battler_grp.get_child_count() + 1)
+	for i in range(enemy_battler_grp.get_child_count()):
+		enemy_battler_grp.get_child(i).position.x = (-window_width / 2) + ((i + 1) * step)
 
 
 func start_new_round():
@@ -109,8 +108,8 @@ func on_turn_started(turn : Turn):
 	battle_text.text = "%s's turn started" % turn.battler.actor.name
 	
 	# Player Turns
-	if turn.is_player_turn:
-		show_main_battle_menu(turn)
+	if turn.player_controlled:
+		show_main_battle_menu()
 	
 	# Enemy turns
 	else:
@@ -124,10 +123,8 @@ func on_turn_started(turn : Turn):
 		execute_action(action)
 
 
-func show_main_battle_menu(turn : Turn):
-	var no_func = func():
-		print("no func")
-		
+func show_main_battle_menu():
+	var turn = turn_system.current_turn
 	var menu_items : Array[MenuItem] = [
 		MenuItem.new("Attack", on_menu_attack_selected, "Attack with your weapon"),
 		MenuItem.new("Skills", on_menu_useskill_selected.bind(turn.battler), "Use your skills"),
@@ -156,7 +153,7 @@ func on_turn_ended(turn : Turn):
 		
 		battle_state = BattleState.BATTLE_WON
 		battle_text.text = "You won!"
-		var center = DisplayServer.window_get_size(0) / 2
+		var _center = DisplayServer.window_get_size(0) / 2
 
 
 func on_all_turns_processed():
@@ -168,7 +165,7 @@ func on_all_turns_processed():
 
 # on clicking the skill menu
 func on_menu_useskill_selected(battler : Battler):
-	create_selection_menu(battler.actor.skills, on_skill_selected, on_menu_cancel)
+	create_selection_menu(battler.actor.skills, on_skill_selected, show_main_battle_menu)
 	#battle_menu.load_skills_menu(battler.actor, on_skill_selected)
 
 # on selecting a skill from the menu
@@ -188,12 +185,12 @@ func on_skill_selected(skill : Skill):
 		action._set_targets(targets)
 		execute_action(action)
 	else:
-		create_selection_menu(targets, on_target_selected, on_menu_cancel)
+		create_selection_menu(targets, on_target_selected, show_main_battle_menu)
 
 
 func on_menu_useitem_selected():
 	var items = Globals.inventory.filter(filter_valid_consumables)
-	create_selection_menu(items, on_item_selected, on_menu_cancel)
+	create_selection_menu(items, on_item_selected, show_main_battle_menu)
 
 
 func on_item_selected(_item : Item):
@@ -201,7 +198,7 @@ func on_item_selected(_item : Item):
 	turn_system.current_turn.action = item_action
 	print("selected %s" % _item.name)
 	var targets = get_character_battlers()
-	create_selection_menu(targets, on_target_selected, on_menu_cancel)
+	create_selection_menu(targets, on_target_selected, on_menu_useitem_selected)
 
 
 func filter_valid_consumables(item):
@@ -217,7 +214,7 @@ func on_menu_attack_selected():
 	turn_system.current_turn.action = AttackAction.new(turn_system.current_turn.battler)
 	var targets = get_enemy_battlers().filter(func(b): return !b.actor.is_dead)
 	
-	create_selection_menu(targets, on_target_selected, on_menu_cancel)
+	create_selection_menu(targets, on_target_selected, show_main_battle_menu)
 
 
 # Creates a menu to select from an array of objects
@@ -228,7 +225,7 @@ func create_selection_menu(items, selected_callback : Callable, cancel_callback 
 		menu_items.append(menu_item)
 	
 	var msg_panel = ui.create_msg_panel_node(Vector2(50,400))
-	var menu = ui.create_menu(menu_items, on_menu_selected, on_menu_cancel)
+	var menu = ui.create_menu(menu_items, on_menu_selected, cancel_callback)
 	msg_panel.add_menu(menu)
 
 	menu.grab_focus()
@@ -246,8 +243,6 @@ func on_target_selected(battler : Battler):
 
 func execute_action(_action : Action):
 	if _action._can_execute():
-		battle_menu.clear_menu()
-		
 		# run the action - 99% has animations
 		await _action._execute()
 

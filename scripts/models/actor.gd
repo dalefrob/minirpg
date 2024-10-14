@@ -19,7 +19,7 @@ var is_dead : bool:
 	get: return hp <= 0
 
 # set hp and mp to maximum values
-func _reset():
+func full_heal():
 	hp = get_max_hp()
 	mp = get_max_mp()
 

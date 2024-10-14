@@ -9,8 +9,9 @@ var enemy : Enemy:
 
 @onready var sprite : Sprite2D = $Sprite2D
 
-func _initialize():
-	super._initialize()
+func _initialize(_actor : Actor):
+	super._initialize(_actor)
+	actor.full_heal()
 	await ready
 	sprite.texture = enemy.texture
 
@@ -35,7 +36,7 @@ func _on_actor_health_depleted():
 
 # flash the sprite a color to signify a status change
 func flash(color : Color = Color.RED, duration : float = 0.5):
-	sprite.self_modulate = Color.RED
+	sprite.self_modulate = color
 	var tween = create_tween()
 	tween.tween_property(sprite, "self_modulate", Color.WHITE, duration)
 	tween.play()

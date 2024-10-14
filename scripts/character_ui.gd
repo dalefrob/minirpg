@@ -22,7 +22,7 @@ func _initialize() -> void:
 	character.took_damage.connect(update_ui)
 	character.healed_damage.connect(update_ui)
 
-func update_ui(args):
+func update_ui(_args):
 	hp_label.text = "HP: %s/%s" % [character.hp, character.get_max_hp()]
 
 func hit_animation():

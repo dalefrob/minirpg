@@ -29,10 +29,10 @@ func create_menu(menu_items : Array[MenuItem], selected_callback : Callable, can
 		var idx = menu.add_item(item.text, item.icon)
 		menu.set_item_tooltip(idx, item.tooltip)
 	
-	# -- Yeah..
 	var activated = func on_menu_item_activated(idx : int):
 		selected_callback.call(menu_items[idx])
 	
 	menu.item_activated.connect(activated, CONNECT_ONE_SHOT)
+	menu.canceled.connect(cancel_callback, CONNECT_ONE_SHOT)
 	
 	return menu

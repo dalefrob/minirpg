@@ -11,5 +11,5 @@ func _ready() -> void:
 	animation_player.animation_finished.connect(on_animation_player_finished)
 	animation_player.play()
 
-func on_animation_player_finished(anim_name):
+func on_animation_player_finished(_anim_name):
 	finished.emit()

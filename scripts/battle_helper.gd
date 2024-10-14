@@ -3,7 +3,7 @@
 extends Node
 
 # args: [amount]
-func damage_target(source : Actor, target : Actor, args : Dictionary):
+func damage_target(_source : Actor, target : Actor, args : Dictionary):
 	var amount = args["amount"]
 	var element = Damage.Element.NONE
 	if args.has("element"):
