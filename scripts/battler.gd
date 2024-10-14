@@ -7,6 +7,9 @@ class_name Battler
 @export var actor : Actor:
 	get: return actor
 
+func _init() -> void:
+	add_to_group("battler")
+
 func _ready() -> void:
 	name = actor.name
 

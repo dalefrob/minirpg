@@ -18,24 +18,33 @@ var character_battler_pks = preload("res://character_battler.tscn")
 @onready var ui : CanvasUI = $UI
 
 # easy accessors
+#func get_enemy_battlers():
+	#var result = []
+	#for node in $EnemyBattlers.get_children():
+		#if node is EnemyBattler:
+			#result.append(node)
+	#return result
+#
+#func get_character_battlers():
+	#var result = []
+	#for node in $CharacterBattlers.get_children():
+		#if node is CharacterBattler:
+			#result.append(node)
+	#return result
+#
+#func get_all_battlers():
+	#var result = get_enemy_battlers()
+	#result.append_array(get_character_battlers())
+	#return result
+
 func get_enemy_battlers():
-	var result = []
-	for node in $EnemyBattlers.get_children():
-		if node is EnemyBattler:
-			result.append(node)
-	return result
+	return get_all_battlers().filter(func(b): return b is EnemyBattler)
 
 func get_character_battlers():
-	var result = []
-	for node in $CharacterBattlers.get_children():
-		if node is CharacterBattler:
-			result.append(node)
-	return result
+	return get_all_battlers().filter(func(b): return b is CharacterBattler)
 
 func get_all_battlers():
-	var result = get_enemy_battlers()
-	result.append_array(get_character_battlers())
-	return result
+	return get_tree().get_nodes_in_group("battler")
 
 
 @onready var bg : Sprite2D = $Background
@@ -59,6 +68,7 @@ func load_encounter(encounter : Encounter):
 	turn_system.all_turns_processed.connect(on_all_turns_processed)
 	
 	start_new_round()
+
 
 # Spawns the party on the screen
 func spawn_party():
