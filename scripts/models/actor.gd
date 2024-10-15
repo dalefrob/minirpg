@@ -6,10 +6,12 @@ class_name Actor
 @export var stats : Stats
 @export var skills : Array[Skill]
 @export var weakness : Damage.Element
+@export var status : int = 0
 
 signal took_damage
 signal healed_damage
 signal health_depleted
+signal status_changed
 
 # current values
 var hp : int
@@ -17,7 +19,17 @@ var mp : int
 var defending : bool = false
 
 var is_dead : bool:
-	get: return hp <= 0
+	get: return status & BattleHelper.Status.DEATH
+
+func set_status(flag : int):
+	status |= flag
+	print("%s added status %s" % [name, BattleHelper.Status.find_key(flag)])
+	status_changed.emit()
+
+func remove_status(flag : int):
+	status &= flag
+	print("%s removed status %s" % [name, BattleHelper.Status.find_key(flag)])
+	status_changed.emit()
 
 # set hp and mp to maximum values
 func full_heal():
@@ -55,8 +67,14 @@ func take_damage(damage : Damage):
 	print("%s took %s damage" % [name, damage.amount])
 	took_damage.emit(damage)
 	if hp <= 0:
-		hp = 0
+		die()
 		health_depleted.emit()
+
+
+func die():
+	hp = 0
+	set_status(BattleHelper.Status.DEATH)
+
 
 func heal_damage(damage : Damage):
 	hp += damage.amount

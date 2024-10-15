@@ -22,7 +22,7 @@ func load_test_party():
 	var char1 = preload("res://data/test_data/test_char.tres")
 	var char2 = preload("res://data/test_data/test_char_2.tres")
 	party.append(char1)
-	party.append(char2)
+	#party.append(char2)
 	# Test party
 	for member in party:
 		member.full_heal()

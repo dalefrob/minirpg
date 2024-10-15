@@ -2,6 +2,17 @@
 # battle related functions that can be used anywhere
 extends Node
 
+enum Status {
+	NONE = 0, 		#0
+	DEATH = 1 << 0, 	#1
+	POISON = 1 << 1, 	#2
+	BURN = 1 << 2, 		#4
+	FROZEN = 1 << 3, 	#8
+	PARALYSIS = 1 << 4, #16
+	CONFUSED = 1 << 5, 	#36
+	SILENCE = 1 << 6, 	#64
+}
+
 # args: [amount]
 func damage_target(_source : Actor, target : Actor, args : Dictionary):
 	var amount = args["amount"]
