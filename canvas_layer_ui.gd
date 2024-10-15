@@ -6,10 +6,12 @@ class_name CanvasUI
 
 var menu_stack  = []
 
+
 func clear_all_menus():
 	for menu in menu_stack:
 		menu.queue_free()
 	menu_stack.clear()
+
 
 # Creates a message panel and adds it to the UI
 func create_msg_panel_node(_position : Vector2, _bbtext : String = "") -> MessagePanel:

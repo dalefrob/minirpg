@@ -14,6 +14,7 @@ signal health_depleted
 # current values
 var hp : int
 var mp : int
+var defending : bool = false
 
 var is_dead : bool:
 	get: return hp <= 0
@@ -42,6 +43,10 @@ func get_def():
 	return get_stat_total(Stats.StatType.AGI) / 2
 
 func take_damage(damage : Damage):
+	if defending:
+		damage.critical = false # cannot be crit while defending
+		damage.amount *= 0.8
+	
 	# apply crit
 	if damage.critical:
 		damage.amount *= 2
@@ -60,3 +65,8 @@ func heal_damage(damage : Damage):
 	var max_hp = get_max_hp()
 	if hp >= max_hp:
 		hp = max_hp
+
+
+func update_status():
+	defending = false
+	# call poison, status updates etc.

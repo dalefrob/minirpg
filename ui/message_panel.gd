@@ -13,12 +13,9 @@ var bbtext : String = "":
 
 func add_child_control(node: Node):
 	var control = node as Control
-	control.visibility_changed.connect(on_child_visibility_changed)
-	vbox.add_child(node)
 	show()
+	vbox.add_child(node)
 
-func add_menu(menu : MenuItemList):
+func add_menu(menu : MenuItemList, title : String = ""):
+	bbtext = title
 	add_child_control(menu)
-
-func on_child_visibility_changed():
-	visible = vbox.get_children().any(func(c): return c.visible)
