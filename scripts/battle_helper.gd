@@ -13,7 +13,8 @@ enum Status {
 	SILENCE = 1 << 6, 	#64
 }
 
-# args: [amount]
+## Target takes damage
+## Use this to do "heal" damage as well
 func damage_target(_source : Actor, target : Actor, args : Dictionary):
 	var amount = args["amount"]
 	var element = Damage.Element.NONE
@@ -29,10 +30,7 @@ func damage_target(_source : Actor, target : Actor, args : Dictionary):
 	if randf() < 0.3:
 		damage.critical = true
 	
-	if damage.heal:
-		target.heal_damage(damage)
-	else:
-		target.take_damage(damage)
+	target.take_damage(damage)
 
 
 func calculate_physical_damage(attacker : Actor, defender : Actor) -> Damage:

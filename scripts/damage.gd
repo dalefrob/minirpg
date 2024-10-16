@@ -14,10 +14,12 @@ enum Element {
 	CHAOS = 9
 }
 
-var amount : int
-var element : Element
+@export var amount : int
+@export var element : Element
+@export var heal : bool
+
+var nullify_defend : bool = true
 var critical : bool
-var heal : bool
 
 static func create(_amount : int, _element = Element.NONE, _heal = false) -> Damage:
 	var dmg = Damage.new()

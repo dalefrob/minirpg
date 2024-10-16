@@ -6,7 +6,10 @@ class_name Actor
 @export var stats : Stats
 @export var skills : Array[Skill]
 @export var weakness : Damage.Element
-@export var status : int = 0
+
+@export var status_effects : Array[StatusEffect]
+
+@export var status : int = 0 # Obsolete
 
 signal took_damage
 signal healed_damage
@@ -19,17 +22,7 @@ var mp : int
 var defending : bool = false
 
 var is_dead : bool:
-	get: return status & BattleHelper.Status.DEATH
-
-func set_status(flag : int):
-	status |= flag
-	print("%s added status %s" % [name, BattleHelper.Status.find_key(flag)])
-	status_changed.emit()
-
-func remove_status(flag : int):
-	status &= flag
-	print("%s removed status %s" % [name, BattleHelper.Status.find_key(flag)])
-	status_changed.emit()
+	get: return hp <= 0
 
 # set hp and mp to maximum values
 func full_heal():
@@ -55,7 +48,11 @@ func get_def():
 	return get_stat_total(Stats.StatType.AGI) / 2
 
 func take_damage(damage : Damage):
-	if defending:
+	if damage.heal: # Heal instead?
+		heal_damage(damage)
+		return
+	
+	if defending and !damage.nullify_defend:
 		damage.critical = false # cannot be crit while defending
 		damage.amount *= 0.8
 	
@@ -73,7 +70,6 @@ func take_damage(damage : Damage):
 
 func die():
 	hp = 0
-	set_status(BattleHelper.Status.DEATH)
 
 
 func heal_damage(damage : Damage):
@@ -88,3 +84,6 @@ func heal_damage(damage : Damage):
 func update_status():
 	defending = false
 	# call poison, status updates etc.
+	for effect in status_effects:
+		effect.actor = self
+		effect._update()
