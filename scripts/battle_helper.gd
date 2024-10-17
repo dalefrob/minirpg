@@ -2,17 +2,6 @@
 # battle related functions that can be used anywhere
 extends Node
 
-enum Status {
-	NONE = 0, 		#0
-	DEATH = 1 << 0, 	#1
-	POISON = 1 << 1, 	#2
-	BURN = 1 << 2, 		#4
-	FROZEN = 1 << 3, 	#8
-	PARALYSIS = 1 << 4, #16
-	CONFUSED = 1 << 5, 	#36
-	SILENCE = 1 << 6, 	#64
-}
-
 ## Target takes damage
 ## Use this to do "heal" damage as well
 func damage_target(_source : Actor, target : Actor, args : Dictionary):
@@ -31,7 +20,6 @@ func damage_target(_source : Actor, target : Actor, args : Dictionary):
 		damage.critical = true
 	
 	target.take_damage(damage)
-
 
 func calculate_physical_damage(attacker : Actor, defender : Actor) -> Damage:
 	var atk = attacker.get_atk()
@@ -64,7 +52,6 @@ func show_floating_text(parent, text : String, color : Color = Color.WHITE, offs
 	parent.add_child(label)
 	label.float_up(text, color)
 
-
 func get_enemy_battlers():
 	return get_all_battlers().filter(func(b): return b is EnemyBattler)
 
@@ -73,3 +60,40 @@ func get_character_battlers():
 
 func get_all_battlers():
 	return get_tree().get_nodes_in_group("battler")
+
+#region StatusEffects
+
+func get_status_effect(actor : Actor, alias : String):
+	var result = null
+	for e in actor.status_effects:
+		if e.alias == alias:
+			result = e
+	return result
+
+func apply_status_effect(actor : Actor, new_effect : StatusEffect):
+	var existing = get_status_effect(actor, new_effect.alias)
+	if existing:
+		if existing.has("add_stacks"):
+			existing.add_stacks(1)
+		else:
+			# TODO Instead of erase, can we replace the value at index?
+			actor.status_effects.erase(existing)
+	
+	# Add the effect
+	new_effect.actor = actor
+	actor.status_effects.append(new_effect)
+	
+	new_effect._on_applied()
+
+
+func remove_status_effect_by_alias(actor : Actor, alias : String):
+	var effect : StatusEffect = get_status_effect(actor, alias)
+	remove_status_effect(actor, effect)
+
+
+func remove_status_effect(actor : Actor, effect : StatusEffect):
+	actor.status_effects.erase(effect)
+	effect._on_removed()
+
+
+#endregion

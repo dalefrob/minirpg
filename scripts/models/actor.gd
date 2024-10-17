@@ -81,9 +81,14 @@ func heal_damage(damage : Damage):
 		hp = max_hp
 
 
-func update_status():
+func update_status_effects():
 	defending = false
-	# call poison, status updates etc.
+	var expired = []
 	for effect in status_effects:
 		effect.actor = self
 		effect._update()
+		if effect.duration == 0:
+			expired.append(effect)
+	# Remove all expired
+	for e in expired:
+		BattleHelper.remove_status_effect(self, e)

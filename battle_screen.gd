@@ -52,6 +52,9 @@ func load_encounter(encounter : Encounter):
 	turn_system.all_turns_processed.connect(on_all_turns_processed)
 	
 	start_new_round()
+	var a = Globals.party[0] as Actor
+	BattleHelper.apply_status_effect(a, load("res://data/test_data/add_strength_SE.tres"))
+	BattleHelper.apply_status_effect(a, load("res://data/test_data/regen1_SE.tres"))
 
 
 # Spawns the party on the screen
@@ -119,7 +122,7 @@ func on_turn_started(turn : Turn):
 
 
 func on_turn_ended(turn : Turn):
-	turn.actor.update_status()
+	turn.actor.update_status_effects()
 	print("%s's turn ended" % turn.battler.actor.name)
 	
 	if is_all_enemies_defeated():

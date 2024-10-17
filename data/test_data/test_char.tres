@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=19 format=3 uid="uid://c6krejn11uinb"]
+[gd_resource type="Resource" script_class="Character" load_steps=15 format=3 uid="uid://c6krejn11uinb"]
 
 [ext_resource type="Resource" uid="uid://d0c7bhnf7dou8" path="res://data/items/body_1.tres" id="1_m6016"]
 [ext_resource type="Script" path="res://scripts/models/equipment.gd" id="2_yn5do"]
@@ -13,37 +13,20 @@
 [ext_resource type="Resource" uid="uid://bjhtbtuot6xw1" path="res://data/test_data/test_stats.tres" id="9_2v0fb"]
 [ext_resource type="Texture2D" uid="uid://dbhfow0mgtct0" path="res://sprites/char/Female_02.png" id="10_fslnv"]
 [ext_resource type="Script" path="res://scripts/models/status_effect.gd" id="12_v2co4"]
-[ext_resource type="Script" path="res://scripts/damage.gd" id="13_jmrwa"]
-[ext_resource type="Script" path="res://scripts/models/status_effect_dot.gd" id="14_pa8xb"]
 
 [sub_resource type="Resource" id="Resource_7n544"]
 script = ExtResource("2_yn5do")
 body = ExtResource("1_m6016")
 weapon = ExtResource("3_k38qp")
 
-[sub_resource type="Resource" id="Resource_foriu"]
-script = ExtResource("13_jmrwa")
-amount = 100
-element = 8
-heal = true
-
-[sub_resource type="Resource" id="Resource_mamyl"]
-script = ExtResource("14_pa8xb")
-total_damage = SubResource("Resource_foriu")
-alias = "regen1"
-name = "Regen"
-max_duration = 4
-negative_effect = false
-persists = false
-
 [resource]
 script = ExtResource("4_hbwow")
 texture = ExtResource("10_fslnv")
 equipment = SubResource("Resource_7n544")
-inventory = Array[ExtResource("4_qs0m8")]([ExtResource("5_lj8lx"), ExtResource("5_lj8lx")])
+inventory = Array[ExtResource("4_qs0m8")]([ExtResource("5_lj8lx")])
 name = "Lydia"
 stats = ExtResource("9_2v0fb")
 skills = Array[ExtResource("5_s5y3c")]([ExtResource("6_qyjng"), ExtResource("7_1x4t8"), ExtResource("8_u6foy")])
 weakness = 0
-status_effects = Array[ExtResource("12_v2co4")]([SubResource("Resource_mamyl")])
+status_effects = Array[ExtResource("12_v2co4")]([])
 status = 16
