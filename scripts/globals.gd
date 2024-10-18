@@ -32,5 +32,8 @@ func start_encounter(encounter : Encounter):
 	get_tree().change_scene_to_packed(battle_screen)
 	await get_tree().tree_changed
 	var scene = get_tree().current_scene as BattleScreen
-
 	scene.load_encounter(encounter)
+
+
+func return_to_overworld():
+	get_tree().change_scene_to_packed(world_screen)

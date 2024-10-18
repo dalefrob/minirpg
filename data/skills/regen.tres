@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://dp84skwcquabj"]
+
+[ext_resource type="Script" path="res://scripts/models/skill.gd" id="1_oxsgr"]
+
+[resource]
+script = ExtResource("1_oxsgr")
+name = "Regen"
+ingame_description = "Applies a regen buff"
+category = 1
+mana_cost = 6
+target_aoe = false
+target_ally = true
+function_alias = "apply_statuseffect"
+args = {}

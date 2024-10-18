@@ -129,6 +129,11 @@ func on_turn_ended(turn : Turn):
 		battle_state = BattleState.BATTLE_WON
 		battle_text.text = "You won!"
 		var _center = DisplayServer.window_get_size(0) / 2
+		await get_tree().create_timer(2).timeout
+		
+		# TODO -- Goto battle result screen? Levels.
+		# Go back to the overworld
+		Globals.return_to_overworld()
 
 
 func on_all_turns_processed():
