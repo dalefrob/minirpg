@@ -71,9 +71,9 @@ func get_status_effect(actor : Actor, alias : String):
 	return result
 
 func apply_status_effect(actor : Actor, new_effect : StatusEffect):
-	var existing = get_status_effect(actor, new_effect.alias)
+	var existing = get_status_effect(actor, new_effect.alias) as StatusEffect
 	if existing:
-		if existing.has("add_stacks"):
+		if existing.has_method("add_stacks"):
 			existing.add_stacks(1)
 		else:
 			# TODO Instead of erase, can we replace the value at index?
@@ -94,6 +94,7 @@ func remove_status_effect_by_alias(actor : Actor, alias : String):
 func remove_status_effect(actor : Actor, effect : StatusEffect):
 	actor.status_effects.erase(effect)
 	effect._on_removed()
+	
 
 
 #endregion
