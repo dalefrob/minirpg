@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://dp84skwcquabj"]
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://dp84skwcquabj"]
 
+[ext_resource type="Resource" uid="uid://lgx5ycd3f2w7" path="res://data/test_data/regen1_SE.tres" id="1_dp3sx"]
 [ext_resource type="Script" path="res://scripts/models/skill.gd" id="1_oxsgr"]
 
 [resource]
@@ -10,5 +11,7 @@ category = 1
 mana_cost = 6
 target_aoe = false
 target_ally = true
-function_alias = "apply_statuseffect"
-args = {}
+function_alias = "skill_add_status_effect"
+args = {
+"effect": ExtResource("1_dp3sx")
+}

@@ -8,10 +8,10 @@
 [ext_resource type="Resource" uid="uid://i20kyv7mjx8h" path="res://data/items/peridot.tres" id="5_lj8lx"]
 [ext_resource type="Script" path="res://scripts/models/skill.gd" id="5_s5y3c"]
 [ext_resource type="Resource" uid="uid://cdpbdhc8cmpd8" path="res://data/skills/fire.tres" id="6_qyjng"]
-[ext_resource type="Resource" uid="uid://ukilrlt42l6w" path="res://data/skills/cure.tres" id="7_1x4t8"]
 [ext_resource type="Resource" uid="uid://cnppld8wvliel" path="res://data/skills/firaga.tres" id="8_u6foy"]
 [ext_resource type="Resource" uid="uid://bjhtbtuot6xw1" path="res://data/test_data/test_stats.tres" id="9_2v0fb"]
 [ext_resource type="Texture2D" uid="uid://dbhfow0mgtct0" path="res://sprites/char/Female_02.png" id="10_fslnv"]
+[ext_resource type="Resource" uid="uid://dp84skwcquabj" path="res://data/skills/regen.tres" id="10_jrbjs"]
 [ext_resource type="Script" path="res://scripts/models/status_effect.gd" id="12_v2co4"]
 
 [sub_resource type="Resource" id="Resource_7n544"]
@@ -26,7 +26,7 @@ equipment = SubResource("Resource_7n544")
 inventory = Array[ExtResource("4_qs0m8")]([ExtResource("5_lj8lx")])
 name = "Lydia"
 stats = ExtResource("9_2v0fb")
-skills = Array[ExtResource("5_s5y3c")]([ExtResource("6_qyjng"), ExtResource("7_1x4t8"), ExtResource("8_u6foy")])
+skills = Array[ExtResource("5_s5y3c")]([ExtResource("6_qyjng"), ExtResource("8_u6foy"), ExtResource("10_jrbjs")])
 weakness = 0
 status_effects = Array[ExtResource("12_v2co4")]([])
 status = 16

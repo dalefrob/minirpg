@@ -23,3 +23,6 @@ res://world_screen.tscn
 res://3d/scenes/modular_crossroads.tscn
 res://scripts/battle_helper.gd
 res://battle_screen.gd
+res://data/skills/regen.tres
+res://data/test_data/regen1_SE.tres
+res://scripts/models/status_effect_dot.gd

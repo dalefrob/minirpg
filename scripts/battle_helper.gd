@@ -37,11 +37,12 @@ func calculate_physical_damage(attacker : Actor, defender : Actor) -> Damage:
 
 # show a battle animation anywhere in the game
 func show_battle_animation(scene : PackedScene, global_position = Vector2.ZERO, callback : Callable = func():):
-	var battle_anim : BattleAnimation = scene.instantiate()
-	battle_anim.global_position = global_position
-	battle_anim.z_index = 1
-	add_child(battle_anim)
-	await battle_anim.finished
+	if scene: # Show animation if there is one
+		var battle_anim : BattleAnimation = scene.instantiate()
+		battle_anim.global_position = global_position
+		battle_anim.z_index = 1
+		add_child(battle_anim)
+		await battle_anim.finished
 	callback.call()
 
 func show_floating_text(parent, text : String, color : Color = Color.WHITE, offset : Vector2 = Vector2.ZERO, crit = false):
@@ -61,6 +62,9 @@ func get_character_battlers():
 func get_all_battlers():
 	return get_tree().get_nodes_in_group("battler")
 
+func skill_add_status_effect(_source : Actor, target : Actor, args : Dictionary):
+	apply_status_effect(target, args.effect)
+
 #region StatusEffects
 
 func get_status_effect(actor : Actor, alias : String):
@@ -73,11 +77,9 @@ func get_status_effect(actor : Actor, alias : String):
 func apply_status_effect(actor : Actor, new_effect : StatusEffect):
 	var existing = get_status_effect(actor, new_effect.alias) as StatusEffect
 	if existing:
-		if existing.has_method("add_stacks"):
-			existing.add_stacks(1)
-		else:
-			# TODO Instead of erase, can we replace the value at index?
-			actor.status_effects.erase(existing)
+		# NOTE Removed stacks due to unbalanced gameplay
+		# TODO Instead of erase, can we replace the value at index?
+		actor.status_effects.erase(existing)
 	
 	# Add the effect
 	new_effect.actor = actor

@@ -52,9 +52,6 @@ func load_encounter(encounter : Encounter):
 	turn_system.all_turns_processed.connect(on_all_turns_processed)
 	
 	start_new_round()
-	var a = Globals.party[0] as Actor
-	BattleHelper.apply_status_effect(a, load("res://data/test_data/add_strength_SE.tres").duplicate())
-	BattleHelper.apply_status_effect(a, load("res://data/test_data/regen1_SE.tres").duplicate())
 
 
 # Spawns the party on the screen
