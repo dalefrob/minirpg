@@ -12,14 +12,19 @@ class_name StatusEffect
 var actor : Actor # The actor that is affected
 var duration : int
 
-func _init() -> void:
+func _on_applied():
+	print_rich("[color=orange]%s was applied to %s[/color]" % [alias, actor.name])
 	duration = max_duration
 
-func _on_applied():
-	pass
-
 func _update():
-	pass
+	if max_duration > 0:
+		duration -= 1
 
 func _on_removed():
-	pass
+	print_rich("[color=orange]%s was removed from %s[/color]" % [alias, actor.name])
+
+func _is_equal_to(_other : StatusEffect):
+	return self.alias == _other.alias
+
+func _is_more_potent(_other):
+	return true

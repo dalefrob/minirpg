@@ -1,3 +1,4 @@
+res://data/test_data
 res://data/items
 res://3d/scenes
 res://3d/materials
@@ -8,5 +9,4 @@ res://sprites/battle_anims
 res://data/skills
 res://skill_fx_scenes
 res://scripts
-res://data/test_data
 res://data

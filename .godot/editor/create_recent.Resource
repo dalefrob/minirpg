@@ -1,3 +1,4 @@
+AddStatModiferStatusEffect
 Consumable
 Skill
 Enemy
