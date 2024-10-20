@@ -3,7 +3,11 @@ class_name WorldScreen
 
 
 func _ready() -> void:
+	var arr = []
 	for i in range(1,99):
+		arr = [i]
+		arr.append_array(BattleHelper.get_stats_for_level(i))
+		print("LVL %s STR %s INT %s AGI %s STAM %s" % arr)
 		print("LVL %s : EXP %s" % [i+1, BattleHelper.get_exp_for_next_level(i)])
 
 

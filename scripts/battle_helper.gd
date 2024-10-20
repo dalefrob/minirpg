@@ -101,7 +101,29 @@ func remove_status_effect(actor : Actor, effect : StatusEffect):
 
 #endregion
 
+# Formulas
+
 func get_exp_for_next_level(current_level : int):
 	var base_xp = 6
 	var factor = 1.5
 	return floori(base_xp * (pow(current_level + 1, factor)))
+
+func get_stats_for_level(level) -> Array:
+	return [
+		get_base_str_for_level(level),
+		get_base_int_for_level(level),
+		get_base_agi_for_level(level),
+		get_base_stam_for_level(level),
+	]
+
+func get_base_str_for_level(level : int):
+	return 5 + floori(level * 1.5)
+
+func get_base_int_for_level(level : int):
+	return 5 + floori(level * 0.8)
+
+func get_base_agi_for_level(level : int):
+	return 5 + floori(level * 1.2)
+
+func get_base_stam_for_level(level : int):
+	return 5 + floori(level * 2)
