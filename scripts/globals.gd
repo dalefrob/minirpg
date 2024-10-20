@@ -25,7 +25,7 @@ func load_test_party():
 	#party.append(char2)
 	# Test party
 	for member in party:
-		member.full_heal()
+		member._initialize()
 
 
 func start_encounter(encounter : Encounter):

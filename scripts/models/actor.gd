@@ -24,6 +24,10 @@ var defending : bool = false
 var is_dead : bool:
 	get: return hp <= 0
 
+# Called after a new instance
+func _initialize():
+	full_heal()
+
 # set hp and mp to maximum values
 func full_heal():
 	hp = get_max_hp()

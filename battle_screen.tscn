@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://i13cfqmk47or"]
+[gd_scene load_steps=9 format=3 uid="uid://i13cfqmk47or"]
 
 [ext_resource type="Script" path="res://battle_screen.gd" id="1_h8i7e"]
 [ext_resource type="Texture2D" uid="uid://ddq6mha0vfqlt" path="res://sprites/bg/cavern/bg_6.png" id="2_73l8l"]
 [ext_resource type="Script" path="res://scripts/turn_system.gd" id="4_fauym"]
 [ext_resource type="Script" path="res://canvas_layer_ui.gd" id="5_xqck5"]
 [ext_resource type="PackedScene" uid="uid://duv7jvvxkv5kj" path="res://message_panel.tscn" id="6_5efsl"]
+[ext_resource type="Theme" uid="uid://qg8kl4avrqtv" path="res://ui/main_ui.tres" id="7_p8ihk"]
+[ext_resource type="Texture2D" uid="uid://dbhfow0mgtct0" path="res://sprites/char/Female_02.png" id="8_opmk7"]
 [ext_resource type="PackedScene" uid="uid://dqwvo14eckff3" path="res://character_ui.tscn" id="10_d6v5k"]
 
 [node name="BattleScreen" type="Node"]
@@ -63,7 +65,6 @@ size_flags_vertical = 3
 
 [node name="BattleMenuMessagePanel" parent="UI" instance=ExtResource("6_5efsl")]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 2
 anchor_left = 0.0
 anchor_top = 1.0
@@ -75,6 +76,53 @@ offset_right = 275.0
 offset_bottom = -31.0
 grow_horizontal = 1
 grow_vertical = 0
+
+[node name="GridContainer" type="GridContainer" parent="UI"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("7_p8ihk")
+
+[node name="Panel" type="Panel" parent="UI/GridContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="UI/GridContainer/Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 86.0
+offset_bottom = 95.0
+texture = ExtResource("8_opmk7")
+expand_mode = 1
+
+[node name="Name" type="Label" parent="UI/GridContainer/Panel"]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 5.0
+offset_right = 269.0
+offset_bottom = 28.0
+text = "Lydia"
+
+[node name="Level" type="Label" parent="UI/GridContainer/Panel"]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 49.0
+offset_right = 269.0
+offset_bottom = 72.0
+text = "LVL: 1"
+
+[node name="ExperienceToLevel" type="Label" parent="UI/GridContainer/Panel"]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 70.0
+offset_right = 269.0
+offset_bottom = 93.0
+text = "EXP: 0000000"
+
+[node name="Panel2" type="Panel" parent="UI/GridContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
 
 [connection signal="child_entered_tree" from="UI/BattleMenuMessagePanel" to="UI/BattleMenuMessagePanel" method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="UI/BattleMenuMessagePanel" to="UI/BattleMenuMessagePanel" method="_on_child_exiting_tree"]

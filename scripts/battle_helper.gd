@@ -100,3 +100,8 @@ func remove_status_effect(actor : Actor, effect : StatusEffect):
 
 
 #endregion
+
+func get_exp_for_next_level(current_level : int):
+	var base_xp = 6
+	var factor = 1.5
+	return floori(base_xp * (pow(current_level + 1, factor)))
