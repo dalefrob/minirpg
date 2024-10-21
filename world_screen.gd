@@ -3,6 +3,8 @@ class_name WorldScreen
 
 
 func _ready() -> void:
+	return
+	
 	var arr = []
 	for i in range(1,99):
 		arr = [i]

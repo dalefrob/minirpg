@@ -3,25 +3,29 @@ extends Resource
 class_name Actor
 
 @export var name : String
-@export var stats : Stats
+
+@export var level : int = 1
+@export var base_strength = 1
+@export var base_agility = 1
+@export var base_intellect = 1
+
+var hp : int
+var mp : int
+
+var defense : int = 0
+var resistances = {}
+
 @export var skills : Array[Skill]
 @export var weakness : Damage.Element
 
 @export var status_effects : Array[StatusEffect]
+var stat_modifiers : Array[StatModifer]
 
-@export var status : int = 0 # Obsolete
+var defending : bool = false
 
 signal took_damage
 signal healed_damage
 signal health_depleted
-signal status_changed
-
-# current values
-var hp : int
-var mp : int
-var defending : bool = false
-
-var defense : int = 0
 
 
 var is_dead : bool:
@@ -31,31 +35,36 @@ var is_dead : bool:
 func _initialize():
 	full_heal()
 
+func _calculate_stats():
+	pass
+
 # set hp and mp to maximum values
 func full_heal():
 	hp = get_max_hp()
 	mp = get_max_mp()
 
 func get_max_hp():
-	return get_stat_total(Stats.StatType.STR) * 2
+	return get_strength() * 4
 
 func get_max_mp():
-	return get_stat_total(Stats.StatType.INT) * 5
+	return get_intellect() * 2
 
-# Get stat by alias to save duplication of code
-func get_stat_total(stat_id : int):
-	var _total = 0
-	_total += stats.get_stat(stat_id)
-	return _total
+func get_strength():
+	return base_strength
 
-# Attack damage
+func get_agility():
+	return base_agility
+
+func get_intellect():
+	return base_intellect
+
 func get_atk():
-	var base = get_stat_total(Stats.StatType.STR) # + weapon damage
-	return base
+	return get_strength()
 
-# Defense
 func get_def():
-	return defense + get_stat_total(Stats.StatType.AGI) / 2
+	return defense + (get_agility() / 2.0)
+
+
 
 func take_damage(damage : Damage):
 	if damage.heal: # Heal instead?

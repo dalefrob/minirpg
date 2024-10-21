@@ -1,17 +1,10 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=7 format=3 uid="uid://darhviidgex04"]
+[gd_resource type="Resource" script_class="Enemy" load_steps=6 format=3 uid="uid://darhviidgex04"]
 
-[ext_resource type="Script" path="res://scripts/models/enemy.gd" id="1_lcud6"]
-[ext_resource type="Script" path="res://scripts/models/skill.gd" id="2_h3d0j"]
-[ext_resource type="Script" path="res://scripts/models/stats.gd" id="2_hbqtm"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/enemy.gd" id="1_lcud6"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/skill.gd" id="2_h3d0j"]
 [ext_resource type="Texture2D" uid="uid://bxb70m5jr4jid" path="res://sprites/battlers/Clockwork Queen.png" id="2_qakox"]
 [ext_resource type="Resource" uid="uid://cdpbdhc8cmpd8" path="res://data/skills/fire.tres" id="4_1fiia"]
-
-[sub_resource type="Resource" id="Resource_2q5q5"]
-script = ExtResource("2_hbqtm")
-strength = 10
-intelligence = 15
-stamina = 6
-agility = 8
+[ext_resource type="Script" path="res://scripts/resource_scripts/status_effect.gd" id="4_71ino"]
 
 [resource]
 script = ExtResource("1_lcud6")
@@ -23,6 +16,10 @@ bonus_mag_def = 0
 loot_table = ""
 use_skills_chance = 0.25
 name = "Clockwork Queen"
-stats = SubResource("Resource_2q5q5")
+level = 1
+base_strength = 12
+base_agility = 15
+base_intellect = 20
 skills = Array[ExtResource("2_h3d0j")]([ExtResource("4_1fiia")])
 weakness = 1
+status_effects = Array[ExtResource("4_71ino")]([])

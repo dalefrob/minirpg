@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Encounter" load_steps=5 format=3 uid="uid://c1thlgta7qt3a"]
 
-[ext_resource type="Script" path="res://scripts/models/encounter.gd" id="1_ns5wb"]
-[ext_resource type="Script" path="res://scripts/models/actor.gd" id="1_yoipm"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/encounter.gd" id="1_ns5wb"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/actor.gd" id="1_yoipm"]
 [ext_resource type="Resource" uid="uid://darhviidgex04" path="res://data/test_data/test_enemy.tres" id="2_w0nkh"]
 [ext_resource type="Resource" uid="uid://cw5w2v6kra4xm" path="res://data/test_data/test_enemy_2.tres" id="3_b1dju"]
 

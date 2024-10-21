@@ -1,30 +1,36 @@
 extends Actor
 class_name Character
 
+@export var job : Job
+
 @export var texture : Texture2D
 @export var equipment : Equipment
 
-@export var level : int = 1
 var exp_to_next_level : int = 0
 
 signal leveled_up
 
 func _initialize():
 	super._initialize()
+	_calculate_stats()
 	exp_to_next_level -= BattleHelper.get_exp_for_next_level(level)
 
-# Get stat by alias to save duplication of code
-func get_stat_total(stat_id : int):
-	var _total = 0
-	# add base value
-	_total += stats.get_stat(stat_id)
-	# add equipment stats
-	_total += equipment.get_equipment_stat_total(stat_id)
-	return _total
+func get_strength():
+	return base_strength + equipment.get_equipment_stat_total("str")
+
+func get_agility():
+	return base_agility + equipment.get_equipment_stat_total("agi")
+
+func get_intellect():
+	return base_intellect + equipment.get_equipment_stat_total("int")
 
 func get_atk():
-	var base = super.get_atk() # + weapon damage
-	return base
+	var total = super.get_atk() # + weapon damage
+	var weapon = equipment.get_slots()[Equipment.Slot.WEAPON] as EquippableItem
+	if weapon:
+		total += weapon.add_attack
+		
+	return total
 
 func add_exp(amount : int):
 	print("%s gained %s exp" % [name, amount])
@@ -40,9 +46,15 @@ func add_exp(amount : int):
 			exp_to_next_level += amount
 			amount = 0
 
-
 func level_up():
 	level += 1
 	print("%s reached level %s" % [name, level])
 	leveled_up.emit()
+	_calculate_stats()
+	full_heal()
 	exp_to_next_level -= BattleHelper.get_exp_for_next_level(level)
+
+func _calculate_stats():
+	base_strength = job.get_base_strength_for_level(level)
+	base_agility = job.get_base_agility_for_level(level)
+	base_intellect = job.get_base_intellect_for_level(level)

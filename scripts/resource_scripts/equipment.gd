@@ -18,11 +18,12 @@ func get_slots():
 		Slot.WEAPON: weapon,
 	}
 
-func get_equipment_stat_total(stat_id : int):
+func get_equipment_stat_total(stat_alias : String):
 	var _total = 0
-	for item in get_slots().values():
-		if item:
-			_total += (item as EquippableItem).stats.get_stat(stat_id)
+	for e_item in (get_slots().values() as Array[EquippableItem]):
+		if e_item:
+			if e_item.get_stat_dict().has(stat_alias):
+				_total += e_item.get_stat_dict()[stat_alias]
 	return _total
 
 func equip(item : EquippableItem):

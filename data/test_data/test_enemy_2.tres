@@ -1,16 +1,10 @@
 [gd_resource type="Resource" script_class="Enemy" load_steps=6 format=3 uid="uid://cw5w2v6kra4xm"]
 
-[ext_resource type="Script" path="res://scripts/models/enemy.gd" id="1_kox8j"]
-[ext_resource type="Script" path="res://scripts/models/stats.gd" id="2_a0d3r"]
-[ext_resource type="Script" path="res://scripts/models/skill.gd" id="2_tlhxu"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/enemy.gd" id="1_kox8j"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/skill.gd" id="2_tlhxu"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/status_effect.gd" id="3_46t5r"]
+[ext_resource type="Resource" uid="uid://ukilrlt42l6w" path="res://data/skills/cure.tres" id="3_q5f0t"]
 [ext_resource type="Texture2D" uid="uid://du0qwkq25tv3m" path="res://sprites/battlers/Dark Elves Healer Priestess.png" id="3_tme22"]
-
-[sub_resource type="Resource" id="Resource_1ykx6"]
-script = ExtResource("2_a0d3r")
-strength = 1
-intelligence = 5
-stamina = 5
-agility = 2
 
 [resource]
 script = ExtResource("1_kox8j")
@@ -22,6 +16,10 @@ bonus_mag_def = 0
 loot_table = ""
 use_skills_chance = 0.25
 name = "Dark Healer"
-stats = SubResource("Resource_1ykx6")
-skills = Array[ExtResource("2_tlhxu")]([])
+level = 12
+base_strength = 10
+base_agility = 11
+base_intellect = 11
+skills = Array[ExtResource("2_tlhxu")]([ExtResource("3_q5f0t")])
 weakness = 0
+status_effects = Array[ExtResource("3_46t5r")]([])
