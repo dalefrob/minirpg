@@ -117,7 +117,7 @@ func get_stats_for_level(level) -> Array:
 	]
 
 func get_base_str_for_level(level : int):
-	return 5 + floori(level * 1.5)
+	return 5 + floori(level * 1)
 
 func get_base_int_for_level(level : int):
 	return 5 + floori(level * 0.8)

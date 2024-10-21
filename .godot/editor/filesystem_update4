@@ -1,4 +1,4 @@
-res://world_screen.tscn
+res://character_battler.tscn
 res://3d/materials/walls.tres
 res://3d/materials/floor.tres
 res://ui/default_style_box.tres
@@ -8,15 +8,13 @@ res://data/items/body_1.tres
 res://data/items/sword_1.tres
 res://data/skills/fire.tres
 res://data/skills/firaga.tres
+res://data/test_data/test_stats.tres
 res://data/test_data/regen1_SE.tres
 res://data/skills/regen.tres
 res://data/test_data/test_char.tres
 res://data/items/wand_1.tres
 res://data/skills/cure.tres
 res://data/test_data/test_char_2.tres
-res://scripts/battle_helper.gd
-res://world_screen.gd
-res://character_battler.tscn
 res://skill_fx_scenes/fire.tscn
 res://skill_fx_scenes/firaga.tscn
 res://skill_fx_scenes/cure.tscn
@@ -24,8 +22,10 @@ res://character_ui.tscn
 res://floating_text.tscn
 res://battle_screen.tscn
 res://message_panel.tscn
+res://world_screen.tscn
 res://3d/scenes/modular_crossroads.tscn
-res://scripts/models/character.gd
+res://scripts/battle_helper.gd
+res://scripts/models/actor.gd
 res://scripts/models/stats.gd
-res://scripts/models/job.gd
-res://data/test_data/test_stats.tres
+res://scripts/models/character.gd
+res://scripts/models/weapon.gd

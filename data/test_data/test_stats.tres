@@ -6,6 +6,10 @@
 [sub_resource type="Resource" id="Resource_gh15u"]
 script = ExtResource("1_ushlq")
 name = "Warrior"
+starting_strength = 5
+starting_agility = 5
+starting_intellect = 5
+starting_stamina = 5
 strength_growth_factor = 1.5
 agility_growth_factor = 1.25
 intellect_growth_factor = 0.5

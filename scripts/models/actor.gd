@@ -21,6 +21,9 @@ var hp : int
 var mp : int
 var defending : bool = false
 
+var defense : int = 0
+
+
 var is_dead : bool:
 	get: return hp <= 0
 
@@ -34,7 +37,7 @@ func full_heal():
 	mp = get_max_mp()
 
 func get_max_hp():
-	return get_stat_total(Stats.StatType.STA) * 10
+	return get_stat_total(Stats.StatType.STR) * 2
 
 func get_max_mp():
 	return get_stat_total(Stats.StatType.INT) * 5
@@ -45,11 +48,14 @@ func get_stat_total(stat_id : int):
 	_total += stats.get_stat(stat_id)
 	return _total
 
+# Attack damage
 func get_atk():
-	return get_stat_total(Stats.StatType.STR) * 2
+	var base = get_stat_total(Stats.StatType.STR) # + weapon damage
+	return base
 
+# Defense
 func get_def():
-	return get_stat_total(Stats.StatType.AGI) / 2
+	return defense + get_stat_total(Stats.StatType.AGI) / 2
 
 func take_damage(damage : Damage):
 	if damage.heal: # Heal instead?

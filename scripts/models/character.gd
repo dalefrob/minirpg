@@ -22,6 +22,9 @@ func get_stat_total(stat_id : int):
 	_total += equipment.get_equipment_stat_total(stat_id)
 	return _total
 
+func get_atk():
+	var base = super.get_atk() # + weapon damage
+	return base
 
 func add_exp(amount : int):
 	print("%s gained %s exp" % [name, amount])
