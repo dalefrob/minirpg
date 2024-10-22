@@ -11,3 +11,4 @@ class_name Enemy
 @export var loot_table : String
 
 @export var use_skills_chance : float = 0.25
+@export var experience : int

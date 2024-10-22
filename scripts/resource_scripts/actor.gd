@@ -58,13 +58,19 @@ func get_agility():
 func get_intellect():
 	return base_intellect
 
+# Battle Stats
+
 func get_atk():
 	return get_strength()
 
 func get_def():
 	return defense + (get_agility() / 2.0)
 
+func get_magic_attack_power():
+	return get_intellect() / 2.0
 
+func get_magic_defense():
+	return get_intellect() / 4.0
 
 func take_damage(damage : Damage):
 	if damage.heal: # Heal instead?

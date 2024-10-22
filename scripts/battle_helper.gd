@@ -5,21 +5,35 @@ extends Node
 ## Target takes damage
 ## Use this to do "heal" damage as well
 func damage_target(_source : Actor, target : Actor, args : Dictionary):
-	var amount = args["amount"]
 	var element = Damage.Element.NONE
+	var amount = args["amount"]
+	var magic = false
 	if args.has("element"):
+		magic = true
 		element = args["element"]
-	
 	var damage = Damage.create(amount, element, args.has("heal"))
+	if magic:
+		damage.add(calculate_magic_damage(element, _source, target))
 	# apply weakness to element
 	if damage.element != Damage.Element.NONE and target.weakness == damage.element:
-		damage.amount *= 2
+		damage.amount *= 1.5
 	
 	# critical strike
 	if randf() < 0.3:
 		damage.critical = true
 	
 	target.take_damage(damage)
+
+func calculate_magic_damage(element : Damage.Element, attacker : Actor, defender : Actor):
+	var m_atk = attacker.get_magic_attack_power()
+	var m_def = defender.get_magic_defense()
+	var amount = m_atk - m_def
+	if amount < 0:
+		amount = 0
+	var damage = Damage.create(amount, element)
+	if randf() < 0.1:
+		damage.critical = true
+	return damage
 
 func calculate_physical_damage(attacker : Actor, defender : Actor) -> Damage:
 	var atk = attacker.get_atk()

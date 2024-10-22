@@ -15,6 +15,7 @@ bonus_phys_def = 0
 bonus_mag_def = 0
 loot_table = ""
 use_skills_chance = 0.25
+experience = 300
 name = "Dark Healer"
 level = 12
 base_strength = 10

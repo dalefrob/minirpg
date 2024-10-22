@@ -19,4 +19,5 @@ func _on_button_pressed() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
-		Globals.party[0].add_exp(500)
+		for char in Globals.party:
+			char.add_exp(500)

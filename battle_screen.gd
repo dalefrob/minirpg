@@ -126,14 +126,28 @@ func on_turn_ended(turn : Turn):
 		turn_system.all_turns_processed.disconnect(on_all_turns_processed)
 		turn_system.stop()
 		
-		battle_state = BattleState.BATTLE_WON
-		battle_text.text = "You won!"
-		var _center = DisplayServer.window_get_size(0) / 2
-		await get_tree().create_timer(2).timeout
-		
-		# TODO -- Goto battle result screen? Levels.
-		# Go back to the overworld
-		Globals.return_to_overworld()
+		win_battle()
+
+
+func win_battle():
+	battle_state = BattleState.BATTLE_WON
+	battle_text.text = "You won!"
+	var _center = DisplayServer.window_get_size(0) / 2
+	await get_tree().create_timer(2).timeout
+	reward_experience()
+	# Go back to the overworld
+	Globals.return_to_overworld()
+
+
+func reward_experience():
+	# Get the total experience
+	var total_exp = 0
+	for eb in get_enemy_battlers():
+		total_exp += (eb.enemy as Enemy).experience
+	# Divide the experience between the characters who are still alive
+	var alive_characters = get_character_battlers().filter(func(b): return !b.actor.is_dead )
+	for cb in alive_characters:
+		(cb.actor as Character).add_exp(total_exp / alive_characters.size())
 
 
 func on_all_turns_processed():

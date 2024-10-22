@@ -21,6 +21,11 @@ enum Element {
 var nullify_defend : bool = true
 var critical : bool
 
+func add(other : Damage):
+	if other.amount > self.amount:
+		self.element = other.element
+	self.amount += other.amount
+
 static func create(_amount : int, _element = Element.NONE, _heal = false) -> Damage:
 	var dmg = Damage.new()
 	dmg.amount = _amount
