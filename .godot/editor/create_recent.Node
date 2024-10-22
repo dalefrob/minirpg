@@ -1,7 +1,9 @@
 Label
-TextureRect
-Panel
 GridContainer
+Panel
+PanelContainer
+VBoxContainer
+TextureRect
 DirectionalLight3D
 OmniLight3D
 Camera3D
@@ -10,6 +12,3 @@ CollisionShape3D
 MeshInstance3D
 CharacterBody3D
 GridMap
-ItemList
-RichTextLabel
-PanelContainer

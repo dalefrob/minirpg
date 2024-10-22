@@ -1,0 +1,185 @@
+[gd_scene load_steps=6 format=3 uid="uid://cix0gc0ycs3mw"]
+
+[ext_resource type="Theme" uid="uid://qg8kl4avrqtv" path="res://ui/main_ui.tres" id="1_5plg8"]
+[ext_resource type="FontFile" uid="uid://bmtfu56s4wyxg" path="res://HomeVideo-BLG6G.ttf" id="2_e0ivs"]
+[ext_resource type="Script" path="res://battle_results_panel.gd" id="2_xcl82"]
+[ext_resource type="Texture2D" uid="uid://dbhfow0mgtct0" path="res://sprites/char/Female_02.png" id="3_3mt8b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_iqdax"]
+font = ExtResource("2_e0ivs")
+font_size = 20
+outline_size = 2
+outline_color = Color(0.906959, 0.528423, 5.77569e-07, 1)
+
+[node name="BattleResultsPanelContainer" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -124.0
+offset_right = 310.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5plg8")
+script = ExtResource("2_xcl82")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+
+[node name="HeaderPanel" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(620, 60)
+layout_mode = 2
+
+[node name="YouWon" type="Label" parent="VBoxContainer/HeaderPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.5
+offset_top = -25.5
+offset_right = 53.5
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You Won!"
+label_settings = SubResource("LabelSettings_iqdax")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EXPGained" type="Label" parent="VBoxContainer/HeaderPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 188.0
+offset_top = 1.5
+offset_right = 304.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "EXP: 0000000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="GoldGained" type="Label" parent="VBoxContainer/HeaderPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -303.5
+offset_top = 1.5
+offset_right = -178.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GOLD: 0000000"
+vertical_alignment = 1
+
+[node name="CharacterGrid" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_5plg8")
+
+[node name="CharacterPanel" type="Panel" parent="VBoxContainer/CharacterGrid"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="VBoxContainer/CharacterGrid/CharacterPanel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 86.0
+offset_bottom = 95.0
+texture = ExtResource("3_3mt8b")
+expand_mode = 1
+
+[node name="Name" type="Label" parent="VBoxContainer/CharacterGrid/CharacterPanel"]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 8.0
+offset_right = 269.0
+offset_bottom = 31.0
+text = "Lydia"
+
+[node name="Level" type="Label" parent="VBoxContainer/CharacterGrid/CharacterPanel"]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 51.0
+offset_right = 282.0
+offset_bottom = 74.0
+text = "LVL: 1"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ExperienceToLevel" type="Label" parent="VBoxContainer/CharacterGrid/CharacterPanel"]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 72.0
+offset_right = 283.0
+offset_bottom = 95.0
+text = "EXP: 0000000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="FooterPanel" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(620, 60)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/FooterPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.0
+offset_top = 7.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+text = "Items:"
+
+[node name="ItemGetGrid" type="GridContainer" parent="VBoxContainer/FooterPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -304.0
+offset_top = -30.0
+offset_right = 304.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+columns = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/FooterPanel/ItemGetGrid"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+text = "Potion"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/FooterPanel/ItemGetGrid"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+text = "Ring of Death"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer/FooterPanel/ItemGetGrid"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+text = "Spirit"
+horizontal_alignment = 1
+vertical_alignment = 1

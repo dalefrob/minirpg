@@ -19,3 +19,7 @@ config/icon="res://sprites/battlers/Dryads Warrior.png"
 
 Globals="*res://scripts/globals.gd"
 BattleHelper="*res://scripts/battle_helper.gd"
+
+[gui]
+
+theme/custom_font="res://bedstead.otf"
