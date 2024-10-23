@@ -2,7 +2,7 @@ extends Actor
 class_name Character
 
 @export var job : Job
-
+@export_color_no_alpha var unique_color = Color.WHITE
 @export var texture : Texture2D
 @export var equipment : Equipment
 

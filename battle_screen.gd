@@ -173,8 +173,10 @@ func show_main_battle_menu():
 	]
 	
 	#var msg_panel = ui.create_msg_panel_node(Vector2(50,400), "What will [color=yellow]%s[/color] do?" % current_turn.battler.actor.name)
+	var current_char = current_turn.battler.actor as Character
+	var hex_color = current_char.unique_color.to_html(false)
 	var menu = ui.create_menu(menu_items, on_menu_selected, func(): return false )
-	battlemenupanel.add_menu(menu, "What will %s do?" % current_turn.battler.name)
+	battlemenupanel.add_menu(menu, "What will [color=%s]%s[/color] do?" % [hex_color, current_char.name])
 
 	menu.grab_focus()
 	menu.select(0)

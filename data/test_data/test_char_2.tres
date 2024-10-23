@@ -29,6 +29,7 @@ intellect_growth_factor = 1.5
 [resource]
 script = ExtResource("4_rj0i8")
 job = SubResource("Resource_o63dv")
+unique_color = Color(0.3196, 0.68, 0.5899, 1)
 texture = ExtResource("8_2d8ic")
 equipment = SubResource("Resource_7n544")
 name = "Johnathan"

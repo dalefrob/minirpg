@@ -77,6 +77,7 @@ grow_horizontal = 1
 grow_vertical = 0
 
 [node name="BattleResultsPanelContainer" parent="UI" instance=ExtResource("7_qav4t")]
+visible = false
 
 [connection signal="child_entered_tree" from="UI/BattleMenuMessagePanel" to="UI/BattleMenuMessagePanel" method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="UI/BattleMenuMessagePanel" to="UI/BattleMenuMessagePanel" method="_on_child_exiting_tree"]

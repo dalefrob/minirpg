@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqwvo14eckff3"]
+[gd_scene load_steps=4 format=3 uid="uid://dqwvo14eckff3"]
 
 [ext_resource type="Theme" uid="uid://qg8kl4avrqtv" path="res://ui/main_ui.tres" id="1_ba5sr"]
 [ext_resource type="Texture2D" uid="uid://dbhfow0mgtct0" path="res://sprites/char/Female_02.png" id="1_cepdj"]
-[ext_resource type="FontFile" uid="uid://bfwt2mckoc2gu" path="res://AncientModernTales-a7Po.ttf" id="2_k12yg"]
 [ext_resource type="Script" path="res://scripts/character_ui.gd" id="2_kxiex"]
 
 [node name="PlayerUI" type="Panel"]
@@ -27,29 +26,26 @@ offset_left = 9.0
 offset_top = 6.0
 offset_right = 50.0
 offset_bottom = 29.0
-theme_override_fonts/font = ExtResource("2_k12yg")
-theme_override_font_sizes/font_size = 24
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
 text = "Lydia"
 
-[node name="HP" type="RichTextLabel" parent="."]
+[node name="HP" type="Label" parent="."]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 46.0
 offset_right = 149.0
 offset_bottom = 69.0
-text = "HP: 100/100"
-fit_content = true
-scroll_active = false
+text = "HP:"
 
-[node name="MP" type="RichTextLabel" parent="."]
+[node name="MP" type="Label" parent="."]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 70.0
 offset_right = 149.0
 offset_bottom = 93.0
-text = "MP: 20/20"
-fit_content = true
-scroll_active = false
+text = "MP:"
 
 [node name="PartyMemberUI" type="TextureRect" parent="."]
 show_behind_parent = true

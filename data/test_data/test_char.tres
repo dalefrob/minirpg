@@ -29,6 +29,7 @@ intellect_growth_factor = 0.5
 [resource]
 script = ExtResource("4_hkspy")
 job = SubResource("Resource_2rno4")
+unique_color = Color(0.8, 0.384, 0.543467, 1)
 texture = ExtResource("10_fslnv")
 equipment = SubResource("Resource_7n544")
 name = "Lydia"

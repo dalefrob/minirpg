@@ -13,7 +13,6 @@ var hp : int
 var mp : int
 
 var defense : int = 0
-var resistances = {}
 
 @export var skills : Array[Skill]
 @export var weakness : Damage.Element
@@ -87,10 +86,11 @@ func take_damage(damage : Damage):
 		
 	hp -= damage.amount
 	print("%s took %s damage" % [name, damage.amount])
-	took_damage.emit(damage)
 	if hp <= 0:
 		die()
 		health_depleted.emit()
+	else:
+		took_damage.emit(damage)
 
 
 func die():
