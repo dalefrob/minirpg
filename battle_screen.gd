@@ -16,7 +16,9 @@ var character_battler_pks = preload("res://character_battler.tscn")
 # Systems
 @onready var turn_system : TurnSystem = $TurnSystem
 @onready var ui : CanvasUI = $UI
+
 @onready var battlemenupanel = %BattleMenuMessagePanel
+@onready var battleresultspanel = %BattleResultsPanelContainer
 
 var current_turn : Turn:
 	get: return turn_system.current_turn
@@ -39,9 +41,11 @@ func get_all_battlers():
 @onready var battle_text : Label = %BattleText
 @onready var character_hbox : HBoxContainer = %CharacterHBoxContainer
 
+var encounter : Encounter
 
-func load_encounter(encounter : Encounter):
-	print("loading encounter: %s" % encounter)
+func load_encounter(new_encounter : Encounter):
+	print("loading encounter: %s" % new_encounter)
+	encounter = new_encounter
 	
 	spawn_enemies(encounter.enemies)
 	spawn_party()
@@ -72,7 +76,7 @@ func spawn_party():
 
 
 # Spawns new enemies and aligns them on the screen
-func spawn_enemies(enemies : Array[Actor]):
+func spawn_enemies(enemies : Array[Enemy]):
 	var enemy_battler_grp = $EnemyBattlers
 	# load enemies
 	for enemy in enemies:
@@ -133,21 +137,23 @@ func win_battle():
 	battle_state = BattleState.BATTLE_WON
 	battle_text.text = "You won!"
 	var _center = DisplayServer.window_get_size(0) / 2
-	await get_tree().create_timer(2).timeout
-	reward_experience()
+	
+	# prepare panel data
+	var rewards = encounter.get_rewards()
+	battleresultspanel.show_battle_results(rewards)
+	
+	reward_experience(rewards.exp)
+	
+	await battleresultspanel.closed
 	# Go back to the overworld
 	Globals.return_to_overworld()
 
 
-func reward_experience():
-	# Get the total experience
-	var total_exp = 0
-	for eb in get_enemy_battlers():
-		total_exp += (eb.enemy as Enemy).experience
+func reward_experience(experience : int):
 	# Divide the experience between the characters who are still alive
 	var alive_characters = get_character_battlers().filter(func(b): return !b.actor.is_dead )
 	for cb in alive_characters:
-		(cb.actor as Character).add_exp(total_exp / alive_characters.size())
+		(cb.actor as Character).add_exp(experience / alive_characters.size())
 
 
 func on_all_turns_processed():

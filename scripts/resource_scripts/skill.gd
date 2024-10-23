@@ -17,6 +17,3 @@ enum SkillCategory {
 @export_category("Calling Parameters")
 @export var function_alias : String
 @export var args : Dictionary
-
-func use(user : Actor, target : Variant):
-	BattleHelper.call(function_alias, user, target, args)

@@ -2,6 +2,9 @@
 # battle related functions that can be used anywhere
 extends Node
 
+func use_skill(skill : Skill, user : Actor, target : Actor):
+	call(skill.function_alias, user, target, skill.args)
+
 ## Target takes damage
 ## Use this to do "heal" damage as well
 func damage_target(_source : Actor, target : Actor, args : Dictionary):
@@ -29,7 +32,7 @@ func calculate_magic_damage(element : Damage.Element, attacker : Actor, defender
 	var m_def = defender.get_magic_defense()
 	var amount = m_atk - m_def
 	if amount < 0:
-		amount = 0
+		amount = 1
 	var damage = Damage.create(amount, element)
 	if randf() < 0.1:
 		damage.critical = true
@@ -41,7 +44,7 @@ func calculate_physical_damage(attacker : Actor, defender : Actor) -> Damage:
 	
 	var amount = atk - def
 	if amount < 0:
-		amount = 0
+		amount = 1
 	
 	var damage = Damage.create(amount)
 	# critical strike

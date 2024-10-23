@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=6 format=3 uid="uid://darhviidgex04"]
+[gd_resource type="Resource" script_class="Enemy" load_steps=7 format=3 uid="uid://darhviidgex04"]
 
+[ext_resource type="Script" path="res://scripts/resource_scripts/item.gd" id="1_bon8f"]
 [ext_resource type="Script" path="res://scripts/resource_scripts/enemy.gd" id="1_lcud6"]
 [ext_resource type="Script" path="res://scripts/resource_scripts/skill.gd" id="2_h3d0j"]
 [ext_resource type="Texture2D" uid="uid://bxb70m5jr4jid" path="res://sprites/battlers/Clockwork Queen.png" id="2_qakox"]
@@ -13,9 +14,10 @@ bonus_phys_atk = 0
 bonus_mag_atk = 0
 bonus_phys_def = 0
 bonus_mag_def = 0
-loot_table = ""
 use_skills_chance = 0.25
 experience = 350
+loot_table = Array[ExtResource("1_bon8f")]([])
+gold = 120
 name = "Clockwork Queen"
 level = 1
 base_strength = 12

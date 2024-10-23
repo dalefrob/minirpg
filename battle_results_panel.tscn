@@ -88,13 +88,16 @@ vertical_alignment = 1
 
 [node name="CharacterGrid" type="GridContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("1_5plg8")
+columns = 2
 
-[node name="CharacterPanel" type="Panel" parent="VBoxContainer/CharacterGrid"]
-custom_minimum_size = Vector2(300, 100)
+[node name="CharacterPanel_TEMPLATE" type="Panel" parent="VBoxContainer/CharacterGrid"]
+visible = false
+custom_minimum_size = Vector2(312, 100)
 layout_mode = 2
 
-[node name="Portrait" type="TextureRect" parent="VBoxContainer/CharacterGrid/CharacterPanel"]
+[node name="Portrait" type="TextureRect" parent="VBoxContainer/CharacterGrid/CharacterPanel_TEMPLATE"]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 5.0
@@ -103,7 +106,7 @@ offset_bottom = 95.0
 texture = ExtResource("3_3mt8b")
 expand_mode = 1
 
-[node name="Name" type="Label" parent="VBoxContainer/CharacterGrid/CharacterPanel"]
+[node name="Name" type="Label" parent="VBoxContainer/CharacterGrid/CharacterPanel_TEMPLATE"]
 layout_mode = 0
 offset_left = 167.0
 offset_top = 8.0
@@ -111,23 +114,13 @@ offset_right = 269.0
 offset_bottom = 31.0
 text = "Lydia"
 
-[node name="Level" type="Label" parent="VBoxContainer/CharacterGrid/CharacterPanel"]
+[node name="Level" type="Label" parent="VBoxContainer/CharacterGrid/CharacterPanel_TEMPLATE"]
 layout_mode = 0
-offset_left = 180.0
+offset_left = 106.0
 offset_top = 51.0
 offset_right = 282.0
 offset_bottom = 74.0
 text = "LVL: 1"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="ExperienceToLevel" type="Label" parent="VBoxContainer/CharacterGrid/CharacterPanel"]
-layout_mode = 0
-offset_left = 167.0
-offset_top = 72.0
-offset_right = 283.0
-offset_bottom = 95.0
-text = "EXP: 0000000"
 horizontal_alignment = 2
 vertical_alignment = 1
 

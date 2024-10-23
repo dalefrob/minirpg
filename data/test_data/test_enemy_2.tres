@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=6 format=3 uid="uid://cw5w2v6kra4xm"]
+[gd_resource type="Resource" script_class="Enemy" load_steps=7 format=3 uid="uid://cw5w2v6kra4xm"]
 
+[ext_resource type="Script" path="res://scripts/resource_scripts/item.gd" id="1_f2er2"]
 [ext_resource type="Script" path="res://scripts/resource_scripts/enemy.gd" id="1_kox8j"]
 [ext_resource type="Script" path="res://scripts/resource_scripts/skill.gd" id="2_tlhxu"]
 [ext_resource type="Script" path="res://scripts/resource_scripts/status_effect.gd" id="3_46t5r"]
@@ -13,9 +14,10 @@ bonus_phys_atk = 0
 bonus_mag_atk = 0
 bonus_phys_def = 0
 bonus_mag_def = 0
-loot_table = ""
 use_skills_chance = 0.25
 experience = 300
+loot_table = Array[ExtResource("1_f2er2")]([])
+gold = 100
 name = "Dark Healer"
 level = 12
 base_strength = 10

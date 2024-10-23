@@ -37,4 +37,4 @@ func _execute():
 		await BattleHelper.show_battle_animation(scene, first_target.global_position)
 	
 	for t in targets:
-		skill.use(user.actor, t.actor)
+		BattleHelper.use_skill(skill, user.actor, t.actor)
