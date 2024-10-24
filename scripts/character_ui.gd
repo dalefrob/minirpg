@@ -24,6 +24,7 @@ func _initialize() -> void:
 	# setup signals
 	character.took_damage.connect(update_ui)
 	character.healed_damage.connect(update_ui)
+	character.health_depleted.connect(update_ui)
 
 func update_ui(_args = {}):
 	# update labels

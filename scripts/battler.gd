@@ -19,11 +19,15 @@ func _ready() -> void:
 func _initialize(_actor : Actor):
 	actor = _actor
 	# set up signals
+	actor.hp_changed.connect(_on_actor_hp_changed)
 	actor.took_damage.connect(_on_actor_took_damage)
 	actor.healed_damage.connect(_on_actor_healed_damage)
 	actor.health_depleted.connect(_on_actor_health_depleted)
 
 func _get_anim_position():
+	pass
+
+func _on_actor_hp_changed():
 	pass
 
 # Override these functions in children

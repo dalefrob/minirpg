@@ -12,5 +12,16 @@ res://data/skills/cure.tres
 res://data/test_data/regen1_SE.tres
 res://data/skills/regen.tres
 res://data/test_data/test_char_2.tres
+res://floating_text.tscn
+res://battle_screen.tscn
+res://battle_results_panel.tscn
+res://message_panel.tscn
+res://menu_item_list.tscn
+res://scripts/resource_scripts/actor.gd
+res://scripts/battler.gd
+res://scripts/character_battler.gd
 res://scripts/character_ui.gd
-res://scripts/rolling_number_label.gd
+res://battle_anim_scenes/fire.tscn
+res://scripts/battle_animation.gd
+res://scripts/actions/skill_action.gd
+res://scripts/battle_helper.gd

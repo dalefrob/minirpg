@@ -53,9 +53,14 @@ func calculate_physical_damage(attacker : Actor, defender : Actor) -> Damage:
 	return damage
 
 # show a battle animation anywhere in the game
-func show_battle_animation(scene : PackedScene, global_position = Vector2.ZERO, callback : Callable = func():):
+func show_battle_animation(data : Dictionary, scene : PackedScene, global_position = Vector2.ZERO, callback : Callable = func():):
 	if scene: # Show animation if there is one
 		var battle_anim : BattleAnimation = scene.instantiate()
+		battle_anim.user = data.user
+		if data.has("target"):
+			battle_anim.enemies = [data.target]
+		if data.has("targets"):
+			battle_anim.enemies = data.targets
 		battle_anim.global_position = global_position
 		battle_anim.z_index = 1
 		add_child(battle_anim)

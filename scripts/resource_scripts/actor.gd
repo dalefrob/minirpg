@@ -98,11 +98,11 @@ func die():
 
 func heal_damage(damage : Damage):
 	hp += damage.amount
-	healed_damage.emit(damage)
-	print("%s healed %s damage" % [name, damage.amount])
 	var max_hp = get_max_hp()
 	if hp >= max_hp:
 		hp = max_hp
+	print("%s healed %s damage" % [name, damage.amount])
+	healed_damage.emit(damage)
 
 
 func update_status_effects():
