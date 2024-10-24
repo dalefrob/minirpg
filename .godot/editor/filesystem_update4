@@ -1,4 +1,4 @@
-res://character_ui.tscn
+res://battle_results_panel.tscn
 res://3d/materials/walls.tres
 res://3d/materials/floor.tres
 res://ui/default_style_box.tres
@@ -12,17 +12,11 @@ res://data/skills/cure.tres
 res://data/test_data/regen1_SE.tres
 res://data/skills/regen.tres
 res://data/test_data/test_char_2.tres
+res://scripts/rolling_number_label.gd
+res://character_ui.tscn
+res://scripts/character_ui.gd
 res://floating_text.tscn
 res://battle_screen.tscn
-res://battle_results_panel.tscn
 res://message_panel.tscn
-res://battle_screen.gd
-res://data/test_data/test_enemy.tres
-res://scripts/resource_scripts/enemy.gd
-res://scripts/resource_scripts/encounter.gd
-res://battle_results_panel.gd
 res://menu_item_list.tscn
-res://scripts/battle_helper.gd
-res://data/test_data/test_enemy_2.tres
-res://scripts/resource_scripts/skill.gd
-res://scripts/actions/skill_action.gd
+res://scripts/resource_scripts/actor.gd

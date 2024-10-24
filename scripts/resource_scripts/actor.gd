@@ -85,16 +85,15 @@ func take_damage(damage : Damage):
 		damage.amount *= 2
 		
 	hp -= damage.amount
+	took_damage.emit(damage)
 	print("%s took %s damage" % [name, damage.amount])
 	if hp <= 0:
 		die()
-		health_depleted.emit()
-	else:
-		took_damage.emit(damage)
 
 
 func die():
 	hp = 0
+	health_depleted.emit()
 
 
 func heal_damage(damage : Damage):
