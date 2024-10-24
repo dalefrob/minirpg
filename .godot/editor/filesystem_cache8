@@ -1,21 +1,21 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1729765267
+::res://::1729770926
 battle_results_panel.gd::GDScript::-1::1729693494::0::1::::BattleResultsPanel<>PanelContainer<>::
-battle_results_panel.tscn::PackedScene::5383361589177100814::1729765267::0::1::::<><>::uid://qg8kl4avrqtv::::res://ui/main_ui.tres<>uid://bmtfu56s4wyxg::::res://HomeVideo-BLG6G.ttf<>res://battle_results_panel.gd<>uid://dbhfow0mgtct0::::res://sprites/char/Female_02.png
+battle_results_panel.tscn::PackedScene::5383361589177100814::1729768056::0::1::::<><>::uid://qg8kl4avrqtv::::res://ui/main_ui.tres<>uid://bmtfu56s4wyxg::::res://HomeVideo-BLG6G.ttf<>res://battle_results_panel.gd<>uid://dbhfow0mgtct0::::res://sprites/char/Female_02.png
 battle_screen.gd::GDScript::-1::1729688045::0::1::::BattleScreen<>Node<>::
-battle_screen.tscn::PackedScene::616888505988471157::1729765267::0::1::::<><>::res://battle_screen.gd<>uid://ddq6mha0vfqlt::::res://sprites/bg/cavern/bg_6.png<>res://scripts/turn_system.gd<>res://canvas_layer_ui.gd<>uid://duv7jvvxkv5kj::::res://message_panel.tscn<>uid://cix0gc0ycs3mw::::res://battle_results_panel.tscn<>uid://dqwvo14eckff3::::res://character_ui.tscn
+battle_screen.tscn::PackedScene::616888505988471157::1729768056::0::1::::<><>::res://battle_screen.gd<>uid://ddq6mha0vfqlt::::res://sprites/bg/cavern/bg_6.png<>res://scripts/turn_system.gd<>res://canvas_layer_ui.gd<>uid://duv7jvvxkv5kj::::res://message_panel.tscn<>uid://cix0gc0ycs3mw::::res://battle_results_panel.tscn<>uid://dqwvo14eckff3::::res://character_ui.tscn
 bedstead.otf::FontFile::1763435087831907383::1729593856::1729759368::1::::<><>::
 canvas_layer_ui.gd::GDScript::-1::1728983490::0::1::::CanvasUI<>CanvasLayer<>::
 character_battler.tscn::PackedScene::3357118186076744225::1729595523::0::1::::<><>::res://scripts/character_battler.gd
 character_body_3d.gd::GDScript::-1::1728380864::0::1::::CharacterWorldAvatar<>CharacterBody3D<>::
-character_ui.tscn::PackedScene::8329001328431145866::1729765556::0::1::::<><>::uid://qg8kl4avrqtv::::res://ui/main_ui.tres<>uid://dbhfow0mgtct0::::res://sprites/char/Female_02.png<>res://scripts/character_ui.gd<>res://scripts/rolling_number_label.gd
+character_ui.tscn::PackedScene::8329001328431145866::1729768056::0::1::::<><>::uid://qg8kl4avrqtv::::res://ui/main_ui.tres<>uid://dbhfow0mgtct0::::res://sprites/char/Female_02.png<>res://scripts/character_ui.gd<>res://scripts/rolling_number_label.gd
 enemy_battler.tscn::PackedScene::1113536123998817962::1727793278::0::1::::<><>::res://scripts/enemy_battler.gd<>uid://snuie2etryae::::res://audio/sfx/punch_3.wav
-floating_text.tscn::PackedScene::1727239487760505687::1729765267::0::1::::<><>::res://scripts/floating_text.gd
+floating_text.tscn::PackedScene::1727239487760505687::1729768056::0::1::::<><>::res://scripts/floating_text.gd
 HomeVideo-BLG6G.ttf::FontFile::3268250909965481460::1729594123::1729759368::1::::<><>::
 HomeVideoBold-R90Dv.ttf::FontFile::4011195043266322855::1729594123::1729759368::1::::<><>::
 icon.svg::CompressedTexture2D::7571288992707961374::1727179258::1729759369::1::::<><>::
-menu_item_list.tscn::PackedScene::1302256830668540355::1729765267::0::1::::<><>::res://ui/menu_item_list.gd<>uid://c5rg34mrqwnqu::::res://sprites/cursors/gauntlet_default.png
-message_panel.tscn::PackedScene::8608351009079361341::1729765267::0::1::::<><>::uid://qg8kl4avrqtv::::res://ui/main_ui.tres<>res://ui/message_panel.gd
+menu_item_list.tscn::PackedScene::1302256830668540355::1729768056::0::1::::<><>::res://ui/menu_item_list.gd<>uid://c5rg34mrqwnqu::::res://sprites/cursors/gauntlet_default.png
+message_panel.tscn::PackedScene::8608351009079361341::1729768056::0::1::::<><>::uid://qg8kl4avrqtv::::res://ui/main_ui.tres<>res://ui/message_panel.gd
 world_screen.gd::GDScript::-1::1729585942::0::1::::WorldScreen<>Node<>::
 world_screen.tscn::PackedScene::1147926528254392579::1729677013::0::1::::<><>::res://world_screen.gd<>uid://bdvkh3be26afy::::res://3d/materials/walls.tres<>uid://ds2avjiksfdks::::res://3d/materials/floor.tres<>res://character_body_3d.gd<>uid://7kse4ch4pd00::::res://3d/small_character.glb
 ::res://3d/::1729759378
@@ -34,6 +34,10 @@ modular_crossroads.tscn::PackedScene::2995420336588529106::1729595524::0::1::::<
 fire-magic.mp3::AudioStreamMP3::3241437245292230595::1727959573::1729759368::1::::<><>::
 plasma-gun-fire.mp3::AudioStreamMP3::1705848626336563381::1727959573::1729759368::1::::<><>::
 punch_3.wav::AudioStreamWAV::1291464974504876252::1727580016::1729759377::1::::<><>::
+::res://battle_anim_scenes/::1729769666
+cure.tscn::PackedScene::2528403675640741314::1729595523::0::1::::<><>::res://scripts/battle_animation.gd<>uid://4bdnhrwtbhcd::::res://sprites/battle_anims/Impact0006.png
+firaga.tscn::PackedScene::8852488743808077873::1729595523::0::1::::<><>::res://scripts/battle_animation.gd<>uid://86fdy7yai3lq::::res://sprites/battle_anims/Blast0019.png<>uid://yklcv05bcfs4::::res://audio/sfx/plasma-gun-fire.mp3
+fire.tscn::PackedScene::5158608966761095704::1729769666::0::1::::<><>::res://scripts/battle_animation.gd<>uid://86fdy7yai3lq::::res://sprites/battle_anims/Blast0019.png<>uid://bmgf86rq7k6m6::::res://audio/sfx/fire-magic.mp3
 ::res://data/::1727608503
 ::res://data/actors/::1727256320
 ::res://data/items/::1729759531
@@ -58,10 +62,10 @@ test_encounter.tres::Resource/Encounter::6637419486519298244::1729503575::0::1::
 test_enemy.tres::Resource/Enemy::7194819426209432875::1729690932::0::1::::<><>::res://scripts/resource_scripts/item.gd<>res://scripts/resource_scripts/enemy.gd<>res://scripts/resource_scripts/skill.gd<>uid://bxb70m5jr4jid::::res://sprites/battlers/Clockwork Queen.png<>uid://cdpbdhc8cmpd8::::res://data/skills/fire.tres<>res://scripts/resource_scripts/status_effect.gd
 test_enemy_2.tres::Resource/Enemy::6380312401677398430::1729690932::0::1::::<><>::res://scripts/resource_scripts/item.gd<>res://scripts/resource_scripts/enemy.gd<>res://scripts/resource_scripts/skill.gd<>res://scripts/resource_scripts/status_effect.gd<>uid://ukilrlt42l6w::::res://data/skills/cure.tres<>uid://du0qwkq25tv3m::::res://sprites/battlers/Dark Elves Healer Priestess.png
 test_stats.tres::Resource/Stats::3033727358872751818::1729503575::0::1::::<><>::res://scripts/resource_scripts/stats.gd<>res://scripts/resource_scripts/job.gd
-::res://scripts/::1729759313
+::res://scripts/::1729768052
 battler.gd::GDScript::-1::1729765473::0::1::::Battler<>Node2D<>::
-battle_animation.gd::GDScript::-1::1728884489::0::1::::BattleAnimation<>Node2D<>::
-battle_helper.gd::GDScript::-1::1729691728::0::1::::<>Node<>::
+battle_animation.gd::GDScript::-1::1729768052::0::1::::BattleAnimation<>Node2D<>::
+battle_helper.gd::GDScript::-1::1729767903::0::1::::<>Node<>::
 character_battler.gd::GDScript::-1::1729765556::0::1::::CharacterBattler<>Battler<>::
 character_ui.gd::GDScript::-1::1729765556::0::1::::CharacterUI<>Panel<>::
 damage.gd::GDScript::-1::1729585942::0::1::::Damage<>Resource<>::
@@ -72,17 +76,17 @@ grid_button_menu.gd::GDScript::-1::1727945732::0::1::::BattleMenu<>GridContainer
 rolling_number_label.gd::GDScript::-1::1729759313::0::1::::RollingNumberLabel<>Label<>::
 turn.gd::GDScript::-1::1728910737::0::1::::Turn<>Node<>::
 turn_system.gd::GDScript::-1::1728888314::0::1::::TurnSystem<>Node<>::
-::res://scripts/actions/::1729691728
+::res://scripts/actions/::1729767834
 action.gd::GDScript::-1::1728913353::0::1::::Action<>RefCounted<>::
 attack_action.gd::GDScript::-1::1728874963::0::1::::AttackAction<>Action<>::
 defend_action.gd::GDScript::-1::1728983490::0::1::::DefendAction<>Action<>::
 item_action.gd::GDScript::-1::1728875565::0::1::::ItemAction<>Action<>::
-skill_action.gd::GDScript::-1::1729691728::0::1::::SkillAction<>Action<>::
+skill_action.gd::GDScript::-1::1729767834::0::1::::SkillAction<>Action<>::
 ::res://scripts/fsm/::1727957905
 state.gd::GDScript::-1::1725768819::0::1::::State<>Node<>::
 state_machine.gd::GDScript::-1::1725768819::0::1::::StateMachine<>Node<>::
-::res://scripts/resource_scripts/::1729759799
-actor.gd::GDScript::-1::1729765377::0::1::::Actor<>Resource<>::
+::res://scripts/resource_scripts/::1729769666
+actor.gd::GDScript::-1::1729769666::0::1::::Actor<>Resource<>::
 character.gd::GDScript::-1::1729677013::0::1::::Character<>Actor<>::
 consumable.gd::GDScript::-1::1728875253::0::1::::Consumable<>Item<>::
 encounter.gd::GDScript::-1::1729686568::0::1::::Encounter<>Resource<>::
@@ -97,10 +101,6 @@ status_effect.gd::GDScript::-1::1729166648::0::1::::StatusEffect<>Resource<>::
 status_effect_addstatmodifier.gd::GDScript::-1::1729505455::0::1::::AddStatModiferStatusEffect<>StatusEffect<>::
 status_effect_dot.gd::GDScript::-1::1729319096::0::1::::DOTStatusEffect<>StatusEffect<>::
 stat_modifier.gd::GDScript::-1::1729517557::0::1::::StatModifer<>RefCounted<>::
-::res://skill_fx_scenes/::1729595523
-cure.tscn::PackedScene::2528403675640741314::1729595523::0::1::::<><>::res://scripts/battle_animation.gd<>uid://4bdnhrwtbhcd::::res://sprites/battle_anims/Impact0006.png
-firaga.tscn::PackedScene::8852488743808077873::1729595523::0::1::::<><>::res://scripts/battle_animation.gd<>uid://86fdy7yai3lq::::res://sprites/battle_anims/Blast0019.png<>uid://yklcv05bcfs4::::res://audio/sfx/plasma-gun-fire.mp3
-fire.tscn::PackedScene::5158608966761095704::1729595523::0::1::::<><>::res://scripts/battle_animation.gd<>uid://86fdy7yai3lq::::res://sprites/battle_anims/Blast0019.png<>uid://bmgf86rq7k6m6::::res://audio/sfx/fire-magic.mp3
 ::res://sprites/::1727612941
 ::res://sprites/battlers/::1729759371
 Assasin Garland.png::CompressedTexture2D::6448470799151322168::1727182450::1729759371::1::::<><>::
