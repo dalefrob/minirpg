@@ -1,4 +1,6 @@
 CanvasModulate
+AudioStreamPlayer2D
+AnimationPlayer
 RollingNumberLabel
 Label
 GridContainer
@@ -10,6 +12,3 @@ DirectionalLight3D
 OmniLight3D
 Camera3D
 Node3D
-CollisionShape3D
-MeshInstance3D
-CharacterBody3D

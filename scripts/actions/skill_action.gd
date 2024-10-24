@@ -24,25 +24,5 @@ func _can_execute():
 	return super._can_execute()
 
 func _execute():
-	# animate
-	var fx_path = "res://battle_anim_scenes/%s.tscn" % skill.name.to_lower()
-	var scene = load(fx_path)
-	
-	var first_target = targets[0]
-	if targets.size() > 1:
-		var data = {
-			"user": user,
-			"targets": targets
-		}
-		# play the animation center
-		var center_screen = (first_target as Node2D).get_viewport_rect().size / 2
-		await BattleHelper.show_battle_animation(data, scene)
-	elif targets.size() == 1:
-		var data = {
-			"user": user,
-			"target": targets[0]
-		}
-		await BattleHelper.show_battle_animation(data, scene, first_target.global_position)
-	
 	for t in targets:
 		BattleHelper.use_skill(skill, user.actor, t.actor)

@@ -15,3 +15,4 @@ function_alias = "skill_add_status_effect"
 args = {
 "effect": ExtResource("1_dp3sx")
 }
+battle_anim_alias = ""

@@ -16,3 +16,4 @@ args = {
 "element": 8,
 "heal": true
 }
+battle_anim_alias = ""

@@ -1,3 +1,4 @@
+res://battle_anims
 res://
 res://sprites/battlers
 res://data/test_data
@@ -8,6 +9,5 @@ res://3d
 res://ui
 res://sprites/battle_anims
 res://data/skills
-res://skill_fx_scenes
 res://scripts
 res://data

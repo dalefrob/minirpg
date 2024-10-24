@@ -15,3 +15,4 @@ args = {
 "amount": 12,
 "element": 1
 }
+battle_anim_alias = "fire"

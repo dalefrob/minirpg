@@ -17,6 +17,7 @@ var character_battler_pks = preload("res://character_battler.tscn")
 @onready var turn_system : TurnSystem = $TurnSystem
 @onready var ui : CanvasUI = $UI
 
+@onready var battleanim_player : BattleAnimationPlayer = $BattleAnimationPlayer
 @onready var battlemenupanel = %BattleMenuMessagePanel
 @onready var battleresultspanel = %BattleResultsPanelContainer
 
@@ -228,6 +229,8 @@ func on_skill_selected(skill : Skill):
 		targets = get_enemy_battlers().filter(func(b): return !b.actor.is_dead)
 	
 	if skill.target_aoe:
+		battleanim_player.play_battle_animation(action.skill.battle_anim_alias, current_turn.battler, targets[0])
+		await battleanim_player.animation_finished
 		action._set_targets(targets)
 		execute_action(action)
 	else:
@@ -282,6 +285,10 @@ func on_target_selected(battler : Battler):
 	print("Selected %s " % battler.name)
 	var action = current_turn.action
 	action._set_target(battler)
+	
+	if action is SkillAction:
+		battleanim_player.play_battle_animation(action.skill.battle_anim_alias, current_turn.battler, battler)
+		await battleanim_player.animation_finished
 	
 	execute_action(action)
 

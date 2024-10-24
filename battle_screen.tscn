@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://i13cfqmk47or"]
+[gd_scene load_steps=11 format=3 uid="uid://i13cfqmk47or"]
 
 [ext_resource type="Script" path="res://battle_screen.gd" id="1_h8i7e"]
 [ext_resource type="Texture2D" uid="uid://ddq6mha0vfqlt" path="res://sprites/bg/cavern/bg_6.png" id="2_73l8l"]
 [ext_resource type="Script" path="res://scripts/turn_system.gd" id="4_fauym"]
+[ext_resource type="AnimationLibrary" uid="uid://mvpf6xdscxja" path="res://battle_anims/ba_library.res" id="4_gxqdn"]
+[ext_resource type="Script" path="res://battle_animation_player.gd" id="5_5jn86"]
 [ext_resource type="Script" path="res://canvas_layer_ui.gd" id="5_xqck5"]
 [ext_resource type="PackedScene" uid="uid://duv7jvvxkv5kj" path="res://message_panel.tscn" id="6_5efsl"]
+[ext_resource type="SpriteFrames" uid="uid://smswtaw7yw82" path="res://battle_anims/ba_sprite_frames.tres" id="6_8anvi"]
 [ext_resource type="PackedScene" uid="uid://cix0gc0ycs3mw" path="res://battle_results_panel.tscn" id="7_qav4t"]
 [ext_resource type="PackedScene" uid="uid://dqwvo14eckff3" path="res://character_ui.tscn" id="10_d6v5k"]
 
@@ -18,8 +21,18 @@ character_ui_pks = ExtResource("10_d6v5k")
 script = ExtResource("4_fauym")
 
 [node name="Background" type="Sprite2D" parent="."]
+self_modulate = Color(0.377919, 0.377919, 0.377919, 1)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_73l8l")
+
+[node name="BattleAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"battle_anims": ExtResource("4_gxqdn")
+}
+script = ExtResource("5_5jn86")
+sprite_frames = ExtResource("6_8anvi")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="BattleAnimationPlayer"]
 
 [node name="EnemyBattlers" type="Node2D" parent="."]
 
@@ -78,6 +91,7 @@ grow_vertical = 0
 
 [node name="BattleResultsPanelContainer" parent="UI" instance=ExtResource("7_qav4t")]
 unique_name_in_owner = true
+visible = false
 
 [connection signal="child_entered_tree" from="UI/BattleMenuMessagePanel" to="UI/BattleMenuMessagePanel" method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="UI/BattleMenuMessagePanel" to="UI/BattleMenuMessagePanel" method="_on_child_exiting_tree"]
