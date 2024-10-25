@@ -16,4 +16,6 @@ args = {
 "element": 8,
 "heal": true
 }
-battle_anim_alias = ""
+battle_anim_alias = "cure"
+positioning = 1
+dim_screen = false

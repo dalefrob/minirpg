@@ -16,3 +16,4 @@ args = {
 "element": 1
 }
 battle_anim_alias = "firaga"
+dim_screen = true

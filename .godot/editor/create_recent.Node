@@ -1,5 +1,9 @@
-CanvasModulate
 AudioStreamPlayer2D
+Node
+GPUParticles2D
+Line2D
+CPUParticles2D
+CanvasModulate
 AnimationPlayer
 RollingNumberLabel
 Label
@@ -8,7 +12,3 @@ Panel
 PanelContainer
 VBoxContainer
 TextureRect
-DirectionalLight3D
-OmniLight3D
-Camera3D
-Node3D

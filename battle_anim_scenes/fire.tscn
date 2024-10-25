@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfq4shu7tkc5u"]
+[gd_scene load_steps=5 format=3 uid="uid://fhu7rl7xy2jl"]
 
 [ext_resource type="Script" path="res://scripts/battle_animation.gd" id="1_b17ru"]
 [ext_resource type="AnimationLibrary" uid="uid://mvpf6xdscxja" path="res://battle_anims/ba_library.res" id="2_6uw0i"]

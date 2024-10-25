@@ -8,8 +8,8 @@ func _initialize(_actor : Actor):
 	player_controlled = true
 
 func _get_anim_position():
-	character_ui.get_screen_position()
-	return character_ui.position + Vector2((character_ui.size.x / 2),0)
+	var screen_coords = character_ui.get_viewport_transform() * character_ui.get_global_rect()
+	return (get_viewport_transform().affine_inverse() * screen_coords).position
 
 func _on_actor_took_damage(damage : Damage):
 	var amount = damage.amount

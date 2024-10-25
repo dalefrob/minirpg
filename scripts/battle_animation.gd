@@ -3,10 +3,7 @@
 extends Node2D
 class_name BattleAnimation
 
-var user : Battler
-var enemies : Array[Battler]
-var enemy : Battler:
-	get: return enemies[0]
+var params : BattleAnimParams
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 
@@ -17,13 +14,15 @@ func _ready() -> void:
 	animation_player.animation_finished.connect(on_animation_player_finished)
 	animation_player.play()
 
+func initialize(_params : BattleAnimParams):
+	params = _params
 
 func on_animation_player_finished(_anim_name):
 	finished.emit()
 
-
 func color_battler(color : Color):
-	var tween = create_tween().bind_node(enemy)
-	tween.tween_property(enemy.sprite, "self_modulate", color, 0.6).from(Color.WHITE)
-	tween.tween_property(enemy.sprite, "self_modulate", Color.WHITE, 0.4)
-	tween.play()
+	params.target.flash(color, 0.2)
+
+func color_user(color : Color):
+	if params.user.has_method("flash"):
+		params.user.flash(color, 0.2)

@@ -17,4 +17,8 @@ enum SkillCategory {
 @export_category("Calling Parameters")
 @export var function_alias : String
 @export var args : Dictionary
+
+@export_category("Battle Anim Parameters")
 @export var battle_anim_alias : String
+@export_enum("TARGET", "USER", "CENTER") var positioning = 0
+@export var dim_screen : bool = false

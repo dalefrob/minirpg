@@ -1,0 +1,208 @@
+[gd_scene load_steps=22 format=3 uid="uid://brbp6x03l685a"]
+
+[ext_resource type="Script" path="res://scripts/battle_animation.gd" id="1_l4faf"]
+[ext_resource type="Shader" uid="uid://scem582jm67t" path="res://battle_anim_scenes/thunder.tres" id="2_c7h6e"]
+[ext_resource type="AudioStream" uid="uid://lnkv4vq2cl6l" path="res://audio/sfx/lightning_1.mp3" id="2_wyft3"]
+[ext_resource type="Texture2D" uid="uid://da8e5dsxvy8gg" path="res://sprites/fx_masks/Rotated/spark_05_rotated.png" id="3_yb70h"]
+[ext_resource type="Texture2D" uid="uid://cvrj05prq33ec" path="res://sprites/fx_masks/trace_07.png" id="4_nyf68"]
+
+[sub_resource type="Animation" id="Animation_f7718"]
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Line2D:material:shader_parameter/FloatParameter")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333, 0.2, 0.833333),
+"transitions": PackedFloat32Array(0, 1, 1),
+"update": 0,
+"values": [1.0, 0.838, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Line2D2:material:shader_parameter/FloatParameter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.133333, 0.2, 0.833333),
+"transitions": PackedFloat32Array(0, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_wyft3")
+}],
+"times": PackedFloat32Array(0.0666667)
+}
+tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, -80.0]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.266667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [Color(0.669468, 0.39923, 1, 1)],
+"method": &"color_battler"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6k4j5"]
+_data = {
+"RESET": SubResource("Animation_f7718")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u188d"]
+shader = ExtResource("2_c7h6e")
+shader_parameter/FloatParameter = 1.0
+shader_parameter/Texture2DParameter = ExtResource("3_yb70h")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oes43"]
+shader = ExtResource("2_c7h6e")
+shader_parameter/FloatParameter = 1.0
+shader_parameter/Texture2DParameter = ExtResource("3_yb70h")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4hq8e"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_j85ug"]
+offsets = PackedFloat32Array(0, 0.972222)
+colors = PackedColorArray(0.814563, 0.632564, 0.985169, 1, 0.286275, 0, 0.552941, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7iktw"]
+gradient = SubResource("Gradient_j85ug")
+
+[sub_resource type="Curve" id="Curve_e56ql"]
+max_value = 3.0
+_data = [Vector2(0, 0.838791), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_j8hum"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_vfdhw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_fskae"]
+curve_x = SubResource("Curve_e56ql")
+curve_y = SubResource("Curve_j8hum")
+curve_z = SubResource("Curve_vfdhw")
+
+[sub_resource type="Curve" id="Curve_xny6t"]
+max_value = 3.0
+_data = [Vector2(0, 2.23867), 0.0, 0.0, 0, 0, Vector2(0.993671, 0.789673), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_6dgc1"]
+max_value = 3.0
+_data = [Vector2(0, 1.45277), 0.0, 0.0, 0, 0, Vector2(0.981013, 0.715995), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_1b3t2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.838791), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_l1j72"]
+curve_x = SubResource("Curve_xny6t")
+curve_y = SubResource("Curve_6dgc1")
+curve_z = SubResource("Curve_1b3t2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k4pnr"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 5, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 5.0
+emission_ring_inner_radius = 1.0
+orbit_velocity_min = -1.0
+orbit_velocity_max = 1.0
+radial_velocity_min = -521.58
+radial_velocity_max = 516.57
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.5
+scale_curve = SubResource("CurveXYZTexture_fskae")
+scale_over_velocity_curve = SubResource("CurveXYZTexture_l1j72")
+color_ramp = SubResource("GradientTexture1D_7iktw")
+
+[node name="Thunder" type="Node2D"]
+z_index = 99
+z_as_relative = false
+script = ExtResource("1_l4faf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6k4j5")
+}
+autoplay = "RESET"
+
+[node name="Line2D" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_u188d")
+position = Vector2(-40, 160)
+scale = Vector2(0.975, 1)
+points = PackedVector2Array(0.987, -500, 0.987338, 0)
+width = 500.0
+default_color = Color(0.718, 0.53, 1, 1)
+texture_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_oes43")
+position = Vector2(-40, 160)
+points = PackedVector2Array(0.987, -500, 0.987338, 0)
+width = 500.0
+default_color = Color(0.718, 0.53, 1, 1)
+texture_mode = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_4hq8e")
+position = Vector2(0, 160)
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_k4pnr")
+texture = ExtResource("4_nyf68")
+lifetime = 0.15
+speed_scale = 0.5
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

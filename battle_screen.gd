@@ -17,7 +17,7 @@ var character_battler_pks = preload("res://character_battler.tscn")
 @onready var turn_system : TurnSystem = $TurnSystem
 @onready var ui : CanvasUI = $UI
 
-@onready var battleanim_player : BattleAnimationPlayer = $BattleAnimationPlayer
+@onready var battleanim_player : BattleAnimationManager = $BattleAnimationPlayer
 @onready var battlemenupanel = %BattleMenuMessagePanel
 @onready var battleresultspanel = %BattleResultsPanelContainer
 
@@ -229,8 +229,11 @@ func on_skill_selected(skill : Skill):
 		targets = get_enemy_battlers().filter(func(b): return !b.actor.is_dead)
 	
 	if skill.target_aoe:
-		battleanim_player.play_battle_animation(action.skill.battle_anim_alias, current_turn.battler, targets[0])
-		await battleanim_player.animation_finished
+		var params = BattleAnimParams.new()
+		params.user = current_turn.battler
+		
+		battleanim_player.play_battle_animation(action.skill.battle_anim_alias, params, skill.dim_screen)
+		await battleanim_player.battle_animation_finished
 		action._set_targets(targets)
 		execute_action(action)
 	else:
@@ -281,14 +284,19 @@ func create_selection_menu(items, selected_callback : Callable, cancel_callback 
 
 
 # Target a 'Battler' on the screen
-func on_target_selected(battler : Battler):
-	print("Selected %s " % battler.name)
+func on_target_selected(target : Battler):
+	print("Selected %s " % target.name)
 	var action = current_turn.action
-	action._set_target(battler)
+	action._set_target(target)
 	
 	if action is SkillAction:
-		battleanim_player.play_battle_animation(action.skill.battle_anim_alias, current_turn.battler, battler)
-		await battleanim_player.animation_finished
+		var params = BattleAnimParams.new()
+		params.user = current_turn.battler
+		params.target = target
+		params.positioning = (action as SkillAction).skill.positioning
+		
+		battleanim_player.play_battle_animation(action.skill.battle_anim_alias, params, action.skill.dim_screen)
+		await battleanim_player.battle_animation_finished
 	
 	execute_action(action)
 

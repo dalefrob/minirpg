@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://c6elfidwuyv4t"]
+
+[ext_resource type="Script" path="res://scripts/resource_scripts/skill.gd" id="1_0cf3w"]
+
+[resource]
+script = ExtResource("1_0cf3w")
+name = "Thunder"
+ingame_description = "A weak thunder spell"
+category = 0
+mana_cost = 5
+target_aoe = false
+target_ally = false
+function_alias = "damage_target"
+args = {
+"amount": 16,
+"element": 1
+}
+battle_anim_alias = "thunder"
+dim_screen = true
