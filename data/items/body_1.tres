@@ -1,18 +1,18 @@
-[gd_resource type="Resource" script_class="EquippableItem" load_steps=4 format=3 uid="uid://d0c7bhnf7dou8"]
+[gd_resource type="Resource" script_class="EquippableItem" load_steps=2 format=3 uid="uid://d0c7bhnf7dou8"]
 
 [ext_resource type="Script" path="res://scripts/resource_scripts/equippable_item.gd" id="1_5uksp"]
-[ext_resource type="Script" path="res://scripts/resource_scripts/stats.gd" id="2_7ub03"]
-
-[sub_resource type="Resource" id="Resource_6e5kg"]
-script = ExtResource("2_7ub03")
-strength = 1
-intelligence = 0
-agility = 0
 
 [resource]
 script = ExtResource("1_5uksp")
 slot = 1
-stats = SubResource("Resource_6e5kg")
+add_strength = 0
+add_intellect = 0
+add_agility = 0
+add_defense = 0
+add_resistance = 0
+resistance_element = 0
+add_attack = 0
+attack_element = 0
 name = "Bronze Cuirass"
 description = "Strong body armor"
 value = 30

@@ -6,9 +6,9 @@
 script = ExtResource("1_o6ql7")
 name = "Firaga"
 ingame_description = "An aoe fire spell"
-category = 0
+category = 1
 mana_cost = 0
-target_aoe = true
+target_all = true
 target_ally = false
 function_alias = "damage_target"
 args = {

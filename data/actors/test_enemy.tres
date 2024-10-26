@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=9 format=3 uid="uid://darhviidgex04"]
+
+[ext_resource type="Script" path="res://scripts/resource_scripts/enemy_ai.gd" id="1_ej7k7"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/item.gd" id="1_yxryt"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/enemy.gd" id="2_4ujen"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/skill.gd" id="3_7wax0"]
+[ext_resource type="Resource" uid="uid://c6elfidwuyv4t" path="res://data/skills/thunder.tres" id="4_bo378"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/status_effect.gd" id="5_teyvd"]
+[ext_resource type="Texture2D" uid="uid://bxb70m5jr4jid" path="res://sprites/battlers/Clockwork Queen.png" id="6_hx61w"]
+
+[sub_resource type="Resource" id="Resource_htaws"]
+script = ExtResource("1_ej7k7")
+skill_pool = Array[ExtResource("3_7wax0")]([])
+
+[resource]
+script = ExtResource("2_4ujen")
+texture = ExtResource("6_hx61w")
+ai = SubResource("Resource_htaws")
+experience = 350
+loot_table = Array[ExtResource("1_yxryt")]([])
+gold = 120
+name = "Clockwork Queen"
+level = 1
+base_strength = 12
+base_agility = 15
+base_intellect = 20
+skills = Array[ExtResource("3_7wax0")]([ExtResource("4_bo378")])
+weakness = 1
+status_effects = Array[ExtResource("5_teyvd")]([])

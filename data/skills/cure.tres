@@ -6,9 +6,9 @@
 script = ExtResource("1_6etb0")
 name = "Cure"
 ingame_description = "A weak healing spell"
-category = 0
+category = 2
 mana_cost = 6
-target_aoe = false
+target_all = false
 target_ally = true
 function_alias = "damage_target"
 args = {

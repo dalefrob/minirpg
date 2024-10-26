@@ -7,9 +7,9 @@
 script = ExtResource("1_oxsgr")
 name = "Regen"
 ingame_description = "Applies a regen buff"
-category = 1
+category = 2
 mana_cost = 6
-target_aoe = false
+target_all = false
 target_ally = true
 function_alias = "skill_add_status_effect"
 args = {

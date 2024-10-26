@@ -161,12 +161,17 @@ func on_all_turns_processed():
 	print("All turns processed")
 	start_new_round()
 
+
+func is_all_enemies_defeated():
+	return get_enemy_battlers().all(func(b): return b.actor.is_dead)
+
 #endregion
 
 #region BattleMenu
 
 # ---- MENU
 var menu_stack = []
+
 
 # Shows the main battle menu with the topmost options
 func show_main_battle_menu():
@@ -187,6 +192,7 @@ func show_main_battle_menu():
 
 	menu.grab_focus()
 	menu.select(0)
+
 
 # When the player presses escape to go back
 func on_cancel_selected():
@@ -228,7 +234,7 @@ func on_skill_selected(skill : Skill):
 	else:
 		targets = get_enemy_battlers().filter(func(b): return !b.actor.is_dead)
 	
-	if skill.target_aoe:
+	if skill.target_all:
 		var params = BattleAnimParams.new()
 		params.user = current_turn.battler
 		params.positioning = 2
@@ -311,7 +317,4 @@ func execute_command(_command : Command):
 	else:
 		battle_text.text = _command.error_msg
 
-
-func is_all_enemies_defeated():
-	return get_enemy_battlers().all(func(b): return b.actor.is_dead)
 #endregion

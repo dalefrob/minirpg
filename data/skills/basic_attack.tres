@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://bs4ghf731aocy"]
+
+[ext_resource type="Script" path="res://scripts/resource_scripts/skill.gd" id="1_pmmpy"]
+
+[resource]
+script = ExtResource("1_pmmpy")
+name = "Attack"
+ingame_description = "Attack with your weapon"
+category = 0
+mana_cost = 0
+target_all = false
+target_ally = false
+function_alias = "use_basic_attack"
+args = {}
+battle_anim_alias = ""
+positioning = 0
+dim_screen = false

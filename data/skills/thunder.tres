@@ -6,9 +6,9 @@
 script = ExtResource("1_0cf3w")
 name = "Thunder"
 ingame_description = "A weak thunder spell"
-category = 0
+category = 1
 mana_cost = 5
-target_aoe = false
+target_all = false
 target_ally = false
 function_alias = "damage_target"
 args = {

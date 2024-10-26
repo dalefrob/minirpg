@@ -22,9 +22,12 @@ name = "Rage"
 ingame_description = "Increases STR for 2 turns"
 category = 2
 mana_cost = 10
-target_aoe = false
+target_all = false
 target_ally = true
 function_alias = "skill_add_status_effect"
 args = {
 "effect": SubResource("Resource_c0x3p")
 }
+battle_anim_alias = ""
+positioning = 0
+dim_screen = false

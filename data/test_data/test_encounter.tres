@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/resource_scripts/encounter.gd" id="1_ns5wb"]
 [ext_resource type="Script" path="res://scripts/resource_scripts/actor.gd" id="1_yoipm"]
-[ext_resource type="Resource" uid="uid://darhviidgex04" path="res://data/test_data/test_enemy.tres" id="2_w0nkh"]
-[ext_resource type="Resource" uid="uid://cw5w2v6kra4xm" path="res://data/test_data/test_enemy_2.tres" id="3_b1dju"]
+[ext_resource type="Resource" uid="uid://darhviidgex04" path="res://data/actors/test_enemy.tres" id="2_w0nkh"]
+[ext_resource type="Resource" uid="uid://cw5w2v6kra4xm" path="res://data/actors/test_enemy_2.tres" id="3_b1dju"]
 
 [resource]
 script = ExtResource("1_ns5wb")

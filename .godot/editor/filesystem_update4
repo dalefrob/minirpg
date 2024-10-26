@@ -10,6 +10,7 @@ res://data/skills/fire.tres
 res://data/skills/firaga.tres
 res://data/skills/thunder.tres
 res://data/test_data/test_char.tres
+res://data/items/wand_1.tres
 res://data/skills/cure.tres
 res://data/test_data/regen1_SE.tres
 res://data/skills/regen.tres
@@ -22,5 +23,6 @@ res://message_panel.tscn
 res://menu_item_list.tscn
 res://character_battler.tscn
 res://battle_anim_scenes/firaga.tscn
-res://battle_screen.gd
-res://scripts/turn.gd
+res://scripts/resource_scripts/actor.gd
+res://scripts/resource_scripts/equippable_item.gd
+res://data/items/body_1.tres
