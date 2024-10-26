@@ -16,3 +16,5 @@ args = {
 "effect": ExtResource("1_dp3sx")
 }
 battle_anim_alias = ""
+positioning = 0
+dim_screen = false

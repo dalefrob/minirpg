@@ -16,4 +16,5 @@ args = {
 "element": 1
 }
 battle_anim_alias = "fire"
+positioning = 0
 dim_screen = true

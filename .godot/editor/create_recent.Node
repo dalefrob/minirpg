@@ -1,6 +1,7 @@
+Sprite2D
+GPUParticles2D
 AudioStreamPlayer2D
 Node
-GPUParticles2D
 Line2D
 CPUParticles2D
 CanvasModulate

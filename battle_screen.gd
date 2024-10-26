@@ -231,7 +231,7 @@ func on_skill_selected(skill : Skill):
 	if skill.target_aoe:
 		var params = BattleAnimParams.new()
 		params.user = current_turn.battler
-		
+		params.positioning = 2
 		battleanim_player.play_battle_animation(action.skill.battle_anim_alias, params, skill.dim_screen)
 		await battleanim_player.battle_animation_finished
 		action._set_targets(targets)

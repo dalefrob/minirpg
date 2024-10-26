@@ -11,8 +11,9 @@ signal finished
 
 
 func _ready() -> void:
+	z_index = 99
+	z_as_relative = false
 	animation_player.animation_finished.connect(on_animation_player_finished)
-	animation_player.play()
 
 func initialize(_params : BattleAnimParams):
 	params = _params
@@ -26,3 +27,8 @@ func color_battler(color : Color):
 func color_user(color : Color):
 	if params.user.has_method("flash"):
 		params.user.flash(color, 0.2)
+
+func color_enemies(color : Color):
+	var enemies = BattleHelper.get_enemy_battlers()
+	for e in enemies:
+		e.flash(color, 0.2)

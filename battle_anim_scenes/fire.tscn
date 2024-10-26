@@ -1,10 +1,165 @@
-[gd_scene load_steps=5 format=3 uid="uid://fhu7rl7xy2jl"]
+[gd_scene load_steps=23 format=3 uid="uid://fhu7rl7xy2jl"]
 
 [ext_resource type="Script" path="res://scripts/battle_animation.gd" id="1_b17ru"]
-[ext_resource type="AnimationLibrary" uid="uid://mvpf6xdscxja" path="res://battle_anims/ba_library.res" id="2_6uw0i"]
-[ext_resource type="SpriteFrames" uid="uid://smswtaw7yw82" path="res://battle_anims/ba_sprite_frames.tres" id="3_uf7ca"]
+[ext_resource type="AudioStream" uid="uid://bmgf86rq7k6m6" path="res://audio/sfx/fire-magic.mp3" id="2_jrkp6"]
+[ext_resource type="Texture2D" uid="uid://moki3y5jvwb" path="res://sprites/fx_masks/fire_01.png" id="2_ofchl"]
+[ext_resource type="Texture2D" uid="uid://cxfoj5fsclm15" path="res://sprites/fx_masks/flame_01.png" id="3_fxnqd"]
+[ext_resource type="Texture2D" uid="uid://we0cy8e3a2y7" path="res://sprites/fx_masks/flame_02.png" id="4_hogkh"]
+[ext_resource type="Texture2D" uid="uid://cau4m8x8m4ovi" path="res://sprites/fx_masks/flame_03.png" id="5_07e15"]
+[ext_resource type="Texture2D" uid="uid://copatoovlvfyx" path="res://sprites/fx_masks/flame_04.png" id="6_e8kbp"]
+
+[sub_resource type="Animation" id="Animation_0d3mn"]
+resource_name = "fire"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glow:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flame:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_jrkp6")
+}],
+"times": PackedFloat32Array(0.166667)
+}
+tracks/2/use_blend = true
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [Color(1, 0.427451, 0, 1)],
+"method": &"color_battler"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_vvod7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glow:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flame:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jjxd7"]
+_data = {
+"RESET": SubResource("Animation_vvod7"),
+"fire": SubResource("Animation_0d3mn")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ae1eh"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dwm3y"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_6ljcm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.879747, 0), -1.96841, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_po5o6"]
+curve = SubResource("Curve_6ljcm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xjwf8"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+scale_min = 0.1
+scale_max = 0.4
+color = Color(0.483906, 0.318651, 0.133766, 1)
+alpha_curve = SubResource("CurveTexture_po5o6")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gki2u"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_w68rl"]
+offsets = PackedFloat32Array(0.114583, 0.274306, 0.430556, 0.663194, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.917647, 0.682353, 0, 1, 0.721569, 0, 0, 1, 0, 0, 0, 0.858824, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_isk7v"]
+gradient = SubResource("Gradient_w68rl")
+
+[sub_resource type="Curve" id="Curve_00d4p"]
+_data = [Vector2(0, 0.328715), 0.0, 4.10861, 0, 0, Vector2(1, 0), -2.22872, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_prm7m"]
+curve = SubResource("Curve_00d4p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lhpir"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+angle_min = -121.6
+angle_max = 121.6
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 227.27
+initial_velocity_max = 512.58
+gravity = Vector3(0, -100, 0)
+scale_min = 0.1
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_prm7m")
+color_ramp = SubResource("GradientTexture1D_isk7v")
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_vj3f4"]
+frames = 4
+speed_scale = 8.0
+frame_0/texture = ExtResource("3_fxnqd")
+frame_1/texture = ExtResource("4_hogkh")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("5_07e15")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("6_e8kbp")
+frame_3/duration = 1.0
 
 [node name="Fire" type="Node2D"]
 script = ExtResource("1_b17ru")
@@ -12,12 +167,26 @@ script = ExtResource("1_b17ru")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_jjxd7"),
-"battle_anims": ExtResource("2_6uw0i")
+"battle_anims": SubResource("AnimationLibrary_ae1eh")
 }
 autoplay = "fire"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("3_uf7ca")
-animation = &"fire"
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Glow" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_dwm3y")
+process_material = SubResource("ParticleProcessMaterial_xjwf8")
+texture = ExtResource("2_ofchl")
+lifetime = 0.5
+one_shot = true
+
+[node name="Flame" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_gki2u")
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_lhpir")
+texture = SubResource("AnimatedTexture_vj3f4")
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.1
+randomness = 0.1
+fixed_fps = 60

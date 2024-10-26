@@ -54,6 +54,7 @@ func flash(color : Color = Color.WHITE, duration : float = 0.2):
 
 
 func disintegrate():
+	print('disintegrate')
 	sprite.self_modulate = Color(0.460, 0, 0)
 	# lambda func
 	var rot = func(t):

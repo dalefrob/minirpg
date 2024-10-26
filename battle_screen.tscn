@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://i13cfqmk47or"]
+[gd_scene load_steps=10 format=3 uid="uid://i13cfqmk47or"]
 
 [ext_resource type="Script" path="res://battle_screen.gd" id="1_h8i7e"]
 [ext_resource type="Texture2D" uid="uid://ddq6mha0vfqlt" path="res://sprites/bg/cavern/bg_6.png" id="2_73l8l"]
+[ext_resource type="AudioStream" uid="uid://drs3k7gv4hg15" path="res://audio/music/BattleTheme.ogg" id="3_dwtsm"]
 [ext_resource type="Script" path="res://scripts/turn_system.gd" id="4_fauym"]
 [ext_resource type="Script" path="res://scripts/battle_animation_manager.gd" id="5_5jn86"]
 [ext_resource type="Script" path="res://canvas_layer_ui.gd" id="5_xqck5"]
@@ -14,6 +15,9 @@ script = ExtResource("1_h8i7e")
 character_ui_pks = ExtResource("10_d6v5k")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dwtsm")
+volume_db = -10.0
+autoplay = true
 
 [node name="TurnSystem" type="Node" parent="."]
 script = ExtResource("4_fauym")
