@@ -1,6 +1,6 @@
-# an action that can be executed such as 'attack' 'use skill' 'use item'
+# an Command that can be executed such as 'attack' 'use skill' 'use item'
 extends RefCounted
-class_name Action
+class_name Command
 
 var error_msg : String = ""
 var user : Battler

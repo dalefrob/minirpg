@@ -1,6 +1,6 @@
 # A turn for use in the turn based battle system.
 # A turn holds dats for the battler whose turn it is
-# collects parameters from various sources, and executes an action
+# collects parameters from various sources, and executes an Command
 extends Node
 class_name Turn
 
@@ -20,5 +20,5 @@ var actor : Actor:
 var player_controlled : bool:
 	get: return battler.player_controlled # Is it a player?
 
-var action : Action = null    # What command is to be executed?
+var command : Command = null    # What command is to be executed?
 var target : Variant = null   # What target is the command to be used on? BATTLER, ITEM?

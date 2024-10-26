@@ -1,6 +1,6 @@
-# an action that can be executed such as 'attack' 'use skill' 'use item'
-extends Action
-class_name DefendAction
+# an Command that can be executed such as 'attack' 'use skill' 'use item'
+extends Command
+class_name DefendCommand
 
 # Coroutine!
 func _execute():

@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3 uid="uid://i13cfqmk47or"]
+
+[ext_resource type="Script" path="res://battle_screen.gd" id="1_h8i7e"]
+[ext_resource type="Texture2D" uid="uid://ddq6mha0vfqlt" path="res://sprites/bg/cavern/bg_6.png" id="2_73l8l"]
+[ext_resource type="AudioStream" uid="uid://drs3k7gv4hg15" path="res://audio/music/BattleTheme.ogg" id="3_dwtsm"]
+[ext_resource type="Script" path="res://scripts/turn_system.gd" id="4_fauym"]
+[ext_resource type="Script" path="res://scripts/battle_animation_manager.gd" id="5_5jn86"]
+[ext_resource type="Script" path="res://canvas_layer_ui.gd" id="5_xqck5"]
+[ext_resource type="PackedScene" uid="uid://duv7jvvxkv5kj" path="res://message_panel.tscn" id="6_5efsl"]
+[ext_resource type="PackedScene" uid="uid://cix0gc0ycs3mw" path="res://battle_results_panel.tscn" id="7_qav4t"]
+[ext_resource type="PackedScene" uid="uid://dqwvo14eckff3" path="res://character_ui.tscn" id="10_d6v5k"]
+
+[node name="BattleScreen" type="Node"]
+script = ExtResource("1_h8i7e")
+character_ui_pks = ExtResource("10_d6v5k")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dwtsm")
+volume_db = -10.0
+autoplay = true
+
+[node name="TurnSystem" type="Node" parent="."]
+script = ExtResource("4_fauym")
+
+[node name="BattleAnimationPlayer" type="Node" parent="."]
+script = ExtResource("5_5jn86")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_73l8l")
+
+[node name="EnemyBattlers" type="Node2D" parent="."]
+
+[node name="CharacterBattlers" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("5_xqck5")
+
+[node name="Panel" type="Panel" parent="UI"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+
+[node name="BattleText" type="Label" parent="UI/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 1145.0
+offset_bottom = 51.0
+text = "Battle Events"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterHBoxContainer" type="HBoxContainer" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BattleMenuMessagePanel" parent="UI" instance=ExtResource("6_5efsl")]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = -71.0
+offset_right = 275.0
+offset_bottom = -31.0
+grow_horizontal = 1
+grow_vertical = 0
+
+[node name="BattleResultsPanelContainer" parent="UI" instance=ExtResource("7_qav4t")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="child_entered_tree" from="UI/BattleMenuMessagePanel" to="UI/BattleMenuMessagePanel" method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="UI/BattleMenuMessagePanel" to="UI/BattleMenuMessagePanel" method="_on_child_exiting_tree"]

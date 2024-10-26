@@ -1,6 +1,6 @@
 # use an item on an actor
-extends Action
-class_name ItemAction
+extends Command
+class_name ItemCommand
 
 var item : Item
 

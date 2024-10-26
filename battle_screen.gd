@@ -117,10 +117,10 @@ func on_turn_started(turn : Turn):
 		# enemy make choice
 		var targets = get_character_battlers()
 		var target = targets.pick_random()
-		var action =  AttackAction.new(enemy_battler)
-		action._set_target(target)
-		turn_system.current_turn.action = action
-		execute_action(action)
+		var command =  AttackCommand.new(enemy_battler)
+		command._set_target(target)
+		turn_system.current_turn.command = command
+		execute_command(command)
 
 
 func on_turn_ended(turn : Turn):
@@ -206,8 +206,8 @@ func on_menu_selected(menu_item):
 
 
 func on_menu_defend_selected():
-	current_turn.action = DefendAction.new(current_turn.battler)
-	execute_action(current_turn.action)
+	current_turn.command = DefendCommand.new(current_turn.battler)
+	execute_command(current_turn.command)
 
 
 # on clicking the skill menu
@@ -218,8 +218,8 @@ func on_menu_useskill_selected(battler : Battler):
 # on selecting a skill from the menu
 func on_skill_selected(skill : Skill):
 	print("Selected %s" % skill.name)
-	var action = SkillAction.new(current_turn.battler, skill)
-	current_turn.action = action
+	var command = SkillCommand.new(current_turn.battler, skill)
+	current_turn.command = command
 	
 	var targets = []
 	# single targets use single target menu
@@ -232,10 +232,10 @@ func on_skill_selected(skill : Skill):
 		var params = BattleAnimParams.new()
 		params.user = current_turn.battler
 		params.positioning = 2
-		battleanim_player.play_battle_animation(action.skill.battle_anim_alias, params, skill.dim_screen)
+		battleanim_player.play_battle_animation(command.skill.battle_anim_alias, params, skill.dim_screen)
 		await battleanim_player.battle_animation_finished
-		action._set_targets(targets)
-		execute_action(action)
+		command._set_targets(targets)
+		execute_command(command)
 	else:
 		create_selection_menu(targets, on_target_selected, on_cancel_selected, "Select Target")
 
@@ -246,8 +246,8 @@ func on_menu_useitem_selected():
 
 
 func on_item_selected(_item : Item):
-	var item_action = ItemAction.new(current_turn.battler, _item)
-	current_turn.action = item_action
+	var item_command = ItemCommand.new(current_turn.battler, _item)
+	current_turn.command = item_command
 	print("selected %s" % _item.name)
 	var targets = get_character_battlers()
 	create_selection_menu(targets, on_target_selected, on_cancel_selected, "Select Target")
@@ -263,7 +263,7 @@ func filter_valid_consumables(item):
 
 
 func on_menu_attack_selected():
-	current_turn.action = AttackAction.new(current_turn.battler)
+	current_turn.command = AttackCommand.new(current_turn.battler)
 	var targets = get_enemy_battlers().filter(func(b): return !b.actor.is_dead)
 	
 	create_selection_menu(targets, on_target_selected, show_main_battle_menu, "Attack")
@@ -286,30 +286,30 @@ func create_selection_menu(items, selected_callback : Callable, cancel_callback 
 # Target a 'Battler' on the screen
 func on_target_selected(target : Battler):
 	print("Selected %s " % target.name)
-	var action = current_turn.action
-	action._set_target(target)
+	var command = current_turn.command
+	command._set_target(target)
 	
-	if action is SkillAction:
+	if command is SkillCommand:
 		var params = BattleAnimParams.new()
 		params.user = current_turn.battler
 		params.target = target
-		params.positioning = (action as SkillAction).skill.positioning
+		params.positioning = (command as SkillCommand).skill.positioning
 		
-		battleanim_player.play_battle_animation(action.skill.battle_anim_alias, params, action.skill.dim_screen)
+		battleanim_player.play_battle_animation(command.skill.battle_anim_alias, params, command.skill.dim_screen)
 		await battleanim_player.battle_animation_finished
 	
-	execute_action(action)
+	execute_command(command)
 
 
-func execute_action(_action : Action):
-	if _action._can_execute():
+func execute_command(_command : Command):
+	if _command._can_execute():
 		battlemenupanel.hide() # Execute can happen, so hide menu
 		
-		await _action._execute() # run the action - 99% has animations
+		await _command._execute() # run the Command - 99% has animations
 
 		turn_system.end_current_turn()
 	else:
-		battle_text.text = _action.error_msg
+		battle_text.text = _command.error_msg
 
 
 func is_all_enemies_defeated():

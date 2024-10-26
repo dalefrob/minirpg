@@ -1,13 +1,13 @@
 # attack an actor
-extends Action
-class_name AttackAction
+extends Command
+class_name AttackCommand
 
 func _can_execute():
 	return super._can_execute()
 
 func _execute():
 	if !target:
-		printerr("no target to execute attack action")
+		printerr("no target to execute attack Command")
 	
 	# run animation
 	await delay(0.5)

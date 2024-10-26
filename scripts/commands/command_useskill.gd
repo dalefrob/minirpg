@@ -1,6 +1,6 @@
 # use a skill on an actor
-extends Action
-class_name SkillAction
+extends Command
+class_name SkillCommand
 
 var skill : Skill
 var targets : Array
