@@ -1,3 +1,5 @@
+Container
+MarginContainer
 Sprite2D
 GPUParticles2D
 AudioStreamPlayer2D
@@ -11,5 +13,3 @@ Label
 GridContainer
 Panel
 PanelContainer
-VBoxContainer
-TextureRect

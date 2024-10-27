@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://cau4m8x8m4ovi" path="res://sprites/fx_masks/flame_03.png" id="5_07e15"]
 [ext_resource type="Texture2D" uid="uid://copatoovlvfyx" path="res://sprites/fx_masks/flame_04.png" id="6_e8kbp"]
 
+[sub_resource type="Animation" id="Animation_vvod7"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_0d3mn"]
 resource_name = "fire"
 length = 1.5
@@ -61,35 +64,8 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [Color(1, 0.427451, 0, 1)],
-"method": &"color_battler"
+"method": &"color_target"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_vvod7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Glow:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Flame:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jjxd7"]
@@ -175,6 +151,7 @@ autoplay = "fire"
 
 [node name="Glow" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_dwm3y")
+emitting = false
 process_material = SubResource("ParticleProcessMaterial_xjwf8")
 texture = ExtResource("2_ofchl")
 lifetime = 0.5
@@ -182,6 +159,7 @@ one_shot = true
 
 [node name="Flame" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_gki2u")
+emitting = false
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_lhpir")
 texture = SubResource("AnimatedTexture_vj3f4")

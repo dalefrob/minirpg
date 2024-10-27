@@ -18,10 +18,11 @@ func _ready() -> void:
 func initialize(_params : BattleAnimParams):
 	params = _params
 
+
 func on_animation_player_finished(_anim_name):
 	finished.emit()
 
-func color_battler(color : Color):
+func color_target(color : Color):
 	params.target.flash(color, 0.2)
 
 func color_user(color : Color):

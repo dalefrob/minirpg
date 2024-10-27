@@ -17,7 +17,7 @@ func _initialize(_actor : Actor):
 
 
 func _get_anim_position():
-	return sprite.position
+	return global_position
 
 
 func _on_actor_took_damage(damage : Damage):

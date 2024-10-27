@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://brbp6x03l685a"]
+[gd_scene load_steps=23 format=3 uid="uid://brbp6x03l685a"]
 
 [ext_resource type="Script" path="res://scripts/battle_animation.gd" id="1_l4faf"]
 [ext_resource type="Shader" uid="uid://scem582jm67t" path="res://battle_anim_scenes/thunder.tres" id="2_c7h6e"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cvrj05prq33ec" path="res://sprites/fx_masks/trace_07.png" id="4_nyf68"]
 
 [sub_resource type="Animation" id="Animation_f7718"]
+resource_name = "RESET"
 length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -82,13 +83,17 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [Color(0.669468, 0.39923, 1, 1)],
-"method": &"color_battler"
+"method": &"color_target"
 }]
 }
 
+[sub_resource type="Animation" id="Animation_u3f7v"]
+resource_name = "RESET"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6k4j5"]
 _data = {
-"RESET": SubResource("Animation_f7718")
+"RESET": SubResource("Animation_u3f7v"),
+"thunder": SubResource("Animation_f7718")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u188d"]
@@ -176,7 +181,7 @@ script = ExtResource("1_l4faf")
 libraries = {
 "": SubResource("AnimationLibrary_6k4j5")
 }
-autoplay = "RESET"
+autoplay = "thunder"
 
 [node name="Line2D" type="Line2D" parent="."]
 material = SubResource("ShaderMaterial_u188d")

@@ -13,6 +13,7 @@ class_name CharacterUI
 		_initialize()
 	get: return character
 
+
 func _initialize() -> void:
 	name = character.name
 	name_label.text = character.name
@@ -26,6 +27,7 @@ func _initialize() -> void:
 	character.healed_damage.connect(update_ui)
 	character.health_depleted.connect(update_ui)
 
+
 func update_ui(_args = {}):
 	# update labels
 	hp_label.value = character.hp
@@ -34,6 +36,7 @@ func update_ui(_args = {}):
 	perc = float(character.mp) / character.get_max_mp()
 	mp_label.value = character.mp
 	colorize_label_by_percentage(mp_label, perc)
+
 
 func colorize_label_by_percentage(label : Label, perc : float):
 	var text_color = Color.WHITE

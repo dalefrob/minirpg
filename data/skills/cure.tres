@@ -17,5 +17,5 @@ args = {
 "heal": true
 }
 battle_anim_alias = "cure"
-positioning = 1
+positioning = 0
 dim_screen = false

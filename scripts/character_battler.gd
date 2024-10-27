@@ -8,8 +8,7 @@ func _initialize(_actor : Actor):
 	player_controlled = true
 
 func _get_anim_position():
-	var screen_coords = character_ui.get_viewport_transform() * character_ui.get_global_rect()
-	return (get_viewport_transform().affine_inverse() * screen_coords).position
+	return character_ui.global_position + Vector2(character_ui.size.x / 2, 0)
 
 func _on_actor_took_damage(damage : Damage):
 	var amount = damage.amount
@@ -22,3 +21,16 @@ func _on_actor_healed_damage(damage : Damage):
 	var amount = damage.amount
 	var offset =  Vector2((character_ui.size.x / 2), -48)
 	BattleHelper.show_floating_text(character_ui, str(amount), Color.LIME, offset)
+
+func flash(color : Color = Color.WHITE, duration : float = 0.2):
+	var shader_mat = character_ui.portrait.material as ShaderMaterial
+	var transparent = color
+	transparent.a = 0
+	
+	var set_shadermat_color = func(color):
+		shader_mat.set_shader_parameter("solid_color", color)
+	
+	var tween = create_tween()
+	tween.tween_method(set_shadermat_color, color, transparent, duration)
+	tween.play()
+	await tween.finished

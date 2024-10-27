@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqwvo14eckff3"]
+[gd_scene load_steps=6 format=3 uid="uid://dqwvo14eckff3"]
 
 [ext_resource type="Theme" uid="uid://qg8kl4avrqtv" path="res://ui/main_ui.tres" id="1_ba5sr"]
 [ext_resource type="Texture2D" uid="uid://dbhfow0mgtct0" path="res://sprites/char/Female_02.png" id="1_cepdj"]
 [ext_resource type="Script" path="res://scripts/character_ui.gd" id="2_kxiex"]
 [ext_resource type="Script" path="res://scripts/rolling_number_label.gd" id="3_fmpld"]
+[ext_resource type="Material" uid="uid://chepwr8tqunhy" path="res://hit_flash_material.tres" id="4_aa8c7"]
 
 [node name="PlayerUI" type="Panel"]
 custom_minimum_size = Vector2(150, 100)
@@ -54,6 +55,7 @@ prefix = "MP:"
 
 [node name="PartyMemberUI" type="TextureRect" parent="."]
 show_behind_parent = true
+material = ExtResource("4_aa8c7")
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
