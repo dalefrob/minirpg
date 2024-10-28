@@ -20,6 +20,10 @@ config/icon="res://sprites/battlers/Dryads Warrior.png"
 Globals="*res://scripts/globals.gd"
 BattleHelper="*res://scripts/battle_helper.gd"
 
+[global_group]
+
+battle_screen="Easy access to the Battle Screen"
+
 [gui]
 
 theme/custom_font="res://bedstead.otf"

@@ -2,6 +2,8 @@
 # Global game logic
 extends Node
 
+var DEBUG = true
+
 @onready var world_screen = preload("res://world_screen.tscn")
 @onready var battle_screen = preload("res://battle_screen.tscn")
 

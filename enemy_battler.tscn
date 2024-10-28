@@ -1,14 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://p4n1or6l85vq"]
+[gd_scene load_steps=6 format=3 uid="uid://p4n1or6l85vq"]
 
 [ext_resource type="Script" path="res://scripts/enemy_battler.gd" id="2_7xj6y"]
 [ext_resource type="Material" uid="uid://chepwr8tqunhy" path="res://hit_flash_material.tres" id="2_ismnt"]
 [ext_resource type="Texture2D" uid="uid://0fjcuhufvk4d" path="res://sprites/battlers/Dryads Warrior.png" id="2_opmkj"]
 [ext_resource type="AudioStream" uid="uid://snuie2etryae" path="res://audio/sfx/punch_3.wav" id="2_wi5dn"]
+[ext_resource type="AudioStream" uid="uid://cug78ranwq7dl" path="res://audio/sfx/enemy attack.wav" id="3_nnogl"]
 
 [node name="EnemyBattler" type="Node2D"]
 script = ExtResource("2_7xj6y")
+took_damage_sound = ExtResource("2_wi5dn")
+attack_notify_sound = ExtResource("3_nnogl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+show_behind_parent = true
 material = ExtResource("2_ismnt")
 texture = ExtResource("2_opmkj")
 

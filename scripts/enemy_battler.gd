@@ -2,6 +2,10 @@
 extends Battler
 class_name EnemyBattler
 
+@export var took_damage_sound : AudioStream
+@export var attack_notify_sound : AudioStream
+@onready var audio : AudioStreamPlayer2D = $AudioStreamPlayer2D
+
 signal disintegrated
 
 var enemy : Enemy:
@@ -16,21 +20,32 @@ func _initialize(_actor : Actor):
 	sprite.texture = enemy.texture
 
 
+func attack_cue_visual():
+	flash(Color.TRANSPARENT, 0.8)
+	if attack_notify_sound:
+		audio.stream = attack_notify_sound
+		audio.play()
+		await audio.finished
+
+
 func _get_anim_position():
 	return global_position
 
 
 func _on_actor_took_damage(damage : Damage):
 	# TODO - play audio as part of 'battle animations'
-	$AudioStreamPlayer2D.play()
+	audio.stream = took_damage_sound
+	audio.play()
 	await flash()
 	var amount = damage.amount
 	BattleHelper.show_floating_text(self, str(amount), Color.WHITE, Vector2.ZERO, damage.critical)
+	queue_redraw()
 
 
 func _on_actor_healed_damage(damage : Damage):
 	var amount = damage.amount
 	BattleHelper.show_floating_text(self, str(amount), Color.LIME)
+	queue_redraw()
 
 
 func _on_actor_health_depleted():
@@ -69,3 +84,7 @@ func disintegrate():
 	await tween.finished
 	hide()
 	disintegrated.emit()
+
+
+func _draw() -> void:
+	draw_string(ThemeDB.fallback_font, Vector2.ZERO, str(enemy.hp), HORIZONTAL_ALIGNMENT_LEFT, -1, 24, Color.RED)

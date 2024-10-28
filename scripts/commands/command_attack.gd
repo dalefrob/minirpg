@@ -10,6 +10,7 @@ func _execute():
 		printerr("no target to execute attack Command")
 	
 	# run animation
+	print("%s attacks!" % user.name)
 	await delay(0.5)
 	
 	# calculate damage

@@ -3,11 +3,9 @@ extends RefCounted
 class_name Command
 
 var error_msg : String = ""
-var user : Battler
-var target : Battler # may or may not be used
 
-func _init(_user : Battler) -> void:
-	user = _user
+var user : Battler
+var target : Battler 
 
 # virtual functions to be overidden
 func _set_target(_target):

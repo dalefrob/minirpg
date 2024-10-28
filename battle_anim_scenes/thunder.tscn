@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://da8e5dsxvy8gg" path="res://sprites/fx_masks/Rotated/spark_05_rotated.png" id="3_yb70h"]
 [ext_resource type="Texture2D" uid="uid://cvrj05prq33ec" path="res://sprites/fx_masks/trace_07.png" id="4_nyf68"]
 
+[sub_resource type="Animation" id="Animation_u3f7v"]
+resource_name = "RESET"
+
 [sub_resource type="Animation" id="Animation_f7718"]
 resource_name = "RESET"
 length = 1.5
@@ -86,9 +89,6 @@ tracks/5/keys = {
 "method": &"color_target"
 }]
 }
-
-[sub_resource type="Animation" id="Animation_u3f7v"]
-resource_name = "RESET"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6k4j5"]
 _data = {
@@ -185,24 +185,24 @@ autoplay = "thunder"
 
 [node name="Line2D" type="Line2D" parent="."]
 material = SubResource("ShaderMaterial_u188d")
-position = Vector2(-40, 160)
+position = Vector2(-40, 100)
 scale = Vector2(0.975, 1)
-points = PackedVector2Array(0.987, -500, 0.987338, 0)
+points = PackedVector2Array(0, -740, 0, 0)
 width = 500.0
 default_color = Color(0.718, 0.53, 1, 1)
 texture_mode = 2
 
 [node name="Line2D2" type="Line2D" parent="."]
 material = SubResource("ShaderMaterial_oes43")
-position = Vector2(-40, 160)
-points = PackedVector2Array(0.987, -500, 0.987338, 0)
+position = Vector2(-40, 100)
+points = PackedVector2Array(0, -740, 0, 0)
 width = 500.0
 default_color = Color(0.718, 0.53, 1, 1)
 texture_mode = 2
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_4hq8e")
-position = Vector2(0, 160)
+position = Vector2(0, 100)
 emitting = false
 amount = 15
 process_material = SubResource("ParticleProcessMaterial_k4pnr")

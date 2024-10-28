@@ -3,6 +3,8 @@ class_name CharacterBattler
 
 var character_ui : CharacterUI
 
+@onready var audio : AudioStreamPlayer2D = $AudioStreamPlayer2D
+
 func _initialize(_actor : Actor):
 	super._initialize(_actor)
 	player_controlled = true
@@ -14,6 +16,7 @@ func _on_actor_took_damage(damage : Damage):
 	var amount = damage.amount
 	var randx = randi_range(-48, 48)
 	var offset =  Vector2((character_ui.size.x / 2) + randx, -48)
+	audio.play()
 	BattleHelper.show_floating_text(character_ui, str(amount), Color.WHITE, offset, damage.critical)
 	character_ui.hit_animation()
 

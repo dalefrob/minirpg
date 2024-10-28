@@ -21,4 +21,6 @@ func get_loot():
 # We dont want a class for every enemy
 # AI Resource???
 func get_command():
-	pass
+	if ai:
+		return ai.get_command()
+	return AttackCommand.new()

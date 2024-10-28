@@ -17,7 +17,6 @@ var character_battler_pks = preload("res://character_battler.tscn")
 @onready var turn_system : TurnSystem = $TurnSystem
 @onready var ui : CanvasUI = $UI
 
-@onready var battleanim_player : BattleAnimationManager = $BattleAnimationPlayer
 @onready var battlemenupanel = %BattleMenuMessagePanel
 @onready var battleresultspanel = %BattleResultsPanelContainer
 
@@ -114,10 +113,29 @@ func on_turn_started(turn : Turn):
 	# Enemy turns
 	else:
 		var enemy_battler : EnemyBattler = turn.battler
+		await enemy_battler.attack_cue_visual()
+		
+		var enemy = enemy_battler.enemy
+		
 		# enemy make choice
-		var targets = get_character_battlers()
+		var targets = get_character_battlers().filter(func(b): return !b.actor.is_dead)
+		
+		# TODO - Send in battle state to help the ai make better decisions
+		var battle_state = {
+			"enemy_battlers": "",
+			"character_battlers": "",
+			"time_elapsed": "",
+		}
+		var command = enemy.get_command()
+		
+		var skill_command = command as SkillCommand
+		if skill_command:
+			if skill_command.skill.target_ally:
+				targets = get_enemy_battlers().filter(func(b): return !b.actor.is_dead)
+		
 		var target = targets.pick_random()
-		var command =  AttackCommand.new(enemy_battler)
+		
+		command.user = enemy_battler
 		command._set_target(target)
 		turn_system.current_turn.command = command
 		execute_command(command)
@@ -212,7 +230,10 @@ func on_menu_selected(menu_item):
 
 
 func on_menu_defend_selected():
-	current_turn.command = DefendCommand.new(current_turn.battler)
+	var defend_command = DefendCommand.new()
+	defend_command.user = current_turn.battler
+	current_turn.command = defend_command
+	
 	execute_command(current_turn.command)
 
 
@@ -222,26 +243,23 @@ func on_menu_useskill_selected(battler : Battler):
 
 
 # on selecting a skill from the menu
-func on_skill_selected(skill : Skill):
-	print("Selected %s" % skill.name)
-	var command = SkillCommand.new(current_turn.battler, skill)
-	current_turn.command = command
+func on_skill_selected(_skill : Skill):
+	print("Selected %s" % _skill.name)
+	var skill_command = SkillCommand.new(_skill)
+	skill_command.user = current_turn.battler
+	
+	current_turn.command = skill_command
 	
 	var targets = []
 	# single targets use single target menu
-	if skill.target_ally:
+	if _skill.target_ally:
 		targets = get_character_battlers()
 	else:
 		targets = get_enemy_battlers().filter(func(b): return !b.actor.is_dead)
 	
-	if skill.target_all:
-		var params = BattleAnimParams.new()
-		params.user = current_turn.battler
-		params.positioning = 2
-		battleanim_player.play_battle_animation(command.skill.battle_anim_alias, params, skill.dim_screen)
-		await battleanim_player.battle_animation_finished
-		command._set_targets(targets)
-		execute_command(command)
+	if _skill.target_all:
+		skill_command._set_targets(targets)
+		execute_command(skill_command)
 	else:
 		create_selection_menu(targets, on_target_selected, on_cancel_selected, "Select Target")
 
@@ -252,7 +270,9 @@ func on_menu_useitem_selected():
 
 
 func on_item_selected(_item : Item):
-	var item_command = ItemCommand.new(current_turn.battler, _item)
+	var item_command = ItemCommand.new(_item)
+	item_command.user = current_turn.battler
+	
 	current_turn.command = item_command
 	print("selected %s" % _item.name)
 	var targets = get_character_battlers()
@@ -269,7 +289,10 @@ func filter_valid_consumables(item):
 
 
 func on_menu_attack_selected():
-	current_turn.command = AttackCommand.new(current_turn.battler)
+	var attack_command = AttackCommand.new()
+	attack_command.user = current_turn.battler
+	current_turn.command = attack_command
+	
 	var targets = get_enemy_battlers().filter(func(b): return !b.actor.is_dead)
 	
 	create_selection_menu(targets, on_target_selected, show_main_battle_menu, "Attack")
@@ -294,27 +317,61 @@ func on_target_selected(target : Battler):
 	print("Selected %s " % target.name)
 	var command = current_turn.command
 	command._set_target(target)
-	
-	if command is SkillCommand:
-		var params = BattleAnimParams.new()
-		params.user = current_turn.battler
-		params.target = target
-		params.positioning = (command as SkillCommand).skill.positioning
-		
-		battleanim_player.play_battle_animation(command.skill.battle_anim_alias, params, command.skill.dim_screen)
-		await battleanim_player.battle_animation_finished
-	
+
 	execute_command(command)
 
 
 func execute_command(_command : Command):
 	if _command._can_execute():
 		battlemenupanel.hide() # Execute can happen, so hide menu
-		
 		await _command._execute() # run the Command - 99% has animations
-
+		await get_tree().create_timer(1.0).timeout # Cooldown after effect to reorient ourselves
 		turn_system.end_current_turn()
 	else:
 		battle_text.text = _command.error_msg
 
 #endregion
+
+
+func play_battle_animation(scene_name : StringName, params : BattleAnimParams, dim : bool = false):
+	var scene_path = "res://battle_anim_scenes/%s.tscn" % scene_name
+	if !ResourceLoader.exists(scene_path):
+		printerr("No animation: %s" % scene_name)
+		await get_tree().process_frame
+		return
+	
+	# create the battle animation
+	var new_battle_anim = load(scene_path).instantiate() as BattleAnimation
+	new_battle_anim.initialize(params)
+	new_battle_anim.global_position = params.get_global_position()
+	
+	var on_finished_anim = func():
+		new_battle_anim.queue_free()
+		undim()
+	
+	if dim:
+		new_battle_anim.finished.connect(on_finished_anim, CONNECT_ONE_SHOT)
+		await dim()
+	
+	add_child(new_battle_anim)
+	
+	await new_battle_anim.finished
+
+
+func dim():
+	var tween = create_tween()
+	tween.tween_property(bg, "self_modulate", Color(0.3,0.3,0.3,1), 0.4).from_current()
+	tween.tween_interval(0.2)
+	tween.play()
+	await tween.finished
+
+
+func undim():
+	var tween = create_tween()
+	tween.tween_property(bg, "self_modulate", Color.WHITE, 0.4).from_current()
+	tween.play()
+	await tween.finished
+
+
+func get_center_screen() -> Vector2:
+	return DisplayServer.window_get_size(0) / 2

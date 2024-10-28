@@ -10,6 +10,10 @@ var enemy : Enemy
 func initialize(_enemy : Enemy):
 	enemy = _enemy
 
-
 func get_command() -> Command:
-	return AttackCommand.new(null)
+	randomize()
+	var use_skill = (randf() >= 0.5)
+	if skill_pool.size() > 0 and use_skill:
+		var skill = skill_pool.pick_random()
+		return SkillCommand.new(skill)
+	return AttackCommand.new()

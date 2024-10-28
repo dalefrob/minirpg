@@ -10,7 +10,7 @@
 
 [sub_resource type="Resource" id="Resource_htaws"]
 script = ExtResource("1_ej7k7")
-skill_pool = Array[ExtResource("3_7wax0")]([])
+skill_pool = Array[ExtResource("3_7wax0")]([ExtResource("4_bo378")])
 
 [resource]
 script = ExtResource("2_4ujen")
@@ -24,6 +24,6 @@ level = 1
 base_strength = 12
 base_agility = 15
 base_intellect = 20
-skills = Array[ExtResource("3_7wax0")]([ExtResource("4_bo378")])
+skills = Array[ExtResource("3_7wax0")]([])
 weakness = 1
 status_effects = Array[ExtResource("5_teyvd")]([])

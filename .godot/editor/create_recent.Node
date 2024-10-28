@@ -1,8 +1,8 @@
+AudioStreamPlayer2D
 Container
 MarginContainer
 Sprite2D
 GPUParticles2D
-AudioStreamPlayer2D
 Node
 Line2D
 CPUParticles2D
@@ -12,4 +12,3 @@ RollingNumberLabel
 Label
 GridContainer
 Panel
-PanelContainer
