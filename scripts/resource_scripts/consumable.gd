@@ -10,4 +10,4 @@ class_name Consumable
 
 func use(user : Actor, target : Variant):
 	stock -= 1
-	BattleHelper.call(function_alias, user, target, args)
+	BattleHelper.use_item(self, user, target)

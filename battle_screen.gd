@@ -289,7 +289,7 @@ func filter_valid_consumables(item):
 
 
 func on_menu_attack_selected():
-	var attack_command = AttackCommand.new()
+	var attack_command = SkillCommand.new(current_turn.battler.actor.regular_attack_skill)
 	attack_command.user = current_turn.battler
 	current_turn.command = attack_command
 	

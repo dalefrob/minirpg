@@ -21,8 +21,8 @@ func _ready() -> void:
 
 
 func load_test_party():
-	var char1 = preload("res://data/test_data/test_char.tres")
-	var char2 = preload("res://data/test_data/test_char_2.tres")
+	var char1 = preload("res://data/actors/test_char.tres")
+	var char2 = preload("res://data/actors/test_char_2.tres")
 	party.append(char1)
 	party.append(char2)
 	# Test party

@@ -1,6 +1,13 @@
-[gd_resource type="Resource" script_class="Consumable" load_steps=2 format=3 uid="uid://jl5buvrm1sa"]
+[gd_resource type="Resource" script_class="Consumable" load_steps=4 format=3 uid="uid://jl5buvrm1sa"]
 
+[ext_resource type="Script" path="res://scripts/damage.gd" id="1_klo8r"]
 [ext_resource type="Script" path="res://scripts/resource_scripts/consumable.gd" id="1_plud4"]
+
+[sub_resource type="Resource" id="Resource_k3iw4"]
+script = ExtResource("1_klo8r")
+amount = 50
+element = 0
+heal = true
 
 [resource]
 script = ExtResource("1_plud4")
@@ -8,8 +15,7 @@ stack_size = 99
 stock = 1
 function_alias = "damage_target"
 args = {
-"amount": 100,
-"heal": true
+"damage_target": SubResource("Resource_k3iw4")
 }
 name = "Potion"
 description = "Heals for 100 HP"

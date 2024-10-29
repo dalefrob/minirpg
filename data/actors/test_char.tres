@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="Character" load_steps=14 format=3 uid="uid://c6krejn11uinb"]
+
+[ext_resource type="Resource" uid="uid://d0c7bhnf7dou8" path="res://data/items/body_1.tres" id="1_3ixku"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/equipment.gd" id="2_yx50h"]
+[ext_resource type="Resource" uid="uid://c5ju47e7jyc68" path="res://data/items/sword_1.tres" id="3_44tbb"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/job.gd" id="4_o6a0h"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/character.gd" id="6_3pxc7"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/skill.gd" id="7_706e7"]
+[ext_resource type="Resource" uid="uid://cdpbdhc8cmpd8" path="res://data/skills/fire.tres" id="8_x5p4l"]
+[ext_resource type="Resource" uid="uid://cnppld8wvliel" path="res://data/skills/firaga.tres" id="9_bt620"]
+[ext_resource type="Resource" uid="uid://c6elfidwuyv4t" path="res://data/skills/thunder.tres" id="10_xxduj"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/status_effect.gd" id="11_ls48g"]
+[ext_resource type="Texture2D" uid="uid://dbhfow0mgtct0" path="res://sprites/char/Female_02.png" id="12_243i4"]
+
+[sub_resource type="Resource" id="Resource_7n544"]
+script = ExtResource("2_yx50h")
+body = ExtResource("1_3ixku")
+weapon = ExtResource("3_44tbb")
+
+[sub_resource type="Resource" id="Resource_2rno4"]
+script = ExtResource("4_o6a0h")
+name = "Warrior"
+starting_strength = 5
+starting_agility = 5
+starting_intellect = 5
+strength_growth_factor = 1.5
+agility_growth_factor = 1.0
+intellect_growth_factor = 0.5
+
+[resource]
+script = ExtResource("6_3pxc7")
+job = SubResource("Resource_2rno4")
+unique_color = Color(0.8, 0.384, 0.543467, 1)
+texture = ExtResource("12_243i4")
+equipment = SubResource("Resource_7n544")
+name = "Lydia"
+level = 1
+base_strength = 1
+base_agility = 1
+base_intellect = 1
+skills = Array[ExtResource("7_706e7")]([ExtResource("8_x5p4l"), ExtResource("9_bt620"), ExtResource("10_xxduj")])
+weakness = 0
+ailments = 0
+status_effects = Array[ExtResource("11_ls48g")]([])

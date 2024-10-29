@@ -14,8 +14,11 @@ var mp : int
 
 var defense : int = 0
 
+var regular_attack_skill : Skill = preload("res://data/skills/basic_attack.tres")
+
 @export var skills : Array[Skill]
 @export var weakness : Damage.Element
+@export_flags("Blindness", "Silence", "Paralysis", "Frozen") var ailments : int
 
 @export var status_effects : Array[StatusEffect]
 var stat_modifiers : Array[StatModifer]
@@ -66,10 +69,16 @@ func get_def():
 	return defense + (get_agility() / 2.0)
 
 func get_magic_attack_power():
-	return get_intellect() / 2.0
+	return get_intellect() / 4.0
 
 func get_magic_defense():
 	return get_intellect() / 4.0
+
+func get_miss_chance() -> float:
+	var result = 0.05
+	if ailments | BattleHelper.Ailments.BLINDNESS:
+		result += 0.5
+	return result
 
 func take_damage(damage : Damage):
 	if damage.heal: # Heal instead?

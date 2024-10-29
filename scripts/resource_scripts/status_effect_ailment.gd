@@ -12,3 +12,16 @@ func _can_apply(_actor : Actor):
 	if chance >= randf():
 		return false
 	return _can_apply(_actor)
+
+
+func _on_applied():
+	actor.ailments |= ailment 
+	super._on_applied()
+
+func _update():
+	if max_duration > 0:
+		duration -= 1
+
+func _on_removed():
+	actor.ailments &= ~ailment
+	super._on_removed()

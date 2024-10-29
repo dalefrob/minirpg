@@ -11,7 +11,9 @@ mana_cost = 0
 target_all = false
 target_ally = false
 function_alias = "use_basic_attack"
-args = {}
+args = {
+"regular_attack": {}
+}
 battle_anim_alias = ""
 positioning = 0
 dim_screen = false

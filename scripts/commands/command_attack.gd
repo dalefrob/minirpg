@@ -1,4 +1,4 @@
-# attack an actor
+# attack an actor @obsolete
 extends Command
 class_name AttackCommand
 

@@ -1,6 +1,13 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://cnppld8wvliel"]
+[gd_resource type="Resource" script_class="Skill" load_steps=4 format=3 uid="uid://cnppld8wvliel"]
 
 [ext_resource type="Script" path="res://scripts/resource_scripts/skill.gd" id="1_o6ql7"]
+[ext_resource type="Script" path="res://scripts/damage.gd" id="1_v7kvj"]
+
+[sub_resource type="Resource" id="Resource_dnvns"]
+script = ExtResource("1_v7kvj")
+amount = 17
+element = 1
+heal = false
 
 [resource]
 script = ExtResource("1_o6ql7")
@@ -12,8 +19,7 @@ target_all = true
 target_ally = false
 function_alias = "damage_target"
 args = {
-"amount": 20,
-"element": 1
+"damage_target": SubResource("Resource_dnvns")
 }
 battle_anim_alias = "firaga"
 positioning = 2

@@ -1,7 +1,23 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://dp84skwcquabj"]
+[gd_resource type="Resource" script_class="Skill" load_steps=6 format=3 uid="uid://dp84skwcquabj"]
 
-[ext_resource type="Resource" uid="uid://lgx5ycd3f2w7" path="res://data/test_data/regen1_SE.tres" id="1_dp3sx"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/status_effect_dot.gd" id="1_bdsjf"]
 [ext_resource type="Script" path="res://scripts/resource_scripts/skill.gd" id="1_oxsgr"]
+[ext_resource type="Script" path="res://scripts/damage.gd" id="2_03n51"]
+
+[sub_resource type="Resource" id="Resource_2vtvo"]
+script = ExtResource("2_03n51")
+amount = 40
+element = 8
+heal = true
+
+[sub_resource type="Resource" id="Resource_0g0ek"]
+script = ExtResource("1_bdsjf")
+total_damage = SubResource("Resource_2vtvo")
+alias = "regen1"
+name = "Regeneration"
+max_duration = 4
+negative_effect = false
+persists = false
 
 [resource]
 script = ExtResource("1_oxsgr")
@@ -13,7 +29,7 @@ target_all = false
 target_ally = true
 function_alias = "skill_add_status_effect"
 args = {
-"effect": ExtResource("1_dp3sx")
+"apply_status_effect": SubResource("Resource_0g0ek")
 }
 battle_anim_alias = ""
 positioning = 0

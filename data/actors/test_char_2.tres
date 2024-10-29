@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="Character" load_steps=13 format=3 uid="uid://ee0wsfktaypj"]
+
+[ext_resource type="Resource" uid="uid://d0c7bhnf7dou8" path="res://data/items/body_1.tres" id="1_0sbar"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/equipment.gd" id="2_5nc6a"]
+[ext_resource type="Resource" uid="uid://djd60q3ygkwa7" path="res://data/items/wand_1.tres" id="3_2v8ej"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/job.gd" id="4_twmxl"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/character.gd" id="6_mtd6q"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/skill.gd" id="7_qkvnd"]
+[ext_resource type="Resource" uid="uid://ukilrlt42l6w" path="res://data/skills/cure.tres" id="8_vg8xu"]
+[ext_resource type="Resource" uid="uid://dp84skwcquabj" path="res://data/skills/regen.tres" id="9_vuu0f"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/status_effect.gd" id="10_ccyj8"]
+[ext_resource type="Texture2D" uid="uid://d0rxctm0tay4c" path="res://sprites/char/Male_01.png" id="11_i4tvs"]
+
+[sub_resource type="Resource" id="Resource_7n544"]
+script = ExtResource("2_5nc6a")
+body = ExtResource("1_0sbar")
+weapon = ExtResource("3_2v8ej")
+
+[sub_resource type="Resource" id="Resource_o63dv"]
+script = ExtResource("4_twmxl")
+name = "Healer"
+starting_strength = 5
+starting_agility = 5
+starting_intellect = 5
+strength_growth_factor = 0.75
+agility_growth_factor = 1.25
+intellect_growth_factor = 1.5
+
+[resource]
+script = ExtResource("6_mtd6q")
+job = SubResource("Resource_o63dv")
+unique_color = Color(0.3196, 0.68, 0.5899, 1)
+texture = ExtResource("11_i4tvs")
+equipment = SubResource("Resource_7n544")
+name = "Johnathan"
+level = 1
+base_strength = 1
+base_agility = 1
+base_intellect = 1
+skills = Array[ExtResource("7_qkvnd")]([ExtResource("8_vg8xu"), ExtResource("9_vuu0f")])
+weakness = 0
+ailments = 0
+status_effects = Array[ExtResource("10_ccyj8")]([])

@@ -3,38 +3,58 @@
 extends Node
 
 enum Ailments {
-	NONE,
 	BLINDNESS,
 	SILENCE,
 	PARALYSIS,
 	FROZEN
 }
 
+## Run the functions associated with the skill
 func use_skill(skill : Skill, user : Actor, target : Actor):
-	call(skill.function_alias, user, target, skill.args)
+	var rand = randf()
+	if user.get_miss_chance() >= rand:
+		print_rich("[color=magenta]%s missed![/color]" % user.name)
+		return
+	
+	for key in skill.args.keys():
+		if has_method(key):
+			call(key, user, target, skill.args[key])
+
+
+## Functions the same as skills really...
+func use_item(item : Item, user : Actor, target : Actor):
+	for key in item.args.keys():
+		if has_method(key):
+			call(key, user, target, item.args[key])
+
 
 ## Target takes damage
-## Use this to do "heal" damage as well
-func damage_target(_source : Actor, target : Actor, args : Dictionary):
-	var element = Damage.Element.NONE
-	var amount = args["amount"]
-	var magic = false
-	if args.has("element"):
-		magic = true
-		element = args["element"]
-	var damage = Damage.create(amount, element, args.has("heal"))
-	if magic:
-		damage.add(calculate_magic_damage(element, _source, target))
-	# apply weakness to element
-	if damage.element != Damage.Element.NONE and target.weakness == damage.element:
-		damage.amount *= 1.5
+func damage_target(user : Actor, target : Actor, _damage : Damage):
+	var damage = _damage.duplicate() # Preserve the original damage
+	
+	if damage.element != Damage.Element.NONE:
+		damage.add(calculate_magic_damage(damage.element, user, target))
+		if target.weakness == damage.element:
+			damage.amount *= 1.5
+	else:
+		damage.add(calculate_physical_damage(user, target))
 	
 	# critical strike
 	if randf() < 0.3:
 		damage.critical = true
-	
 	target.take_damage(damage)
 
+
+## Attacks with the user's weapon
+func regular_attack(user : Actor, target : Actor, args):
+	var rand = randf()
+	if user.get_miss_chance() >= rand:
+		print_rich("[color=magenta]%s missed![/color]" % user.name)
+		return
+	target.take_damage(calculate_physical_damage(user, target))
+
+
+## Calculate damage based on magix stat values
 func calculate_magic_damage(element : Damage.Element, attacker : Actor, defender : Actor):
 	var m_atk = attacker.get_magic_attack_power()
 	var m_def = defender.get_magic_defense()
@@ -46,6 +66,8 @@ func calculate_magic_damage(element : Damage.Element, attacker : Actor, defender
 		damage.critical = true
 	return damage
 
+
+## Calculate damage based on physical stat values
 func calculate_physical_damage(attacker : Actor, defender : Actor) -> Damage:
 	var atk = attacker.get_atk()
 	var def = defender.get_def()
@@ -75,6 +97,7 @@ func show_battle_animation(data : Dictionary, scene : PackedScene, global_positi
 		await battle_anim.finished
 	callback.call()
 
+
 func show_floating_text(parent, text : String, color : Color = Color.WHITE, offset : Vector2 = Vector2.ZERO, crit = false):
 	var label = preload("res://floating_text.tscn").instantiate() as FloatingText
 	label.position = offset
@@ -83,17 +106,18 @@ func show_floating_text(parent, text : String, color : Color = Color.WHITE, offs
 	parent.add_child(label)
 	label.float_up(text, color)
 
+
 func get_enemy_battlers():
 	return get_all_battlers().filter(func(b): return b is EnemyBattler)
+
 
 func get_character_battlers():
 	return get_all_battlers().filter(func(b): return b is CharacterBattler)
 
+
 func get_all_battlers():
 	return get_tree().get_nodes_in_group("battler")
 
-func skill_add_status_effect(_source : Actor, target : Actor, args : Dictionary):
-	apply_status_effect(target, args.effect)
 
 #region StatusEffects
 
@@ -104,16 +128,21 @@ func get_status_effect(actor : Actor, alias : String):
 			result = e
 	return result
 
-func apply_status_effect(actor : Actor, new_effect : StatusEffect):
-	var existing = get_status_effect(actor, new_effect.alias) as StatusEffect
+## Apply a status effect to the target
+func apply_status_effect(user : Actor, target : Actor, _new_effect : StatusEffect):
+	var new_effect = _new_effect.duplicate() # Preserve the original data
+	if !new_effect._can_apply(target):
+		print("%s evades the %s" % [target.name, new_effect.name])
+		return
+	
+	var existing = get_status_effect(target, new_effect.alias) as StatusEffect
 	if existing:
-		# NOTE Removed stacks due to unbalanced gameplay
 		# TODO Instead of erase, can we replace the value at index?
-		actor.status_effects.erase(existing)
+		target.status_effects.erase(existing)
 	
 	# Add the effect
-	new_effect.actor = actor
-	actor.status_effects.append(new_effect)
+	new_effect.actor = target
+	target.status_effects.append(new_effect)
 	
 	new_effect._on_applied()
 
