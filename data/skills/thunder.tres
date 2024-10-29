@@ -1,6 +1,24 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://c6elfidwuyv4t"]
+[gd_resource type="Resource" script_class="Skill" load_steps=6 format=3 uid="uid://c6elfidwuyv4t"]
 
 [ext_resource type="Script" path="res://scripts/resource_scripts/skill.gd" id="1_0cf3w"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/status_effect_ailment.gd" id="1_ort0i"]
+[ext_resource type="Script" path="res://scripts/damage.gd" id="2_3iv3l"]
+
+[sub_resource type="Resource" id="Resource_l8frk"]
+script = ExtResource("1_ort0i")
+ailment = 1
+chance = 0.485
+alias = "blind1"
+name = "Bright Burn"
+max_duration = 1
+negative_effect = true
+persists = false
+
+[sub_resource type="Resource" id="Resource_23g13"]
+script = ExtResource("2_3iv3l")
+amount = 16
+element = 4
+heal = false
 
 [resource]
 script = ExtResource("1_0cf3w")
@@ -13,6 +31,8 @@ target_ally = false
 function_alias = "damage_target"
 args = {
 "amount": 16,
+"apply_status_effect": SubResource("Resource_l8frk"),
+"damage_target": SubResource("Resource_23g13"),
 "element": 1
 }
 battle_anim_alias = "thunder"

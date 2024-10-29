@@ -2,6 +2,14 @@
 # battle related functions that can be used anywhere
 extends Node
 
+enum Ailments {
+	NONE,
+	BLINDNESS,
+	SILENCE,
+	PARALYSIS,
+	FROZEN
+}
+
 func use_skill(skill : Skill, user : Actor, target : Actor):
 	call(skill.function_alias, user, target, skill.args)
 

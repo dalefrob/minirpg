@@ -12,6 +12,10 @@ class_name StatusEffect
 var actor : Actor # The actor that is affected
 var duration : int
 
+## Can the effect be applied to the actor?
+func _can_apply(_actor : Actor):
+	return true
+
 func _on_applied():
 	print_rich("[color=orange]%s was applied to %s[/color]" % [alias, actor.name])
 	duration = max_duration
