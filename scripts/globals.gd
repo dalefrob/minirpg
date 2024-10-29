@@ -16,6 +16,7 @@ func _ready() -> void:
 	var potion = preload("res://data/items/potion.tres")
 	potion.stock = 2
 	inventory.append(potion)
+	inventory.append(preload("res://data/items/eyedrops.tres"))
 	
 	load_test_party()
 

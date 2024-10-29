@@ -7,7 +7,3 @@ class_name Consumable
 @export_category("Calling Parameters")
 @export var function_alias : String
 @export var args : Dictionary
-
-func use(user : Actor, target : Variant):
-	stock -= 1
-	BattleHelper.use_item(self, user, target)

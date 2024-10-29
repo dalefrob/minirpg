@@ -9,9 +9,10 @@ class_name AilmentStatusEffect
 func _can_apply(_actor : Actor):
 	# TODO - If actor is immune to ailment - return false
 	# Roll check
-	if chance >= randf():
+	var rand = randf()
+	if rand <= chance:
 		return false
-	return _can_apply(_actor)
+	return super._can_apply(_actor)
 
 
 func _on_applied():

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Consumable" load_steps=2 format=3 uid="uid://v07ytd3vr6kv"]
+
+[ext_resource type="Script" path="res://scripts/resource_scripts/consumable.gd" id="1_7741x"]
+
+[resource]
+script = ExtResource("1_7741x")
+stack_size = 99
+stock = 1
+function_alias = "remove_status_effect"
+args = {
+"remove_ailment": 1
+}
+name = "Eye Drops"
+description = "Removes blindness  status"
+value = 1

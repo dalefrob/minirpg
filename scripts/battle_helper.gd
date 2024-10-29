@@ -146,6 +146,9 @@ func apply_status_effect(user : Actor, target : Actor, _new_effect : StatusEffec
 	
 	new_effect._on_applied()
 
+func remove_ailment(target : Actor, ailment : Ailments):
+	print("remove ailment")
+
 
 func remove_status_effect_by_alias(actor : Actor, alias : String):
 	var effect : StatusEffect = get_status_effect(actor, alias)

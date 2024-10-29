@@ -13,8 +13,11 @@ func _can_execute() -> bool:
 	if !consumable:
 		error_msg = "Not a consumable"
 		return false
+	else:
+		if consumable.stock < 1:
+			return false
 	return super._can_execute()
 
 
 func _execute():
-	item.use(user.actor, target.actor)
+	BattleHelper.use_item(item, user.actor, target.actor)
