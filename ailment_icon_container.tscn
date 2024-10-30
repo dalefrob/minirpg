@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://yv7cbskh4mgo"]
+
+[ext_resource type="Texture2D" uid="uid://dw3qgt17ehl1x" path="res://sprites/ui/icon_blindness.png" id="1_2pu34"]
+[ext_resource type="Texture2D" uid="uid://bt6qfrgvaht6e" path="res://sprites/ui/icon_silence.png" id="2_n3swb"]
+
+[node name="AilmentIconContainer" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="1" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture = ExtResource("1_2pu34")
+expand_mode = 1
+
+[node name="2" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture = ExtResource("2_n3swb")
+expand_mode = 1

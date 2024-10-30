@@ -1,7 +1,9 @@
+TextureRect
+HBoxContainer
+Sprite2D
 AudioStreamPlayer2D
 Container
 MarginContainer
-Sprite2D
 GPUParticles2D
 Node
 Line2D
@@ -11,4 +13,3 @@ AnimationPlayer
 RollingNumberLabel
 Label
 GridContainer
-Panel

@@ -16,7 +16,6 @@ character_ui_pks = ExtResource("10_d6v5k")
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_dwtsm")
 volume_db = -15.0
-autoplay = true
 parameters/looping = true
 
 [node name="TurnSystem" type="Node" parent="."]
