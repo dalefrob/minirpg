@@ -1,9 +1,9 @@
-Sprite3D
-OmniLight3D
+TextureRect
+HBoxContainer
+Sprite2D
 AudioStreamPlayer2D
 Container
 MarginContainer
-Sprite2D
 GPUParticles2D
 Node
 Line2D
