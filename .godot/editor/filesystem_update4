@@ -1,4 +1,3 @@
-res://battle_anim_scenes/firaga.tscn
 res://data/skills/basic_attack.tres
 res://3d/materials/walls.tres
 res://3d/materials/floor.tres
@@ -6,6 +5,7 @@ res://hit_flash_material.tres
 res://ui/default_style_box.tres
 res://ui/main_ui.tres
 res://data/items/potion.tres
+res://data/items/eyedrops.tres
 res://data/items/sword_1.tres
 res://data/skills/fire.tres
 res://data/skills/firaga.tres
@@ -16,11 +16,8 @@ res://data/skills/cure.tres
 res://data/skills/regen.tres
 res://data/actors/test_char_2.tres
 res://battle_anim_scenes/thunder.tres
-res://data/items/eyedrops.tres
-res://scripts/globals.gd
-res://scripts/battle_helper.gd
-res://scripts/commands/command_useitem.gd
-res://scripts/resource_scripts/consumable.gd
+res://skull.tscn
+res://world_screen.tscn
 res://character_ui.tscn
 res://floating_text.tscn
 res://battle_screen.tscn
@@ -28,8 +25,8 @@ res://battle_results_panel.tscn
 res://message_panel.tscn
 res://menu_item_list.tscn
 res://character_battler.tscn
+res://battle_anim_scenes/firaga.tscn
 res://battle_anim_scenes/cure.tscn
 res://battle_anim_scenes/fire.tscn
 res://battle_anim_scenes/thunder.tscn
 res://enemy_battler.tscn
-res://scripts/resource_scripts/status_effect_ailment.gd

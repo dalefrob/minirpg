@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0wsxuvlfh2jl"
-path.s3tc="res://.godot/imported/flame_05.png-5ddc85cca9254cb081d2206f12fecea4.s3tc.ctex"
+uid="uid://0x6s1yxcd2sd"
+path.s3tc="res://.godot/imported/base_color.png-49bbc19038948eb011a618b3a4d196b4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://sprites/fx_masks/flame_05.png"
-dest_files=["res://.godot/imported/flame_05.png-5ddc85cca9254cb081d2206f12fecea4.s3tc.ctex"]
+source_file="res://3d/materials/base_color.png"
+dest_files=["res://.godot/imported/base_color.png-49bbc19038948eb011a618b3a4d196b4.s3tc.ctex"]
 
 [params]
 

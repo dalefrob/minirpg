@@ -1,3 +1,5 @@
+Sprite3D
+OmniLight3D
 AudioStreamPlayer2D
 Container
 MarginContainer
@@ -11,4 +13,3 @@ AnimationPlayer
 RollingNumberLabel
 Label
 GridContainer
-Panel
