@@ -43,6 +43,8 @@ func get_all_battlers():
 
 var encounter : Encounter
 
+signal battle_ended
+
 func load_encounter(new_encounter : Encounter):
 	print("loading encounter: %s" % new_encounter)
 	encounter = new_encounter
@@ -164,8 +166,9 @@ func win_battle():
 	reward_experience(rewards.exp)
 	
 	await battleresultspanel.closed
+	
 	# Go back to the overworld
-	Globals.return_to_overworld()
+	battle_ended.emit()
 
 
 func reward_experience(experience : int):
