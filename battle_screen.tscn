@@ -22,6 +22,7 @@ parameters/looping = true
 script = ExtResource("4_fauym")
 
 [node name="Background" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_73l8l")
 centered = false

@@ -1,6 +1,9 @@
 extends Node
 class_name WorldScreen
 
+@onready var battle_screen_pks = preload("res://battle_screen.tscn")
+
+@onready var character = $World/CharacterBody3D
 
 func _ready() -> void:
 	return
@@ -15,7 +18,22 @@ func _ready() -> void:
 
 func _on_button_pressed() -> void:
 	var encounter : Encounter = load("res://data/test_data/test_encounter.tres")
-	Globals.start_encounter(encounter)
+	start_encounter(encounter)
+
+
+func start_encounter(encounter : Encounter):
+	character.set_physics_process(false)
+	var new_battle_screen = battle_screen_pks.instantiate() as BattleScreen
+	
+	var resume = func():
+		new_battle_screen.queue_free()
+		character.set_physics_process(true)
+		
+	new_battle_screen.battle_ended.connect(resume, CONNECT_ONE_SHOT)
+	add_child(new_battle_screen)
+	new_battle_screen.load_encounter(encounter)
+
+
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
